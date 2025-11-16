@@ -6,8 +6,7 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1 class="text-3xl font-bold underline">
-  Hello world!
+  <%@ include file="views/common/header.jsp"%>
 </h1>
 <br/>
 </body>
