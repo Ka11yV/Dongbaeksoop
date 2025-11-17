@@ -4,14 +4,8 @@
   사용법: 다른 JSP 파일에서 <%@ include file="header.jsp" %>로 포함하여 사용합니다.
 --%>
 
-<%--
-   [핵심 수정]: 주 JSP 파일에서만 page 지시어를 설정하고,
-   여기는 충돌을 막기 위해 pageEncoding만 유지합니다.
---%>
-<%@ page pageEncoding="UTF-8" %>
 
 <!--
-Tailwind CSS 기반의 헤더 구조
 - h-20: 고정 높이 80px
 - border-b: 하단 경계선 추가
 -->
@@ -29,11 +23,11 @@ Tailwind CSS 기반의 헤더 구조
       </a>
 
       <!-- 2. 내비게이션 메뉴 (중앙) -->
-      <!-- [수정]: Nav 항목 전체를 감싸는 태그에 Flexbox 및 간격 재설정 -->
-      <nav class="hidden md:flex items-center space-x-1 text-gray-700 h-full">
+      <!-- Flexbox를 사용하여 간격을 유지하고, Nav 항목을 수직 중앙 정렬 -->
+      <nav class="flex items-center space-x-1 text-gray-700 h-full">
 
-        <!-- 개별 메뉴 항목: a 태그로 복원 및 클래스 수정 -->
-        <a href="/" class="flex items-center space-x-2 rounded-lg px-4 py-3 hover:bg-gray-100 hover:text-[#0062AD] transition duration-150 cursor-pointer">
+        <!-- 개별 메뉴 항목: 호버 시 배경 및 텍스트 색상 변경 -->
+        <a href="#" class="flex items-center space-x-2 rounded-lg px-4 py-3 hover:bg-gray-100 hover:text-[#0062AD] transition duration-150 cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
             <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               <path d="m3 9l9-7l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
@@ -43,7 +37,7 @@ Tailwind CSS 기반의 헤더 구조
           <div class="font-medium">홈</div>
         </a>
 
-        <a href="/notifications" class="flex items-center space-x-2 rounded-lg px-4 py-3 hover:bg-gray-100 hover:text-[#0062AD] transition duration-150 cursor-pointer">
+        <a href="#" class="flex items-center space-x-2 rounded-lg px-4 py-3 hover:bg-gray-100 hover:text-[#0062AD] transition duration-150 cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></svg>
           <div class="font-medium">공지</div>
         </a>
@@ -85,3 +79,5 @@ Tailwind CSS 기반의 헤더 구조
         </a>
       </div>
     </div>
+  </div>
+</header>
