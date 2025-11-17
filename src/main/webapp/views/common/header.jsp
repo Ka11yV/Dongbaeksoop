@@ -9,6 +9,7 @@
 - h-20: 고정 높이 80px
 - border-b: 하단 경계선 추가
 -->
+<%@ page pageEncoding="UTF-8" %>
 <header class="h-20 w-full border-b border-gray-200 bg-white shadow-sm">
   <div class="container mx-auto h-full px-4">
     <!-- Flexbox: 로고, Nav, 버튼을 수직 중앙 정렬 및 양 끝 배치 (justify-between) -->
@@ -71,7 +72,7 @@
       <!-- 3. 액션 버튼 그룹 (오른쪽) -->
       <div class="flex space-x-3 items-center">
         <!-- 로그인 버튼 (텍스트/호버 효과) -->
-        <a href="#" class="rounded-xl px-4 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-150 cursor-pointer">로그인</a>
+        <a href="login" class="rounded-xl px-4 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-150 cursor-pointer">로그인</a>
 
         <!-- 회원가입 버튼 (메인 색상) -->
         <a href="#" class="rounded-xl bg-[#0062AD] px-4 py-2 hover:bg-[#1971B2] transition duration-150 cursor-pointer">
