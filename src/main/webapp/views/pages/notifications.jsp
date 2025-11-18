@@ -1,19 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sergiopear
-  Date: 2025. 11. 17.
-  Time: 오전 12:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<!DOCTYPE html>
 <html>
 <head>
     <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
-    <title>Title</title>
+    <title>동백숲</title>
 </head>
 <body>
-    <%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/header.jsp"%>
     <main class="container mx-auto mt-12 px-4 max-w-4xl">
 
         <!-- 1. 섹션 타이틀 블록 (유연한 Flexbox) -->
@@ -156,8 +149,7 @@
 
             </div>
         </div>
-
-        </div>
     </main>
+<%@ include file="/views/common/footer.jsp"%>
 </body>
 </html>

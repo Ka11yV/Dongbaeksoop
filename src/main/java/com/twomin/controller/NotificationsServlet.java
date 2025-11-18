@@ -12,8 +12,7 @@ import java.io.IOException;
 public class NotificationsServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/notifications.jsp");
         dispatcher.forward(request, response);
     }
