@@ -75,7 +75,7 @@
         <a href="login" class="rounded-xl px-4 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition duration-150 cursor-pointer">로그인</a>
 
         <!-- 회원가입 버튼 (메인 색상) -->
-        <a href="#" class="rounded-xl bg-[#0062AD] px-4 py-2 hover:bg-[#1971B2] transition duration-150 cursor-pointer">
+        <a href="register" class="rounded-xl bg-[#0062AD] px-4 py-2 hover:bg-[#1971B2] transition duration-150 cursor-pointer">
           <p class="text-white font-semibold">회원가입</p>
         </a>
       </div>
