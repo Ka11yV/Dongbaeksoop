@@ -12,10 +12,11 @@
 
     <!-- Section 3: Hero Image with Text (Visually first) -->
     <div class="relative h-[364px] overflow-hidden w-full" data-name="Section" data-node-id="149:1391">
-      <div class="absolute inset-0" data-name="Container" data-node-id="149:1392">
-        <img alt="" class="absolute inset-0 w-full h-full object-cover pointer-events-none" src="https://www.figma.com/api/mcp/asset/334f12be-c81e-40e3-9e5d-b70a4e9b161e" data-name="Image (동양미래대학교 캠퍼스)" data-node-id="149:1393" />
+      <div class="absolute inset-0 bg-[url('/assets/dongyang.jpg')] bg-cover bg-center" data-name="Container" data-node-id="149:1392">
       </div>
+
       <div class="absolute inset-0 bg-gradient-to-r from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.7)] via-50% via-[rgba(0,0,0,0.5)]" data-name="Container" data-node-id="149:1394"></div>
+
       <div class="relative z-10 flex flex-col gap-6 items-center justify-center h-full text-center px-4 max-w-4xl mx-auto" data-name="Container" data-node-id="149:1395">
         <h1 class="font-['Inter:Regular','Noto_Sans_KR:Regular',sans-serif] font-normal text-5xl text-white tracking-[0.3516px]" data-node-id="149:1397">
           동백숲에 오신 것을 환영합니다

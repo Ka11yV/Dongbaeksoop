@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sergiopear
-  Date: 2025. 11. 17.
-  Time: 오후 4:07
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page pageEncoding="UTF-8" %>
 
 <footer class="w-full bg-gray-900">
