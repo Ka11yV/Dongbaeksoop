@@ -1,18 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: sergiopear
-  Date: 2025. 11. 17.
-  Time: 오전 11:24
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
   <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
-    <title>Title</title>
+  <title>동백숲</title>
 </head>
 <body>
-<%@ include file="/views/common/header.jsp" %>
+<%@ include file="/views/common/header.jsp"%>
 <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
   <div class="w-full max-w-xl bg-white rounded-2xl shadow-xl border border-black/10 flex flex-col items-center p-6 sm:p-8 space-y-6">
 

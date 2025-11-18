@@ -2,11 +2,9 @@
 
 <footer class="w-full bg-gray-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
-
-        <!-- 푸터 콘텐츠 그리드: md 이상 4컬럼, sm 이상 2컬럼, 기본 1컬럼 -->
         <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 lg:gap-24">
 
-            <!-- 1. 동백숲 소개 -->
+            <!-- 동백숲 소개 -->
             <div class="col-span-2 md:col-span-1 flex flex-col space-y-4">
                 <h3 class="text-white text-lg font-medium">동백숲</h3>
                 <div class="text-gray-300 text-sm font-normal space-y-0.5">
@@ -15,18 +13,18 @@
                 </div>
             </div>
 
-            <!-- 2. 바로가기 링크 -->
+            <!-- 바로가기 링크 -->
             <div class="flex flex-col space-y-4">
                 <h4 class="text-white text-base font-normal">바로가기</h4>
                 <nav class="flex flex-col space-y-2 text-sm">
-                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">강의평가</a>
-                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">Q&A</a>
-                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">공지사항</a>
-                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">구독 관리</a>
+                    <a href="${pageContext.request.contextPath}/lecture-review" class="text-gray-300 hover:text-sky-400 transition">강의평가</a>
+                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">과제</a>
+                    <a href="${pageContext.request.contextPath}/notifications" class="text-gray-300 hover:text-sky-400 transition">공지사항</a>
+                    <a href="${pageContext.request.contextPath}/notice-subscription-management" class="text-gray-300 hover:text-sky-400 transition">구독 관리</a>
                 </nav>
             </div>
 
-            <!-- 3. 지원 링크 -->
+            <!-- 지원 링크 -->
             <div class="flex flex-col space-y-4">
                 <h4 class="text-white text-base font-normal">지원</h4>
                 <nav class="flex flex-col space-y-2 text-sm">
@@ -37,7 +35,7 @@
                 </nav>
             </div>
 
-            <!-- 4. 문의 정보 -->
+            <!-- 문의 정보 -->
             <div class="flex flex-col space-y-4">
                 <h4 class="text-white text-base font-normal">문의</h4>
                 <address class="not-italic flex flex-col space-y-2 text-sm text-gray-300">

@@ -8,12 +8,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/register")
-public class RegisterServlet extends HttpServlet {
-
-    @Override
+@WebServlet("/lecture-review")
+public class LectureReviewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/lecture-review.jsp");
         dispatcher.forward(request, response);
+        return;
     }
 }
