@@ -26,7 +26,7 @@
             </p>
           </a>
           <a href="${pageContext.request.contextPath}/notice-subscription-management" class="bg-[rgba(0,98,173,0.9)] rounded-lg px-6 py-2 flex items-center justify-center" data-name="Link" data-node-id="149:1403">
-            <p class="font-['Inter:Medium','Noto_Sans_KR:Regular',sans-serif] font-medium text-sm text-white text-center tracking-[-0.1504px]" data-node-id="149:1404">
+            <p class=" font-['Inter:Medium','Noto_Sans_KR:Regular',sans-serif] font-medium text-sm text-white text-center tracking-[-0.1504px]" data-node-id="149:1404">
               공지 구독하기
             </p>
           </a>
@@ -34,9 +34,12 @@
       </div>
     </div>
 
+    <%-- 카드 컨테이너   --%>
     <div class="container mx-auto py-16 px-4" data-name="Section" data-node-id="149:1243">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start hover:border-primary" data-name="Link" data-node-id="149:1244">
+
+        <%-- 카드1 --%>
+        <div class="cursor-pointer hover:border-sky-700 bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start hover:border-primary" data-name="Link" data-node-id="149:1244">
           <div class="flex items-center justify-center bg-blue-100 rounded-lg w-12 h-12 mb-4" data-name="HomePage" data-node-id="149:1247">
             <img alt="" class="w-6 h-6" src="https://www.figma.com/api/mcp/asset/2dbeac9d-2a33-4eb8-b985-b05d6e517e65" data-name="Icon" data-node-id="149:1248" />
           </div>
@@ -46,7 +49,8 @@
           </p>
         </div>
 
-        <div class="bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start" data-name="Link" data-node-id="149:1255">
+        <%--   카드2     --%>
+        <div class="cursor-pointer hover:border-sky-700 bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start" data-name="Link" data-node-id="149:1255">
           <div class="flex items-center justify-center bg-blue-100 rounded-lg w-12 h-12 mb-4" data-name="HomePage" data-node-id="149:1258">
             <img alt="" class="w-6 h-6" src="https://www.figma.com/api/mcp/asset/477819c6-e24f-4884-ac62-56f3c98ba028" data-name="Icon" data-node-id="149:1259" />
           </div>
@@ -56,7 +60,8 @@
           </p>
         </div>
 
-        <div class="bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start" data-name="Link" data-node-id="149:1266">
+        <%--  카드3      --%>
+        <div class="cursor-pointer hover:border-sky-700 bg-white border-2 border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col items-start" data-name="Link" data-node-id="149:1266">
           <div class="flex items-center justify-center bg-blue-100 rounded-lg w-12 h-12 mb-4" data-name="HomePage" data-node-id="149:1269">
             <img alt="" class="w-6 h-6" src="https://www.figma.com/api/mcp/asset/bbcb7299-ccd3-41ac-bb22-ad0b7b96f1c8" data-name="Icon" data-node-id="149:1270" />
           </div>
@@ -67,6 +72,7 @@
         </div>
       </div>
     </div>
+
 
     <div class="container mx-auto py-16 px-4" data-name="Section" data-node-id="149:1281">
       <div class="flex justify-between items-center mb-8">
@@ -82,7 +88,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1292">
+        <div class="hover:shadow-xl cursor-pointer bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1292">
           <div class="flex justify-between items-start mb-2">
             <div>
               <h3 class="font-['Inter:Regular','Noto_Sans_KR:Regular',sans-serif] font-normal text-base text-neutral-950" data-node-id="149:1297">웹 프로그래밍</h3>
@@ -106,7 +112,7 @@
           </p>
         </div>
 
-        <div class="bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1325">
+        <div class="hover:shadow-xl cursor-pointer bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1325">
           <div class="flex justify-between items-start mb-2">
             <div>
               <h3 class="font-['Inter:Regular','Noto_Sans_KR:Regular',sans-serif] font-normal text-base text-neutral-950" data-node-id="149:1330">데이터베이스</h3>
@@ -130,7 +136,7 @@
           </p>
         </div>
 
-        <div class="bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1358">
+        <div class="hover:shadow-xl cursor-pointer bg-white border border-[rgba(0,0,0,0.1)] border-solid rounded-xl p-6 flex flex-col" data-name="Card" data-node-id="149:1358">
           <div class="flex justify-between items-start mb-2">
             <div>
               <h3 class="font-['Inter:Regular','Noto_Sans_KR:Regular',sans-serif] font-normal text-base text-neutral-950" data-node-id="149:1363">영어회화</h3>

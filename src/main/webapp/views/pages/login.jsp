@@ -32,7 +32,7 @@
                     <input id="password" type="password" placeholder="비밀번호를 입력하세요" class="w-full h-10 px-3 py-2 bg-zinc-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm placeholder-gray-500">
                 </div>
 
-                <button class="w-full h-10 bg-sky-700 hover:bg-sky-800 rounded-lg flex items-center justify-center transition duration-150">
+                <button class="cursor-pointer w-full h-10 bg-sky-700 hover:bg-sky-800 rounded-lg flex items-center justify-center transition duration-150">
                     <span class="text-white text-base font-medium">로그인</span>
                 </button>
 
@@ -43,7 +43,7 @@
 
             <footer class="w-full flex items-center justify-center pt-4">
                 <span class="text-sm text-gray-600">계정이 없으신가요?</span>
-                <a href="#" class="ml-1 text-sm font-medium text-sky-700 hover:text-sky-800 transition duration-150">회원가입</a>
+                <a href="${pageContext.request.contextPath}/register" class="ml-1 text-sm font-medium text-sky-700 hover:text-sky-800 transition duration-150">회원가입</a>
             </footer>
         </div>
     </div>

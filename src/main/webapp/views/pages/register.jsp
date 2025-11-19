@@ -83,7 +83,7 @@
 
     <footer class="w-full flex items-center justify-center pt-4 border-t border-gray-200">
       <span class="text-sm text-gray-600">이미 계정이 있으신가요?</span>
-      <a href="#" class="ml-1 text-sm font-medium text-sky-700 hover:text-sky-800 transition duration-150">로그인</a>
+      <a href="${pageContext.request.contextPath}}/login" class="ml-1 text-sm font-medium text-sky-700 hover:text-sky-800 transition duration-150">로그인</a>
     </footer>
   </div>
 </div>
