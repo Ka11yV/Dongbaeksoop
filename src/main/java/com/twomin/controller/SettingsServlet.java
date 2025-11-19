@@ -8,10 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/lecture-review")
-public class LectureReviewServlet extends HttpServlet {
+@WebServlet("/settings")
+public class SettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/lecture-review.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/settings.jsp");
         dispatcher.forward(request, response);
         return;
     }
