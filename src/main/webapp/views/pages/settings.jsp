@@ -186,6 +186,23 @@
       </main>
 
       <%@ include file="/views/common/footer.jsp" %>
+        <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggles = document.querySelectorAll('.relative.inline-flex.cursor-pointer');
+        toggles.forEach(toggle => {
+          toggle.addEventListener('click', () => {
+            const knob = toggle.querySelector('span');
+            if (toggle.classList.contains('bg-primary')) {
+              toggle.classList.replace('bg-primary', 'bg-gray-200');
+              knob.classList.replace('translate-x-6', 'translate-x-1');
+            } else {
+              toggle.classList.replace('bg-gray-200', 'bg-primary');
+              knob.classList.replace('translate-x-1', 'translate-x-6');
+            }
+          });
+        });
+      });
+        </script>
   </body>
 
   </html>

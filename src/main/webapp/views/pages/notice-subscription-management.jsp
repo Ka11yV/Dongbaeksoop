@@ -95,9 +95,9 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary cursor-pointer transition-colors">
+                                    class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 cursor-pointer transition-colors">
                                     <span
-                                        class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
                                 </div>
                             </div>
 
@@ -143,9 +143,9 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary cursor-pointer transition-colors">
+                                    class="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 cursor-pointer transition-colors">
                                     <span
-                                        class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                        class="translate-x-1 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
                                 </div>
                             </div>
 
@@ -238,6 +238,23 @@
             </main>
 
             <%@ include file="/views/common/footer.jsp" %>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const toggles = document.querySelectorAll('.relative.inline-flex.cursor-pointer');
+                        toggles.forEach(toggle => {
+                            toggle.addEventListener('click', () => {
+                                const knob = toggle.querySelector('span');
+                                if (toggle.classList.contains('bg-primary')) {
+                                    toggle.classList.replace('bg-primary', 'bg-gray-200');
+                                    knob.classList.replace('translate-x-6', 'translate-x-1');
+                                } else {
+                                    toggle.classList.replace('bg-gray-200', 'bg-primary');
+                                    knob.classList.replace('translate-x-1', 'translate-x-6');
+                                }
+                            });
+                        });
+                    });
+                </script>
     </body>
 
     </html>

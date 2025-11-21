@@ -20,7 +20,7 @@
           <a href="${pageContext.request.contextPath}/lecture-reviews"
             class="text-gray-600 hover:text-primary font-medium transition-colors">강의 평가</a>
           <a href="${pageContext.request.contextPath}/my-page"
-            class="text-gray-600 hover:text-primary font-medium transition-colors">마이 페이지</a>
+            class="text-gray-600 hover:text-primary font-medium transition-colors">마이페이지</a>
           <a href="${pageContext.request.contextPath}/settings"
             class="text-gray-600 hover:text-primary font-medium transition-colors">설정</a>
         </nav>

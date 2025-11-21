@@ -343,18 +343,18 @@
                 <p class="text-lg text-gray-600 mb-8 leading-relaxed">
                   "이 교수님 과제 많나요?", "학점 잘 주시나요?"<br>
                   궁금했던 강의 정보, 이제 동백숲에서 확인하세요.<br>
-                  익명으로 작성된 솔직한 강의 평가와 시험 족보를 공유합니다.
+                  익명으로 작성된 솔직한 강의 평가를 공유합니다.
                 </p>
                 <div class="flex gap-4">
                   <div class="text-center">
                     <p class="text-3xl font-bold text-dark">5,000+</p>
                     <p class="text-sm text-gray-500">누적 강의평</p>
                   </div>
-                  <div class="w-px bg-gray-200"></div>
-                  <div class="text-center">
-                    <p class="text-3xl font-bold text-dark">4.8/5</p>
-                    <p class="text-sm text-gray-500">사용자 만족도</p>
-                  </div>
+<%--                    <div class="w-px bg-gray-200"></div>--%>
+<%--                    <div class="text-center">--%>
+<%--                      <p class="text-3xl font-bold text-dark">4.8/5</p>--%>
+<%--                      <p class="text-sm text-gray-500">사용자 만족도</p>--%>
+<%--                  </div>--%>
                 </div>
               </div>
               <div class="w-full md:w-1/2 reveal" style="transition-delay: 200ms;">
