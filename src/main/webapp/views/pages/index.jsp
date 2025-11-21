@@ -20,7 +20,7 @@
           동양미래대 학생들을 위한 강의 평가와 맞춤형 공지 알림 서비스
         </p>
         <div class="flex gap-4" data-name="Container" data-node-id="149:1400">
-          <a href="${pageContext.request.contextPath}/lecture-review" class="bg-white rounded-lg px-6 py-2 flex items-center justify-center" data-name="Link" data-node-id="149:1401">
+          <a href="${pageContext.request.contextPath}/lecture-reviews" class="bg-white rounded-lg px-6 py-2 flex items-center justify-center" data-name="Link" data-node-id="149:1401">
             <p class="font-['Inter:Medium','Noto_Sans_KR:Regular',sans-serif] font-medium text-sm text-[#0062ad] text-center tracking-[-0.1504px]" data-node-id="149:1402">
               강의평가 보기
             </p>

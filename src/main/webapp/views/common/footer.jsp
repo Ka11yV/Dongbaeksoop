@@ -17,8 +17,8 @@
             <div class="flex flex-col space-y-4">
                 <h4 class="text-white text-base font-normal">바로가기</h4>
                 <nav class="flex flex-col space-y-2 text-sm">
-                    <a href="${pageContext.request.contextPath}/lecture-review" class="text-gray-300 hover:text-sky-400 transition">강의평가</a>
-                    <a href="#" class="text-gray-300 hover:text-sky-400 transition">과제</a>
+                    <a href="${pageContext.request.contextPath}/lecture-reviews" class="text-gray-300 hover:text-sky-400 transition">강의평가</a>
+                    <a href="${pageContext.request.contextPath}/assignments" class="text-gray-300 hover:text-sky-400 transition">과제</a>
                     <a href="${pageContext.request.contextPath}/notifications" class="text-gray-300 hover:text-sky-400 transition">공지사항</a>
                     <a href="${pageContext.request.contextPath}/notice-subscription-management" class="text-gray-300 hover:text-sky-400 transition">구독 관리</a>
                 </nav>

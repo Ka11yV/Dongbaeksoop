@@ -2,12 +2,12 @@
 <header class="w-full border-b border-black/10 bg-white">
   <div class="mx-auto max-w-[1470px] px-4 sm:px-6 md:px-12 lg:px-24">
     <div class="flex h-16 items-center justify-between">
-      <div class="flex shrink-0 items-center gap-2">
+      <a href = "${pageContext.request.contextPath}/" class="flex shrink-0 items-center gap-2">
         <div class="flex h-8 w-8 items-center justify-center rounded-[10px] bg-sky-700">
           <span class="text-base leading-6 font-normal text-white">🌲</span>
         </div>
         <h1 class="text-xl leading-7 font-normal tracking-tight text-sky-700">동백숲</h1>
-      </div>
+      </a>
 
       <nav class="mx-auto hidden max-w-[760px] flex-1 items-center justify-center gap-2 lg:flex xl:gap-6">
 
