@@ -26,7 +26,7 @@
     </head>
 
     <body class="antialiased">
-        <%@ include file="/views/common/header.jsp" %>
+        <%@ include file="/view/common/header.jsp" %>
 
             <main class="pt-24 pb-12 min-h-screen">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -214,7 +214,7 @@
                 </div>
             </main>
 
-            <%@ include file="/views/common/footer.jsp" %>
+            <%@ include file="/view/common/footer.jsp" %>
     </body>
 
     </html>

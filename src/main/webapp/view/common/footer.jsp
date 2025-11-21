@@ -57,7 +57,7 @@
                                 clip-rule="evenodd" />
                         </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="https://github.com/Ka11yV/Dongbaeksoop" class="text-gray-400 hover:text-white transition-colors">
                         <span class="sr-only">GitHub</span>
                         <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd"
