@@ -38,58 +38,59 @@
 
                     <!-- Navigation Tabs -->
                     <div class="mb-8 flex p-1 space-x-1 bg-gray-100 rounded-xl">
-                        <button
-                            class="w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow">
+                        <button id="tab-profile" onclick="switchTab('profile')"
+                            class="w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all">
                             프로필
                         </button>
-                        <button
+                        <button id="tab-reviews" onclick="switchTab('reviews')"
                             class="w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all">
                             내 평가
                         </button>
-                        <button
+                        <button id="tab-account" onclick="switchTab('account')"
                             class="w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all">
                             학교 계정 연동
                         </button>
                     </div>
 
-                    <div class="flex flex-col gap-6">
-                        <!-- Profile Card -->
-                        <div
-                            class="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                            <div class="relative">
-                                <div
-                                    class="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-primary text-3xl font-bold border-4 border-white shadow-md">
-                                    홍
-                                </div>
-                                <div
-                                    class="absolute bottom-0 right-0 h-8 w-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50">
-                                    <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
-                                </div>
-                            </div>
+                    <!-- Profile Section -->
+                    <div id="section-profile" class="flex flex-col gap-6">
+<%--                        <!-- Profile Card -->--%>
+<%--                        <div--%>
+<%--                            class="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">--%>
+<%--                            <div class="relative">--%>
+<%--                                <div--%>
+<%--                                    class="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-primary text-3xl font-bold border-4 border-white shadow-md">--%>
+<%--                                    홍--%>
+<%--                                </div>--%>
+<%--                                <div--%>
+<%--                                    class="absolute bottom-0 right-0 h-8 w-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50">--%>
+<%--                                    <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24"--%>
+<%--                                        stroke="currentColor" stroke-width="2">--%>
+<%--                                        <path stroke-linecap="round" stroke-linejoin="round"--%>
+<%--                                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />--%>
+<%--                                        <path stroke-linecap="round" stroke-linejoin="round"--%>
+<%--                                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />--%>
+<%--                                    </svg>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
-                            <div class="text-center md:text-left flex-1">
-                                <h2 class="text-2xl font-bold text-dark mb-1">홍길동</h2>
-                                <p class="text-gray-500 mb-4">example@m365.dongyang.ac.kr</p>
-                                <div class="flex items-center justify-center md:justify-start gap-2">
-                                    <span
-                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">컴퓨터정보과</span>
-                                    <span
-                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">2학년</span>
-                                </div>
-                            </div>
+<%--                            <div class="text-center md:text-left flex-1">--%>
+<%--                                <h2 class="text-2xl font-bold text-dark mb-1">홍길동</h2>--%>
+<%--                                <p class="text-gray-500 mb-4">example@m365.dongyang.ac.kr</p>--%>
+<%--                                <div class="flex items-center justify-center md:justify-start gap-2">--%>
+<%--                                    <span--%>
+<%--                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">컴퓨터정보과</span>--%>
+<%--                                    <span--%>
+<%--                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">2학년</span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
-                            <div
-                                class="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-xl min-w-[120px]">
-                                <span class="text-3xl font-bold text-primary mb-1">12</span>
-                                <span class="text-sm font-medium text-blue-600">작성한 평가</span>
-                            </div>
-                        </div>
+<%--                            <div--%>
+<%--                                class="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-xl min-w-[120px]">--%>
+<%--                                <span class="text-3xl font-bold text-primary mb-1">12</span>--%>
+<%--                                <span class="text-sm font-medium text-blue-600">작성한 평가</span>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
                         <!-- Edit Profile Section -->
                         <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
@@ -160,10 +161,202 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- Reviews Section (Placeholder) -->
+                    <div id="section-reviews" class="hidden">
+                        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm text-center py-20">
+                            <div
+                                class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-gray-400 mb-4">
+                                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-dark mb-2">작성한 평가가 없습니다</h3>
+                            <p class="text-gray-500">수강한 강의에 대한 솔직한 평가를 남겨보세요.</p>
+                        </div>
+                    </div>
+
+                    <!-- School Account Link Section -->
+                    <div id="section-account" class="hidden space-y-6">
+                        <div class="mb-2">
+                            <h2 class="text-xl font-bold text-dark mb-2">학교 계정 연동</h2>
+                            <p class="text-gray-600">학교 포털 계정을 연동하면 과제 자동 조회 기능을 사용할 수 있습니다.</p>
+                        </div>
+
+                        <!-- Not Linked State -->
+                        <div id="account-not-linked">
+                            <div class="p-4 mb-6 bg-blue-50 border border-blue-100 rounded-xl flex items-start gap-3">
+                                <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                </svg>
+                                <p class="text-sm font-medium text-blue-800">학교 포털 계정을 연동하면 수강 과목의 과제를 자동으로 불러올 수 있습니다.
+                                </p>
+                            </div>
+
+                            <div class="p-4 mb-6 bg-green-50 border border-green-100 rounded-xl">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="font-bold text-green-800">보안</span>
+                                </div>
+                                <ul class="list-disc pl-5 space-y-1 text-sm text-green-700">
+                                    <li>입력하신 비밀번호는 강력한 대칭 암호화 알고리즘(AES-256)을 사용하여 암호화됩니다.</li>
+                                    <li>암호화된 정보는 과제 조회에만 사용되며, 언제든지 연동을 해제할 수 있습니다.</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                                <h3 class="text-lg font-bold text-dark mb-6">포털 계정 연동하기</h3>
+
+                                <div class="space-y-6">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-bold text-gray-700">포털 비밀번호</label>
+                                        <div class="relative">
+                                            <input type="password" placeholder="비밀번호를 입력하세요"
+                                                class="w-full h-12 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder-gray-400">
+                                            <button
+                                                class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <button onclick="toggleAccountLink()"
+                                        class="w-full h-12 bg-primary hover:bg-secondary text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                                        </svg>
+                                        연동하기
+                                    </button>
+
+                                    <div class="p-6 bg-blue-50 rounded-xl border border-blue-100">
+                                        <h4 class="font-bold text-blue-800 mb-3">연동 후 사용 가능한 기능</h4>
+                                        <ul class="space-y-2 text-sm text-blue-700">
+                                            <li class="flex items-center gap-2">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                                수강 과목의 과제 자동 조회
+                                            </li>
+                                            <li class="flex items-center gap-2">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                                과제 마감일 이메일 알림
+                                            </li>
+                                            <li class="flex items-center gap-2">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                                과제 제출 현황 관리
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Linked State (Hidden by default) -->
+                        <div id="account-linked" class="hidden">
+                            <div
+                                class="p-6 mb-8 bg-green-50 border border-green-100 rounded-2xl flex items-center gap-4">
+                                <div
+                                    class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-green-800 text-lg">연동 완료</h3>
+                                    <p class="text-green-700">학교 포털 계정이 성공적으로 연동되었습니다</p>
+                                </div>
+                            </div>
+
+                            <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm mb-8">
+                                <h3 class="text-lg font-bold text-dark mb-6">연동된 서비스</h3>
+
+                                <div class="space-y-4">
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                        <div>
+                                            <h4 class="font-bold text-dark">과제 자동 조회</h4>
+                                            <p class="text-sm text-gray-500">수강 과목의 과제를 자동으로 불러옵니다</p>
+                                        </div>
+                                        <span
+                                            class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">활성화</span>
+                                    </div>
+
+                                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl">
+                                        <div>
+                                            <h4 class="font-bold text-dark">과제 마감 알림</h4>
+                                            <p class="text-sm text-gray-500">설정한 일정에 따라 알림을 받습니다</p>
+                                        </div>
+                                        <span
+                                            class="px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">활성화</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                                <h3 class="text-lg font-bold text-dark mb-6">연동 해제</h3>
+                                <p class="text-gray-600 mb-6">학교 계정 연동을 해제하면 과제 자동 조회 및 알림 기능을 사용할 수 없습니다.</p>
+
+                                <button onclick="toggleAccountLink()"
+                                    class="w-full h-12 border border-rose-200 text-rose-500 hover:bg-rose-50 font-bold rounded-xl transition-all">
+                                    연동 해제
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
 
             <%@ include file="/views/common/footer.jsp" %>
+                <script>
+                    function switchTab(tabName) {
+                        // Hide all sections
+                        document.getElementById('section-profile').classList.add('hidden');
+                        document.getElementById('section-reviews').classList.add('hidden');
+                        document.getElementById('section-account').classList.add('hidden');
+
+                        // Show selected section
+                        document.getElementById('section-' + tabName).classList.remove('hidden');
+
+                        // Reset tab styles
+                        const tabs = ['profile', 'reviews', 'account'];
+                        tabs.forEach(t => {
+                            const btn = document.getElementById('tab-' + t);
+                            if (t === tabName) {
+                                btn.className = 'w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all';
+                            } else {
+                                btn.className = 'w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all';
+                            }
+                        });
+                    }
+
+                    function toggleAccountLink() {
+                        const notLinked = document.getElementById('account-not-linked');
+                        const linked = document.getElementById('account-linked');
+
+                        if (notLinked.classList.contains('hidden')) {
+                            notLinked.classList.remove('hidden');
+                            linked.classList.add('hidden');
+                        } else {
+                            notLinked.classList.add('hidden');
+                            linked.classList.remove('hidden');
+                        }
+                    }
+                </script>
     </body>
 
     </html>

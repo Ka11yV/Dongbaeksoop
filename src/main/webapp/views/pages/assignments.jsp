@@ -36,85 +36,84 @@
             <p class="text-lg text-gray-600">학교 포털과 연동하여 과제 마감일을 확인하고 알림을 받아보세요.</p>
           </div>
 
-          <!-- Warning Alert -->
-          <div
-            class="mb-10 flex items-start gap-4 p-4 rounded-xl bg-orange-50 border border-orange-100 text-orange-800">
-            <svg class="w-6 h-6 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <p class="text-sm md:text-base font-medium">과제 관리 기능을 사용하려면 먼저 학교 포털 계정을 연동해야 합니다.</p>
-          </div>
-
-          <!-- Connect Action Card -->
-          <div
-            class="mb-10 flex flex-col items-center justify-center rounded-2xl bg-white border border-gray-100 p-10 shadow-lg text-center">
-            <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
-              <svg class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <!-- Not Linked State (Hidden by default for demo, toggleable) -->
+          <div id="not-linked-state" class="hidden">
+            <!-- Warning Alert -->
+            <div
+              class="mb-10 flex items-start gap-4 p-4 rounded-xl bg-orange-50 border border-orange-100 text-orange-800">
+              <svg class="w-6 h-6 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.398 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
+              <p class="text-sm md:text-base font-medium">과제 관리 기능을 사용하려면 먼저 학교 포털 계정을 연동해야 합니다.</p>
             </div>
 
-            <div class="mb-8 max-w-md">
-              <h2 class="mb-3 text-2xl font-bold text-dark">학교 포털 연동이 필요합니다</h2>
-              <p class="text-gray-600 leading-relaxed">
-                마이페이지에서 학교 포털 계정을 연동하면<br>
-                수강 과목의 과제를 자동으로 불러올 수 있습니다.
-              </p>
-            </div>
+            <!-- Connect Action Card -->
+            <div
+              class="mb-10 flex flex-col items-center justify-center rounded-2xl bg-white border border-gray-100 p-10 shadow-lg text-center">
+              <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50">
+                <svg class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                  stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
 
-            <a href="${pageContext.request.contextPath}/my-page"
-              class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-blue-500/30 hover:bg-secondary hover:shadow-blue-500/40 transition-all transform hover:-translate-y-1">
-              <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.836a4 4 0 00-.035-5.655 4 4 0 00-5.656-5.656l-4 4a4 4 0 105.656 5.656l1.102 1.101zM12 12h.01" />
-              </svg>
-              마이페이지에서 연동하기
-            </a>
+              <div class="mb-8 max-w-md">
+                <h2 class="mb-3 text-2xl font-bold text-dark">학교 포털 연동이 필요합니다</h2>
+                <p class="text-gray-600 leading-relaxed">
+                  마이페이지에서 학교 포털 계정을 연동하면<br>
+                  수강 과목의 과제를 자동으로 불러올 수 있습니다.
+                </p>
+              </div>
+
+              <a href="${pageContext.request.contextPath}/my-page"
+                class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-primary text-white font-bold shadow-lg shadow-blue-500/30 hover:bg-secondary hover:shadow-blue-500/40 transition-all transform hover:-translate-y-1">
+                <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.836a4 4 0 00-.035-5.655 4 4 0 00-5.656-5.656l-4 4a4 4 0 105.656 5.656l1.102 1.101zM12 12h.01" />
+                </svg>
+                마이페이지에서 연동하기
+              </a>
+            </div>
           </div>
 
-          <!-- Features List -->
-          <div class="rounded-2xl bg-white border border-gray-100 p-8 shadow-sm">
-            <h2 class="mb-6 text-xl font-bold text-dark">연동 후 사용 가능한 기능</h2>
+          <!-- Linked State (Visible by default) -->
+          <div id="linked-state">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-primary">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+            <!-- Other Assignments List -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Assignment Item 1 -->
+              <div
+                class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <span
+                      class="inline-block px-2.5 py-1 rounded-lg bg-blue-50 text-primary text-xs font-bold mb-2">데이터베이스</span>
+                    <h3 class="text-lg font-bold text-dark group-hover:text-primary transition-colors">ERD 설계 과제</h3>
+                  </div>
+                  <span class="px-3 py-1 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">D-3</span>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-dark mb-1">과제 자동 조회</h3>
-                  <p class="text-sm text-gray-600 leading-relaxed">수강 중인 과목의 모든 과제를 자동으로 불러옵니다.</p>
+                <div class="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-50">
+                  <span>마감일: 2025.11.25 23:59</span>
+                  <span class="text-orange-500 font-medium">미제출</span>
                 </div>
               </div>
 
-              <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-primary">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              <!-- Assignment Item 2 -->
+              <div
+                class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group opacity-60">
+                <div class="flex justify-between items-start mb-4">
+                  <div>
+                    <span
+                      class="inline-block px-2.5 py-1 rounded-lg bg-gray-100 text-gray-500 text-xs font-bold mb-2">자료구조</span>
+                    <h3 class="text-lg font-bold text-gray-700 line-through">스택/큐 구현하기</h3>
+                  </div>
+                  <span class="px-3 py-1 rounded-lg bg-green-100 text-green-600 text-sm font-bold">제출완료</span>
                 </div>
-                <div>
-                  <h3 class="text-lg font-bold text-dark mb-1">마감일 알림</h3>
-                  <p class="text-sm text-gray-600 leading-relaxed">과제 마감 며칠 전에 이메일로 알림을 받을 수 있습니다.</p>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 text-primary">
-                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="text-lg font-bold text-dark mb-1">과제 상태 관리</h3>
-                  <p class="text-sm text-gray-600 leading-relaxed">완료한 과제를 체크하고 진행 상황을 체계적으로 관리하세요.</p>
+                <div class="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-gray-50">
+                  <span>마감일: 2025.11.20 23:59</span>
+                  <span class="text-green-600 font-medium">제출됨</span>
                 </div>
               </div>
             </div>
@@ -123,6 +122,36 @@
       </main>
 
       <%@ include file="/views/common/footer.jsp" %>
+        <script>
+          // Countdown Timer Logic
+          function updateCountdown() {
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0); // Midnight tonight
+
+            // For demo purposes, let's set a fixed deadline relative to now
+            // In a real app, this would come from the server
+            const deadline = new Date(now.getTime() + (23 * 60 * 60 * 1000) + (59 * 60 * 1000) + (42 * 1000));
+
+            const diff = deadline - now;
+
+            if (diff <= 0) {
+              document.getElementById('countdown').innerText = "00:00:00";
+              return;
+            }
+
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerText =
+              `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+          }
+
+          setInterval(updateCountdown, 1000);
+          updateCountdown(); // Initial call
+        </script>
   </body>
 
   </html>

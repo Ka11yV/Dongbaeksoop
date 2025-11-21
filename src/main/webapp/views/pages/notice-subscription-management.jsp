@@ -54,14 +54,14 @@
 
                         <div class="flex flex-col md:flex-row gap-4">
                             <div class="flex-1">
-                                <input type="text" placeholder="분류 (예: 프로그래밍 대회)"
+                                <input type="text" id="categoryInput" placeholder="분류 (예: 프로그래밍 대회)"
                                     class="w-full h-12 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder-gray-400">
                             </div>
                             <div class="flex-[2]">
-                                <input type="text" placeholder="키워드 (쉼표로 구분, 예: 프로그래밍, 코딩, 대회)"
+                                <input type="text" id="keywordInput" placeholder="키워드 (쉼표로 구분, 예: 프로그래밍, 코딩, 대회)"
                                     class="w-full h-12 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder-gray-400">
                             </div>
-                            <button
+                            <button id="addSubscriptionBtn"
                                 class="h-12 px-6 bg-primary hover:bg-secondary text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2 whitespace-nowrap">
                                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                     stroke-width="2">
@@ -75,7 +75,7 @@
                     <h2 class="text-xl font-bold text-dark mb-6">내 구독 목록</h2>
 
                     <!-- Subscription Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div id="subscriptionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                         <!-- Item 1 -->
                         <div
                             class="p-6 rounded-2xl bg-white border border-blue-100 shadow-sm hover:shadow-md transition-all group">
@@ -172,11 +172,12 @@
 
                         <!-- Item 3 (Disabled) -->
                         <div
-                            class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group">
+                            class="p-6 rounded-2xl bg-white border border-blue-100 shadow-sm hover:shadow-md transition-all group">
                             <div class="flex justify-between items-start mb-4">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 group-hover:scale-110 transition-transform">
+                                        class="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+
                                         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                             stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -240,18 +241,91 @@
             <%@ include file="/views/common/footer.jsp" %>
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
-                        const toggles = document.querySelectorAll('.relative.inline-flex.cursor-pointer');
-                        toggles.forEach(toggle => {
-                            toggle.addEventListener('click', () => {
-                                const knob = toggle.querySelector('span');
-                                if (toggle.classList.contains('bg-primary')) {
-                                    toggle.classList.replace('bg-primary', 'bg-gray-200');
-                                    knob.classList.replace('translate-x-6', 'translate-x-1');
-                                } else {
-                                    toggle.classList.replace('bg-gray-200', 'bg-primary');
-                                    knob.classList.replace('translate-x-1', 'translate-x-6');
-                                }
+                        // Toggle functionality
+                        const initToggles = () => {
+                            const toggles = document.querySelectorAll('.relative.inline-flex.cursor-pointer');
+                            toggles.forEach(toggle => {
+                                // Remove existing listeners to prevent duplicates if re-initialized
+                                const newToggle = toggle.cloneNode(true);
+                                toggle.parentNode.replaceChild(newToggle, toggle);
+
+                                newToggle.addEventListener('click', () => {
+                                    const knob = newToggle.querySelector('span');
+                                    if (newToggle.classList.contains('bg-primary')) {
+                                        newToggle.classList.replace('bg-primary', 'bg-gray-200');
+                                        knob.classList.replace('translate-x-6', 'translate-x-1');
+                                    } else {
+                                        newToggle.classList.replace('bg-gray-200', 'bg-primary');
+                                        knob.classList.replace('translate-x-1', 'translate-x-6');
+                                    }
+                                });
                             });
+                        };
+                        initToggles();
+
+                        // Add Subscription functionality
+                        const addBtn = document.getElementById('addSubscriptionBtn');
+                        const categoryInput = document.getElementById('categoryInput');
+                        const keywordInput = document.getElementById('keywordInput');
+                        const grid = document.getElementById('subscriptionGrid');
+
+                        addBtn.addEventListener('click', () => {
+                            const category = categoryInput.value.trim();
+                            const keywords = keywordInput.value.trim();
+
+                            if (!category || !keywords) {
+                                alert('분류와 키워드를 모두 입력해주세요.');
+                                return;
+                            }
+
+                            const keywordList = keywords.split(',').map(k => k.trim()).filter(k => k);
+                            const keywordTags = keywordList.map(k =>
+                                `<span class="px-2.5 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">\${k}</span>`
+                            ).join('');
+
+                            const newCard = document.createElement('div');
+                            newCard.className = 'p-6 rounded-2xl bg-white border border-blue-100 shadow-sm hover:shadow-md transition-all group';
+                            newCard.innerHTML = `
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-10 w-10 rounded-full bg-blue-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-dark">\${category}</h3>
+                                            <p class="text-xs text-gray-500">사용자 정의 구독</p>
+                                        </div>
+                                    </div>
+                                    <div class="relative inline-flex h-6 w-11 items-center rounded-full bg-primary cursor-pointer transition-colors">
+                                        <span class="translate-x-6 inline-block h-4 w-4 transform rounded-full bg-white transition-transform"></span>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    \${keywordTags}
+                                </div>
+
+                                <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                                    <span class="text-sm font-medium text-gray-500">0개의 공지</span>
+                                    <button class="text-sm font-bold text-rose-500 hover:text-rose-700 transition-colors flex items-center gap-1" onclick="this.closest('.group').remove()">
+                                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        삭제
+                                    </button>
+                                </div>
+                            `;
+
+                            grid.appendChild(newCard);
+
+                            // Re-initialize toggles for the new card
+                            initToggles();
+
+                            // Clear inputs
+                            categoryInput.value = '';
+                            keywordInput.value = '';
                         });
                     });
                 </script>

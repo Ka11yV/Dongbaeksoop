@@ -47,22 +47,23 @@
 
                     <!-- Tabs -->
                     <div class="mb-8 flex p-1 space-x-1 bg-gray-100 rounded-xl">
-                        <button
-                            class="w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow">
+                        <button id="tab-university" onclick="switchNoticeTab('university')"
+                            class="w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all">
                             대학 공지
                         </button>
-                        <button
+                        <button id="tab-department" onclick="switchNoticeTab('department')"
                             class="w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all">
                             학과 공지
                         </button>
-                        <button
+                        <button id="tab-subscription" onclick="switchNoticeTab('subscription')"
                             class="w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all">
                             구독 공지
                         </button>
                     </div>
 
-                    <!-- Notice List -->
-                    <div class="w-full rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
+                    <!-- University Notices -->
+                    <div id="section-university"
+                        class="w-full rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
                         <div class="p-6 border-b border-gray-100 flex items-center justify-between">
                             <h2 class="text-lg font-bold text-dark">전체 공지사항</h2>
                             <span class="text-sm font-medium text-gray-500">총 12건</span>
@@ -211,10 +212,122 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- Department Notices -->
+                    <div id="section-department"
+                        class="w-full rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden hidden">
+                        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                            <h2 class="text-lg font-bold text-dark">컴퓨터정보과 공지사항</h2>
+                            <span class="text-sm font-medium text-gray-500">총 5건</span>
+                        </div>
+
+                        <div class="divide-y divide-gray-50">
+                            <!-- Notice Item 1 -->
+                            <div class="p-6 hover:bg-gray-50 transition-colors cursor-pointer group">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span
+                                                class="px-2 py-0.5 rounded-md bg-primary text-white text-xs font-bold">NEW</span>
+                                            <span
+                                                class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-600 text-xs font-bold">졸업</span>
+                                        </div>
+                                        <h3
+                                            class="text-base font-bold text-dark group-hover:text-primary transition-colors mb-1">
+                                            2025학년도 졸업작품 전시회 안내</h3>
+                                        <p class="text-sm text-gray-500">2025.11.15</p>
+                                    </div>
+                                    <div class="text-gray-300 group-hover:text-primary transition-colors">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Notice Item 2 -->
+                            <div class="p-6 hover:bg-gray-50 transition-colors cursor-pointer group">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span
+                                                class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-600 text-xs font-bold">수업</span>
+                                        </div>
+                                        <h3
+                                            class="text-base font-bold text-dark group-hover:text-primary transition-colors mb-1">
+                                            캡스톤디자인 최종 발표 일정 공지</h3>
+                                        <p class="text-sm text-gray-500">2025.11.12</p>
+                                    </div>
+                                    <div class="text-gray-300 group-hover:text-primary transition-colors">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Subscription Notices -->
+                    <div id="section-subscription"
+                        class="w-full rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden hidden">
+                        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                            <h2 class="text-lg font-bold text-dark">구독한 공지사항</h2>
+                            <span class="text-sm font-medium text-gray-500">총 3건</span>
+                        </div>
+
+                        <div class="divide-y divide-gray-50">
+                            <!-- Notice Item 1 -->
+                            <div class="p-6 hover:bg-gray-50 transition-colors cursor-pointer group">
+                                <div class="flex justify-between items-start">
+                                    <div class="flex-1">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span
+                                                class="px-2 py-0.5 rounded-md bg-primary text-white text-xs font-bold">키워드:
+                                                장학</span>
+                                        </div>
+                                        <h3
+                                            class="text-base font-bold text-dark group-hover:text-primary transition-colors mb-1">
+                                            2025학년도 1학기 국가장학금 신청 안내</h3>
+                                        <p class="text-sm text-gray-500">2025.11.14</p>
+                                    </div>
+                                    <div class="text-gray-300 group-hover:text-primary transition-colors">
+                                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
 
             <%@ include file="/views/common/footer.jsp" %>
+                <script>
+                    function switchNoticeTab(tabName) {
+                        // Hide all sections
+                        document.getElementById('section-university').classList.add('hidden');
+                        document.getElementById('section-department').classList.add('hidden');
+                        document.getElementById('section-subscription').classList.add('hidden');
+
+                        // Show selected section
+                        document.getElementById('section-' + tabName).classList.remove('hidden');
+
+                        // Reset tab styles
+                        const tabs = ['university', 'department', 'subscription'];
+                        tabs.forEach(t => {
+                            const btn = document.getElementById('tab-' + t);
+                            if (t === tabName) {
+                                btn.className = 'w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all';
+                            } else {
+                                btn.className = 'w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all';
+                            }
+                        });
+                    }
+                </script>
     </body>
 
     </html>
