@@ -65,7 +65,7 @@
   </head>
 
   <body class="antialiased">
-    <%@ include file="/views/common/header.jsp" %>
+    <%@ include file="/view/common/header.jsp" %>
 
       <!-- Main Content Placeholder -->
       <main class="pt-16">
@@ -463,7 +463,7 @@
         </script>
       </main>
 
-      <%@ include file="/views/common/footer.jsp" %>
+      <%@ include file="/view/common/footer.jsp" %>
   </body>
 
   </html>

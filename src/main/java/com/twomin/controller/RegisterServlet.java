@@ -13,7 +13,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/register.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/register.jsp");
         dispatcher.forward(request, response);
     }
 }

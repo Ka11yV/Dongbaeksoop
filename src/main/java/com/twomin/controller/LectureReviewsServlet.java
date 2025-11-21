@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/lecture-reviews")
 public class LectureReviewsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/lecture-reviews.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/lecture-reviews.jsp");
         dispatcher.forward(request, response);
         return;
     }

@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/assignments")
 public class AssignmentsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/assignments.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/assignments.jsp");
         dispatcher.forward(request, response);
         return;
     }
