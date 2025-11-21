@@ -1,51 +1,79 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
-    <title>동백숲</title>
-</head>
-<body>
-<%@ include file="/views/common/header.jsp"%>
-    <div class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-black/10 flex flex-col items-center p-6 sm:p-8 space-y-6">
+    <!DOCTYPE html>
+    <html lang="ko">
 
-            <header class="w-full flex flex-col items-center space-y-4 pt-4">
-                <div class="size-16 bg-sky-700 rounded-xl flex items-center justify-center">
-                    <div class="text-4xl">🌲</div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>로그인 - 동백숲</title>
+        <link href="${pageContext.request.contextPath}/styles/output.css" rel="stylesheet">
+        <link rel="stylesheet" as="style" crossorigin
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <style>
+            body {
+                font-family: 'Pretendard', sans-serif;
+                background-color: #F8FAFC;
+                color: #0F172A;
+            }
+
+            .glass-header {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            }
+        </style>
+    </head>
+
+    <body class="antialiased">
+        <%@ include file="/views/common/header.jsp" %>
+
+            <main class="pt-16 min-h-screen flex items-center justify-center bg-gray-50 p-4">
+                <div
+                    class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center p-6 sm:p-8 space-y-6">
+
+                    <header class="w-full flex flex-col items-center space-y-4 pt-4">
+                        <div class="size-16 bg-blue-50 rounded-2xl flex items-center justify-center">
+                            <span class="text-4xl">🌲</span>
+                        </div>
+                        <h1 class="text-2xl font-bold text-dark">동백숲에 오신 것을 환영합니다</h1>
+                        <p class="text-base text-gray-500">동양미래대 학생들을 위한 스마트 캠퍼스</p>
+                    </header>
+
+                    <div class="w-full border-t border-gray-100"></div>
+
+                    <form class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/login"
+                        method="post">
+                        <div class="w-full space-y-2">
+                            <label for="username" class="text-sm font-medium text-dark">아이디</label>
+                            <input id="username" name="username" type="text" placeholder="아이디를 입력하세요"
+                                class="w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
+                        </div>
+
+                        <div class="w-full space-y-2">
+                            <label for="password" class="text-sm font-medium text-dark">비밀번호</label>
+                            <input id="password" name="password" type="password" placeholder="비밀번호를 입력하세요"
+                                class="w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
+                        </div>
+
+                        <button type="submit"
+                            class="cursor-pointer w-full h-12 bg-primary hover:bg-secondary rounded-xl flex items-center justify-center transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transform hover:-translate-y-0.5">
+                            <span class="text-white text-base font-bold">로그인</span>
+                        </button>
+
+                        <div class="w-full text-center">
+                            <a href="#" class="text-sm text-gray-500 hover:text-primary transition-colors">비밀번호를
+                                잊으셨나요?</a>
+                        </div>
+                    </form>
+
+                    <footer class="w-full flex items-center justify-center pt-4">
+                        <span class="text-sm text-gray-500">계정이 없으신가요?</span>
+                        <a href="${pageContext.request.contextPath}/register"
+                            class="ml-2 text-sm font-bold text-primary hover:text-secondary transition-colors">회원가입</a>
+                    </footer>
                 </div>
-                <h1 class="text-2xl font-medium text-neutral-950">동백숲에 오신 것을 환영합니다</h1>
-                <p class="text-base text-gray-500">동양미래대 학생들을 위한 강의 평가 서비스</p>
-            </header>
+            </main>
+    </body>
 
-            <hr class="w-full border-t border-gray-200" />
-
-            <section class="w-full flex flex-col space-y-6">
-
-                <div class="w-full space-y-2">
-                    <label for="username" class="text-sm font-medium text-neutral-950">아이디</label>
-                    <input id="username" type="text" placeholder="아이디를 입력하세요" class="w-full h-10 px-3 py-2 bg-zinc-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm placeholder-gray-500">
-                </div>
-
-                <div class="w-full space-y-2">
-                    <label for="password" class="text-sm font-medium text-neutral-950">비밀번호</label>
-                    <input id="password" type="password" placeholder="비밀번호를 입력하세요" class="w-full h-10 px-3 py-2 bg-zinc-100 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm placeholder-gray-500">
-                </div>
-
-                <button class="cursor-pointer w-full h-10 bg-sky-700 hover:bg-sky-800 rounded-lg flex items-center justify-center transition duration-150">
-                    <span class="text-white text-base font-medium">로그인</span>
-                </button>
-
-                <div class="w-full text-center">
-                    <a href="#" class="text-sm text-gray-600 hover:text-gray-800 transition duration-150">비밀번호를 잊으셨나요?</a>
-                </div>
-            </section>
-
-            <footer class="w-full flex items-center justify-center pt-4">
-                <span class="text-sm text-gray-600">계정이 없으신가요?</span>
-                <a href="${pageContext.request.contextPath}/register" class="ml-1 text-sm font-medium text-sky-700 hover:text-sky-800 transition duration-150">회원가입</a>
-            </footer>
-        </div>
-    </div>
-</body>
-</html>
+    </html>
