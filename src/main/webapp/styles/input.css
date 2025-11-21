@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+    --font-sans: 'Pretendard', sans-serif;
+    --color-primary: #2563EB;
+    --color-secondary: #1E40AF;
+    --color-dark: #0F172A;
+    --color-light: #F8FAFC;
+}
