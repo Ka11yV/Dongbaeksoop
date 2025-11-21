@@ -24,7 +24,7 @@
   </head>
 
   <body class="antialiased">
-    <%@ include file="/views/common/header.jsp" %>
+    <%@ include file="/view/common/header.jsp" %>
 
       <main class="pt-16 min-h-screen flex items-center justify-center bg-gray-50 p-4">
         <div
@@ -55,7 +55,7 @@
             <div class="w-full space-y-2">
               <label for="email" class="text-sm font-medium text-dark">학교 이메일</label>
               <div class="flex gap-2">
-                <input id="email" name="email" type="email" value="example@m365.dongyang.ac.kr"
+                <input id="email" name="email" type="email" placeholder="example@m365.dongyang.ac.kr"
                   class="flex-1 h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
                 <button type="button"
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">

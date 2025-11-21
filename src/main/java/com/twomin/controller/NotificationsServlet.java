@@ -13,7 +13,7 @@ public class NotificationsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/notifications.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/notifications.jsp");
         dispatcher.forward(request, response);
     }
 }

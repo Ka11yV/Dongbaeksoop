@@ -26,7 +26,7 @@
   </head>
 
   <body class="antialiased">
-    <%@ include file="/views/common/header.jsp" %>
+    <%@ include file="/view/common/header.jsp" %>
 
       <main class="pt-24 pb-12 min-h-screen">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,6 +121,7 @@
         </div>
       </main>
 
+<<<<<<< HEAD:src/main/webapp/views/pages/assignments.jsp
       <%@ include file="/views/common/footer.jsp" %>
         <script>
           // Countdown Timer Logic
@@ -152,6 +153,9 @@
           setInterval(updateCountdown, 1000);
           updateCountdown(); // Initial call
         </script>
+=======
+      <%@ include file="/view/common/footer.jsp" %>
+>>>>>>> origin/page-design:src/main/webapp/view/pages/assignments.jsp
   </body>
 
   </html>
