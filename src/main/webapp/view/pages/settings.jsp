@@ -185,8 +185,7 @@
         </div>
       </main>
 
-<<<<<<< HEAD:src/main/webapp/views/pages/settings.jsp
-      <%@ include file="/views/common/footer.jsp" %>
+      <%@ include file="/view/common/footer.jsp" %>
         <script>
       document.addEventListener('DOMContentLoaded', () => {
         const toggles = document.querySelectorAll('.relative.inline-flex.cursor-pointer');
@@ -204,9 +203,6 @@
         });
       });
         </script>
-=======
-      <%@ include file="/view/common/footer.jsp" %>
->>>>>>> origin/page-design:src/main/webapp/view/pages/settings.jsp
   </body>
 
   </html>

@@ -305,8 +305,7 @@
                 </div>
             </main>
 
-<<<<<<< HEAD:src/main/webapp/views/pages/notifications.jsp
-            <%@ include file="/views/common/footer.jsp" %>
+            <%@ include file="/view/common/footer.jsp" %>
                 <script>
                     function switchNoticeTab(tabName) {
                         // Hide all sections
@@ -329,9 +328,6 @@
                         });
                     }
                 </script>
-=======
-            <%@ include file="/view/common/footer.jsp" %>
->>>>>>> origin/page-design:src/main/webapp/view/pages/notifications.jsp
     </body>
 
     </html>

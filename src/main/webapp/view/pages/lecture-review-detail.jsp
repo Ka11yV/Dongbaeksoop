@@ -438,7 +438,7 @@
                 </div>
             </main>
 
-            <%@ include file="/views/common/footer.jsp" %>
+            <%@ include file="/view/common/footer.jsp" %>
     </body>
 
     </html>

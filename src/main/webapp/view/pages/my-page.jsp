@@ -321,8 +321,7 @@
                 </div>
             </main>
 
-<<<<<<< HEAD:src/main/webapp/views/pages/my-page.jsp
-            <%@ include file="/views/common/footer.jsp" %>
+            <%@ include file="/view/common/footer.jsp" %>
                 <script>
                     function switchTab(tabName) {
                         // Hide all sections
@@ -358,9 +357,6 @@
                         }
                     }
                 </script>
-=======
-            <%@ include file="/view/common/footer.jsp" %>
->>>>>>> origin/page-design:src/main/webapp/view/pages/my-page.jsp
     </body>
 
     </html>

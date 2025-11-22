@@ -238,8 +238,6 @@
                 </div>
             </main>
 
-<<<<<<< HEAD:src/main/webapp/views/pages/notice-subscription-management.jsp
-            <%@ include file="/views/common/footer.jsp" %>
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         // Toggle functionality
@@ -330,9 +328,7 @@
                         });
                     });
                 </script>
-=======
             <%@ include file="/view/common/footer.jsp" %>
->>>>>>> origin/page-design:src/main/webapp/view/pages/notice-subscription-management.jsp
     </body>
 
     </html>
