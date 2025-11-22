@@ -322,6 +322,41 @@
             </main>
 
             <%@ include file="/view/common/footer.jsp" %>
+                <script>
+                    function switchTab(tabName) {
+                        // Hide all sections
+                        document.getElementById('section-profile').classList.add('hidden');
+                        document.getElementById('section-reviews').classList.add('hidden');
+                        document.getElementById('section-account').classList.add('hidden');
+
+                        // Show selected section
+                        document.getElementById('section-' + tabName).classList.remove('hidden');
+
+                        // Reset tab styles
+                        const tabs = ['profile', 'reviews', 'account'];
+                        tabs.forEach(t => {
+                            const btn = document.getElementById('tab-' + t);
+                            if (t === tabName) {
+                                btn.className = 'w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all';
+                            } else {
+                                btn.className = 'w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all';
+                            }
+                        });
+                    }
+
+                    function toggleAccountLink() {
+                        const notLinked = document.getElementById('account-not-linked');
+                        const linked = document.getElementById('account-linked');
+
+                        if (notLinked.classList.contains('hidden')) {
+                            notLinked.classList.remove('hidden');
+                            linked.classList.add('hidden');
+                        } else {
+                            notLinked.classList.add('hidden');
+                            linked.classList.remove('hidden');
+                        }
+                    }
+                </script>
     </body>
 
     </html>

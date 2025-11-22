@@ -121,6 +121,7 @@
         </div>
       </main>
 
+
       <%@ include file="/view/common/footer.jsp" %>
         <script>
           // Countdown Timer Logic
