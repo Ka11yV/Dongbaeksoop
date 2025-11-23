@@ -1,4 +1,4 @@
-package com.twomin.controller;
+package com.twomin.controller.user;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,10 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/lecture-reviews")
-public class LectureReviewsServlet extends HttpServlet {
+@WebServlet("/settings")
+public class SettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/lecture-reviews.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/settings.jsp");
         dispatcher.forward(request, response);
         return;
     }

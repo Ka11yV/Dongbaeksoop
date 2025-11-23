@@ -1,4 +1,4 @@
-package com.twomin.controller;
+package com.twomin.controller.notice;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

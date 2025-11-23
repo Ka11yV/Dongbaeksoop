@@ -1,4 +1,4 @@
-package com.twomin.controller;
+package com.twomin.controller.assignment;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,12 +8,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/notifications")
-public class NotificationsServlet extends HttpServlet {
-
-    @Override
+@WebServlet("/assignments")
+public class AssignmentsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/notifications.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/assignments.jsp");
         dispatcher.forward(request, response);
+        return;
     }
 }

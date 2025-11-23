@@ -1,4 +1,4 @@
-package com.twomin.controller;
+package com.twomin.controller.user;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,11 +8,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/register.jsp");
         dispatcher.forward(request, response);
-        return;
     }
 }
