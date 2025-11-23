@@ -1,4 +1,4 @@
-package com.team.controller.model;
+package com.team.model;
 
 import java.util.Date;
 
@@ -15,6 +15,7 @@ public class User {
     private boolean is_assignment_alert_enabled;
     private String role;
     private Date created_at;
+
 
 
     public int getId() {
