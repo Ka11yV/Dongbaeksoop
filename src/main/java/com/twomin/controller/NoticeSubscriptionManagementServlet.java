@@ -11,7 +11,7 @@ import java.io.IOException;
 @WebServlet("/notice-subscription-management")
 public class NoticeSubscriptionManagementServlet  extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/pages/notice-subscription-management.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/notice-subscription-management.jsp");
         dispatcher.forward(request, response);
         return;
     }

@@ -26,7 +26,7 @@
     </head>
 
     <body class="antialiased">
-        <%@ include file="/views/common/header.jsp" %>
+        <%@ include file="/view/common/header.jsp" %>
 
             <main class="pt-24 pb-12 min-h-screen">
                 <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -321,42 +321,7 @@
                 </div>
             </main>
 
-            <%@ include file="/views/common/footer.jsp" %>
-                <script>
-                    function switchTab(tabName) {
-                        // Hide all sections
-                        document.getElementById('section-profile').classList.add('hidden');
-                        document.getElementById('section-reviews').classList.add('hidden');
-                        document.getElementById('section-account').classList.add('hidden');
-
-                        // Show selected section
-                        document.getElementById('section-' + tabName).classList.remove('hidden');
-
-                        // Reset tab styles
-                        const tabs = ['profile', 'reviews', 'account'];
-                        tabs.forEach(t => {
-                            const btn = document.getElementById('tab-' + t);
-                            if (t === tabName) {
-                                btn.className = 'w-full py-2.5 text-sm font-bold leading-5 text-primary bg-white rounded-lg shadow transition-all';
-                            } else {
-                                btn.className = 'w-full py-2.5 text-sm font-medium leading-5 text-gray-500 rounded-lg hover:text-gray-700 hover:bg-white/50 transition-all';
-                            }
-                        });
-                    }
-
-                    function toggleAccountLink() {
-                        const notLinked = document.getElementById('account-not-linked');
-                        const linked = document.getElementById('account-linked');
-
-                        if (notLinked.classList.contains('hidden')) {
-                            notLinked.classList.remove('hidden');
-                            linked.classList.add('hidden');
-                        } else {
-                            notLinked.classList.add('hidden');
-                            linked.classList.remove('hidden');
-                        }
-                    }
-                </script>
+            <%@ include file="/view/common/footer.jsp" %>
     </body>
 
     </html>

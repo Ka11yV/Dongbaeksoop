@@ -24,7 +24,7 @@
   </head>
 
   <body class="antialiased">
-    <%@ include file="/views/common/header.jsp" %>
+    <%@ include file="/view/common/header.jsp" %>
 
       <main class="pt-16 min-h-screen flex items-center justify-center bg-gray-50 p-4">
         <div
