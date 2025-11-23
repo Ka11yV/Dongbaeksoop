@@ -34,6 +34,14 @@
                     <a href="${pageContext.request.contextPath}/notice-subscription-management" class="text-gray-300 hover:text-sky-400 transition">구독 관리</a>
                 </nav>
             </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-gray-100">지원</h5>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-primary transition-colors">자주 묻는 질문</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">문의하기</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">버그 제보</a></li>
+                    </ul>
+                </div>
 
                 <div>
                     <h5 class="text-lg font-semibold mb-4 text-gray-100">관련 사이트</h5>

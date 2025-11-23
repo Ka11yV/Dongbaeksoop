@@ -1,10 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
-<header class="w-full border-b border-black/10 bg-white">
-  <div class="mx-auto max-w-[1470px] px-4 sm:px-6 md:px-12 lg:px-24">
-    <div class="flex h-16 items-center justify-between">
-      <a href = "${pageContext.request.contextPath}/" class="flex shrink-0 items-center gap-2">
-        <div class="flex h-8 w-8 items-center justify-center rounded-[10px] bg-sky-700">
-          <span class="text-base leading-6 font-normal text-white">🌲</span>
+  <header class="fixed w-full top-0 z-50 glass-header transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0 flex items-center cursor-pointer">
+          <a href="${pageContext.request.contextPath}/" class="text-2xl font-bold text-primary tracking-tighter">동백숲</a>
         </div>
 
         <!-- Navigation (Desktop) -->

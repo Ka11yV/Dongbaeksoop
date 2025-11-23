@@ -1,4 +1,4 @@
-package com.twomin.controller;
+package com.team.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -8,10 +8,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/settings")
-public class SettingsServlet extends HttpServlet {
+@WebServlet("/")
+public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/settings.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/index.jsp");
         dispatcher.forward(request, response);
         return;
     }

@@ -75,7 +75,7 @@
                     <h2 class="text-xl font-bold text-dark mb-6">내 구독 목록</h2>
 
                     <!-- Subscription Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                    <div id="subscriptionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                         <!-- Item 1 -->
                         <div
                             class="p-6 rounded-2xl bg-white border border-blue-100 shadow-sm hover:shadow-md transition-all group">
@@ -238,7 +238,6 @@
                 </div>
             </main>
 
-            <%@ include file="/view/common/footer.jsp" %>
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         // Toggle functionality
@@ -305,7 +304,7 @@
 
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     \${keywordTags}
-                                </div>1
+                                </div>
 
                                 <div class="flex justify-between items-center pt-4 border-t border-gray-50">
                                     <span class="text-sm font-medium text-gray-500">0개의 공지</span>
