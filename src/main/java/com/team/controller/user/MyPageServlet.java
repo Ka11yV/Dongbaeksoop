@@ -1,4 +1,4 @@
-package com.twomin.controller.user;
+package com.team.controller.user;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

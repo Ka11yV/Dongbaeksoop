@@ -1,4 +1,4 @@
-package com.twomin.controller.assignment;
+package com.team.controller.assignment;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

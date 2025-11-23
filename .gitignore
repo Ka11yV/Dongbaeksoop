@@ -37,6 +37,8 @@ build/
 ### Node package ###
 package-lock.json
 
+# env
+.env
 
 ### Mac OS ###
 .DS_Store

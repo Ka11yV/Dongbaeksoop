@@ -1,4 +1,4 @@
-package com.twomin.controller.lecture;
+package com.team.controller.lecture;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
