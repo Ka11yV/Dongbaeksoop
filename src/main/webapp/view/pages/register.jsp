@@ -68,7 +68,10 @@
 
               <!-- Email Verification Code Section (Hidden by default) -->
               <div id="verification-container" class="w-full space-y-2 hidden">
-                <label class="text-sm font-medium text-dark">인증번호 입력</label>
+                <div class="flex justify-between items-center">
+                  <label class="text-sm font-medium text-dark">인증번호 입력</label>
+                  <span id="timer" class="text-red-500 font-bold text-sm">03:00</span>
+                </div>
                 <div class="flex gap-1 justify-between">
                   <input type="text" maxlength="1"
                     class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
@@ -83,9 +86,13 @@
                   <input type="text" maxlength="1"
                     class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
                 </div>
-                <p class="text-xs text-gray-500 mt-1 pl-1">이메일로 전송된 6자리 인증번호를 입력해주세요</p>
+                <p class="text-xs text-gray-500 mt-1 pl-1 guide">이메일로 전송된 6자리 인증번호를 입력해주세요</p>
+                <button type="button" id="confirm-verification"
+                  class="w-full h-11 bg-primary hover:bg-secondary rounded-xl flex items-center justify-center transition-all shadow-md mt-2">
+                  <span class="text-white text-sm font-bold">인증 확인</span>
+                </button>
               </div>
-              <p class="text-xs text-gray-500 mt-1 pl-1">반드시 @m365.dongyang.ac.kr 이메일을 사용해야 합니다</p>
+              <p class="text-xs text-gray-500 mt-1 pl-1 guide">반드시 @m365.dongyang.ac.kr 이메일을 사용해야 합니다</p>
             </div>
 
             <div class="w-full space-y-2">

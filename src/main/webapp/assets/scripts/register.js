@@ -92,6 +92,80 @@ const verificationContainer = document.querySelector('#verification-container');
 const verificationInputs = document.querySelectorAll('.verification-input');
 const emailErrorMessage = document.querySelector('#emailErrorMessage');
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const timerElement = document.querySelector('#timer');
+const confirmVerificationBtn = document.querySelector('#confirm-verification');
+const guideText = document.querySelectorAll('.guide');
+
+let timerInterval;
+const TIMER_DURATION = 180; // 3 minutes in seconds
+
+if (sendEmailBtn && verificationContainer) {
+  sendEmailBtn.addEventListener('click', () => {
+    // Show the verification input container
+    verificationContainer.classList.remove('hidden');
+
+    // Reset and Start Timer
+    startTimer(TIMER_DURATION);
+
+    // Enable inputs and button
+    verificationInputs.forEach(input => {
+      input.disabled = false;
+      input.value = '';
+    });
+    confirmVerificationBtn.disabled = false;
+    confirmVerificationBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+    confirmVerificationBtn.classList.add('bg-primary', 'hover:bg-secondary');
+
+    // Focus the first input field
+    if (verificationInputs.length > 0) {
+      verificationInputs[0].focus();
+    }
+
+    toast('success', '인증번호 전송', '이메일로 인증번호가 전송되었습니다.');
+  });
+}
+
+if (confirmVerificationBtn) {
+  confirmVerificationBtn.addEventListener('click', () => {
+    const code = Array.from(verificationInputs).map(input => input.value).join('');
+    if (code.length !== 6) {
+      toast('error', '인증 실패', '인증번호 6자리를 모두 입력해주세요.');
+      return;
+    }
+    // Placeholder for verification logic
+    toast('info', '인증 확인', `입력된 코드: ${code} (서버 검증 필요)`);
+  });
+}
+
+function startTimer(duration) {
+  clearInterval(timerInterval);
+  let timer = duration;
+  updateTimerDisplay(timer);
+
+  timerInterval = setInterval(() => {
+    timer--;
+    updateTimerDisplay(timer);
+
+    if (timer <= 0) {
+      clearInterval(timerInterval);
+      handleTimerExpiration();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = time % 60;
+  timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
+
+function handleTimerExpiration() {
+  toast('error', '시간 만료', '인증 시간이 만료되었습니다. 다시 보내주세요.');
+  verificationInputs.forEach(input => input.disabled = true);
+  confirmVerificationBtn.disabled = true;
+  confirmVerificationBtn.classList.remove('bg-primary', 'hover:bg-secondary');
+  confirmVerificationBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+}
 
 function handleEmailError(text) {
   emailInput.classList.add('border-red-500');
@@ -129,13 +203,20 @@ async function sendVeirificationCode() {
       body: JSON.stringify({ email: emailInput.value })
     });
 
-    if (!response.ok) {
-
-    }
-
     const data = await response.json();
 
+    if (!response.ok) {
+      emailErrorMessage.textContent = data.message;
+      emailErrorMessage.classList.remove('border-red-500');
+      return;
+    }
 
+    emailErrorMessage.textContent = data.message;
+    emailErrorMessage.classList.remove('border-red-500');
+    emailErrorMessage.classList.add('text-green-500');
+    verificationContainer.classList.remove('hidden');
+    sendEmailBtn.textContent('재전송')
+    guideText.classList.add('remove')
 
 
   } catch (error) {
@@ -143,19 +224,16 @@ async function sendVeirificationCode() {
   }
 }
 
-  sendEmailBtn.addEventListener('click', () => {
-    if (isValidateEmail(emailInput.value.trim())) {
-      sendVeirificationCode()
-    }
+sendEmailBtn.addEventListener('click', () => {
+  if (isValidateEmail(emailInput.value.trim())) {
+    sendVeirificationCode()
+  }
+});
 
-
-
-  });
-
-  emailInput.addEventListener('input', (e) => {
-    emailInput.classList.remove('border-red-500');
-    emailErrorMessage.textContent = ""
-  })
+emailInput.addEventListener('input', (e) => {
+  emailInput.classList.remove('border-red-500');
+  emailErrorMessage.textContent = ""
+})
 
 verificationInputs.forEach((input, index) => {
   // Move to next input on entry
@@ -176,8 +254,3 @@ verificationInputs.forEach((input, index) => {
     }
   });
 })
-
-
-async function sendVerificationCode(email) {
-
-}
