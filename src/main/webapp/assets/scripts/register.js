@@ -86,23 +86,76 @@ function toast(status, title, text = "") {
 }
 
 // Email Verification Logic
+const emailInput = document.querySelector('#email');
 const sendEmailBtn = document.querySelector('#send-email');
 const verificationContainer = document.querySelector('#verification-container');
 const verificationInputs = document.querySelectorAll('.verification-input');
+const emailErrorMessage = document.querySelector('#emailErrorMessage');
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-if (sendEmailBtn && verificationContainer) {
-  sendEmailBtn.addEventListener('click', () => {
-    // Show the verification input container
-    verificationContainer.classList.remove('hidden');
+function handleEmailError(text) {
+  emailInput.classList.add('border-red-500');
+  emailErrorMessage.textContent = text;
+  emailErrorMessage.classList.add('text-red-500');
+}
 
-    // Focus the first input field
-    if (verificationInputs.length > 0) {
-      verificationInputs[0].focus();
+
+function isValidateEmail(email, text) {
+  if (emailInput.value === '') {
+    handleEmailError("이메일을 입력 해주세요")
+    return false
+  }
+
+  if (!emailRegex.test(emailInput.value.trim())) {
+    handleEmailError("이메일 형식이 잘못되었습니다.")
+    return false
+  }
+  if (!emailInput.value.trim().endsWith("@m365.dongyang.ac.kr")) {
+    handleEmailError("학교 이메일만 사용 가능합니다.")
+    return false
+  }
+
+  return true;
+}
+
+async function sendVeirificationCode() {
+  try {
+    const url = `${contextPath}/auth/verification-code`;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: emailInput.value })
+    });
+
+    if (!response.ok) {
+
     }
 
-    toast('success', '인증번호 전송', '이메일로 인증번호가 전송되었습니다.');
-  });
+    const data = await response.json();
+
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
 }
+
+  sendEmailBtn.addEventListener('click', () => {
+    if (isValidateEmail(emailInput.value.trim())) {
+      sendVeirificationCode()
+    }
+
+
+
+  });
+
+  emailInput.addEventListener('input', (e) => {
+    emailInput.classList.remove('border-red-500');
+    emailErrorMessage.textContent = ""
+  })
 
 verificationInputs.forEach((input, index) => {
   // Move to next input on entry
@@ -122,4 +175,9 @@ verificationInputs.forEach((input, index) => {
       }
     }
   });
-});
+})
+
+
+async function sendVerificationCode(email) {
+
+}

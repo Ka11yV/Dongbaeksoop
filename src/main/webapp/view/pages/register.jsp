@@ -64,6 +64,7 @@
                   <span class="text-dark text-sm font-medium">인증하기</span>
                 </button>
               </div>
+              <p id="emailErrorMessage"></p>
 
               <!-- Email Verification Code Section (Hidden by default) -->
               <div id="verification-container" class="w-full space-y-2 hidden">

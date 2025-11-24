@@ -23,7 +23,7 @@
             <td style="padding: 40px 30px;">
                 <div style="text-align: center;">
                     <!-- 현재 feature/register 호스팅이라서 merge 후 바꿔야함 -->
-                    <img src="https://raw.githubusercontent.com/Ka11yV/Dongbaeksoop/refs/heads/feature/register/src/main/webapp/assets/images/mascot.svg"
+                    <img src="https://cdn.jsdelivr.net/gh/Ka11yV/Dongbaeksoop@feature/register/src/main/webapp/assets/images/mascot.svg"
                         alt="동백숲 마스코트" style="width: 100px; height: 100px; margin-bottom: 20px;">
 
                     <h2 style="color: #0F172A; font-size: 20px; font-weight: bold; margin: 0 0 10px 0;">이메일 인증을 완료해주세요

@@ -30,7 +30,7 @@ public class UserServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
 
-        else if ("/check/id".equals(pathInfo)) {
+        else if (pathInfo.equals("/check/id")) {
             String userId = request.getParameter("id");
 
             boolean isAvailable = userService.isUserIdExists(userId);

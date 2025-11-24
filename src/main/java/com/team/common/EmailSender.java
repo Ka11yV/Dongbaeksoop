@@ -59,7 +59,7 @@ public class EmailSender {
                         "        <tr>" +
                         "            <td style=\"padding: 40px 30px;\">" +
                         "                <div style=\"text-align: center;\">" +
-                        "                    <img src=\"https://raw.githubusercontent.com/Ka11yV/Dongbaeksoop/refs/heads/feature/register/src/main/webapp/assets/images/mascot.svg\"" +
+                        "                    <img src=\"https://cdn.jsdelivr.net/gh/Ka11yV/Dongbaeksoop@feature/register/src/main/webapp/assets/images/mascot.svg\"" +
                         "                        alt=\"동백숲 마스코트\" style=\"width: 100px; height: 100px; margin-bottom: 20px;\">" +
                         "                    <h2 style=\"color: #0F172A; font-size: 20px; font-weight: bold; margin: 0 0 10px 0;\">이메일 인증을 완료해주세요</h2>" +
                         "                    <p style=\"color: #64748B; font-size: 16px; line-height: 1.6; margin: 0 0 30px 0;\">" +
