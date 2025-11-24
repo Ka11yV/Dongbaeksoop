@@ -10,8 +10,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.DoubleStream;
-
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
@@ -20,13 +21,13 @@ public class UserServlet extends HttpServlet {
     private final UserService userService = new UserService();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
 
         if (pathInfo.equals("/register")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/register.jsp");
             dispatcher.forward(request, response);
-
         }
 
         else if ("/check/id".equals(pathInfo)) {
@@ -34,30 +35,25 @@ public class UserServlet extends HttpServlet {
 
             boolean isAvailable = userService.isUserIdExists(userId);
 
-            String jsonResponse = gson.toJson(
-                    new Object() {
-                        public final boolean available = !isAvailable; // 중복이 아니면 true
-                        public final String message = isAvailable ? "이미 사용 중인 ID입니다." : "사용 가능한 ID입니다.";
-                    }
-            );
-            System.out.println(jsonResponse);
+            Map<String, Object> responseMap = new HashMap<>();
+            responseMap.put("available", !isAvailable);
+            responseMap.put("message", isAvailable ? "이미 사용 중인 ID입니다." : "사용 가능한 ID입니다.");
+
+            String jsonResponse = gson.toJson(responseMap);
             response.setContentType("application/json; charset=UTF-8");
             response.getWriter().write(jsonResponse);
             response.getWriter().flush();
             response.getWriter().close();
         }
-
-
-
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         UserRegisterDTO userDTO = getRegisterDTO(request);
 
         userService.registerUser(userDTO);
     }
-
 
     // request에서 parameter를 추출해 UserRegisterDTO로 반환합니다.
     private UserRegisterDTO getRegisterDTO(HttpServletRequest request) {

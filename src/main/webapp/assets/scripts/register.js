@@ -11,13 +11,13 @@ checkIdBtn.addEventListener('click', async () => {
   await checkUserIdAvilability(userId);
 });
 
+checkIdBtn.addEvent
+
 async function checkUserIdAvilability(userId) {
   const url = `${contextPath}/users/check/id?id=${encodeURIComponent(userId)}`;
 
   try {
-
     const response = await fetch(url);
-    console.log(await response.text());
 
     // 200이외 응답 시 에러 toast 메시지를 반환합니다.
     if (!response.ok) {
@@ -26,6 +26,8 @@ async function checkUserIdAvilability(userId) {
       isIdVerified = false;
       return;
     }
+
+    const data = await response.json();
 
     if (data.available) {
       // 🟢 사용 가능 (성공)
