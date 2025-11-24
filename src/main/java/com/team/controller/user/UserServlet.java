@@ -10,13 +10,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.DoubleStream;
 
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {
 
     private final Gson gson = new Gson();
-    UserService userService = new UserService();
+    private final UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,10 +29,25 @@ public class UserServlet extends HttpServlet {
 
         }
 
-        if(pathInfo.startsWith("/check-id")) {
-            String userId = request.getParameter("userId");
-            System.out.println(userId);
+        else if ("/check/id".equals(pathInfo)) {
+            String userId = request.getParameter("id");
+
+            boolean isAvailable = userService.isUserIdExists(userId);
+
+            String jsonResponse = gson.toJson(
+                    new Object() {
+                        public final boolean available = !isAvailable; // 중복이 아니면 true
+                        public final String message = isAvailable ? "이미 사용 중인 ID입니다." : "사용 가능한 ID입니다.";
+                    }
+            );
+            System.out.println(jsonResponse);
+            response.setContentType("application/json; charset=UTF-8");
+            response.getWriter().write(jsonResponse);
+            response.getWriter().flush();
+            response.getWriter().close();
         }
+
+
 
     }
 
@@ -41,7 +57,6 @@ public class UserServlet extends HttpServlet {
 
         userService.registerUser(userDTO);
     }
-
 
 
     // request에서 parameter를 추출해 UserRegisterDTO로 반환합니다.

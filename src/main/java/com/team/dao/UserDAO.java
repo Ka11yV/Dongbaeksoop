@@ -34,7 +34,7 @@ public class UserDAO {
 
     public boolean isUserIdExists(String userId) {
 
-        String sql = "SELECT COUNT(*) FROM users WHERE user_id = ?";
+        String sql = "SELECT COUNT(*) FROM user WHERE user_id = ?";
 
         try (Connection conn = DBUtil.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
