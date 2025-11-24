@@ -28,17 +28,4 @@ public class DBUtil {
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 
-    public static PreparedStatement getPreparedStatement(Connection conn, String sql) throws SQLException {
-        return conn.prepareStatement(sql);
-    }
-
-    public static void close(Connection conn, PreparedStatement pstmt) {
-        try {
-            conn.close();
-            pstmt.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 }

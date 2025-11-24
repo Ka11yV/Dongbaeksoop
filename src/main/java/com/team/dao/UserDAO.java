@@ -14,7 +14,7 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = DBUtil.getPreparedStatement(conn, sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getEmail());
