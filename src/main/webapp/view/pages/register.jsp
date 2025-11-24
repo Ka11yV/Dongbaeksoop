@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 - 동백숲</title>
-    <link href="${pageContext.request.contextPath}/styles/output.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.css" />
     <style>
       body {
         font-family: 'Pretendard', sans-serif;
@@ -37,15 +38,15 @@
 
           <div class="w-full border-t border-gray-100"></div>
 
-          <form class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/register"
-            method="post">
+          <form class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/users/register"
+            method="POST">
 
             <div class="w-full space-y-2">
-              <label for="id" class="text-sm font-medium text-dark">아이디</label>
+              <label for="userId" class="text-sm font-medium text-dark">아이디</label>
               <div class="flex gap-2">
-                <input id="id" name="id" type="text" placeholder="아이디를 입력하세요"
+                <input id="userId" name="userId" type="text" placeholder="아이디를 입력하세요"
                   class="flex-1 h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
-                <button type="button"
+                <button type="button" id="check-id"
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">
                   <span class="text-dark text-sm font-medium">중복확인</span>
                 </button>
@@ -57,7 +58,7 @@
               <div class="flex gap-2">
                 <input id="email" name="email" type="email" placeholder="example@m365.dongyang.ac.kr"
                   class="flex-1 h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
-                <button type="button"
+                <button type="button" id="send-email"
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">
                   <span class="text-dark text-sm font-medium">인증하기</span>
                 </button>
@@ -79,13 +80,34 @@
 
             <div class="grid grid-cols-2 gap-4">
               <div class="w-full space-y-2">
-                <label for="major" class="text-sm font-medium text-dark">전공</label>
+                <label for="dept_id" class="text-sm font-medium text-dark">학과</label>
                 <div class="relative">
-                  <select id="major" name="major"
+                  <select id="dept_id" name="dept_id"
                     class="appearance-none w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm text-gray-600">
-                    <option value="" disabled selected>전공을 선택하세요</option>
-                    <option value="cs">컴퓨터공학과</option>
-                    <option value="ai">인공지능학과</option>
+                    <option value="" selected disabled>학과를 선택하세요</option>
+                    <option value="1">기계공학과</option>
+                    <option value="2">기계설계공학과</option>
+                    <option value="3">자동화공학과</option>
+                    <option value="4">로봇소프트웨어과</option>
+                    <option value="5">전기공학과</option>
+                    <option value="6">반도체전자공학과</option>
+                    <option value="7">정보통신공학과</option>
+                    <option value="8">소방안전관리과</option>
+                    <option value="9">웹응용소프트웨어공학과</option>
+                    <option value="10">컴퓨터소프트웨어공학과</option>
+                    <option value="11">인공지능소프트웨어과</option>
+                    <option value="12">생명화학공학과</option>
+                    <option value="13">바이오융합공학과</option>
+                    <option value="14">건축과</option>
+                    <option value="15">실내건축디자인과</option>
+                    <option value="16">시각디자인과</option>
+                    <option value="17">AR·VR콘텐츠디자인과</option>
+                    <option value="18">경영학과</option>
+                    <option value="19">세무회계학과</option>
+                    <option value="20">유통마케팅학과</option>
+                    <option value="21">호텔관광학과</option>
+                    <option value="22">경영정보학과</option>
+                    <option value="23">빅데이터경영과</option>
                   </select>
                   <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -115,7 +137,7 @@
               </div>
             </div>
 
-            <button type="submit"
+            <button id="submit" type="submit"
               class="cursor-pointer w-full h-12 bg-primary hover:bg-secondary rounded-xl flex items-center justify-center transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transform hover:-translate-y-0.5 mt-4">
               <span class="text-white text-base font-bold">회원가입</span>
             </button>
@@ -128,6 +150,13 @@
           </footer>
         </div>
       </main>
+      <%@ include file="/view/common/footer.jsp" %>
+        <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
+        <script src="${pageContext.request.contextPath}/assets/scripts/register.js"></script>
+        <script>
+          const contextPath = "${pageContext.request.contextPath}";
+        </script>
   </body>
+
 
   </html>

@@ -1,0 +1,35 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Body -->
+    <path d="M100 40C70 40 45 65 45 100C45 140 60 170 100 170C140 170 155 140 155 100C155 65 130 40 100 40Z" fill="#2563EB"/>
+    
+    <!-- Belly (White Accent) -->
+    <path d="M100 160C125 160 135 140 135 115C135 95 120 85 100 85C80 85 65 95 65 115C65 140 75 160 100 160Z" fill="white"/>
+    
+    <!-- Ears -->
+    <path d="M55 55L45 30C45 30 70 35 80 50" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M145 55L155 30C155 30 130 35 120 50" stroke="#2563EB" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Eyes -->
+    <circle cx="80" cy="90" r="8" fill="#0F172A"/>
+    <circle cx="120" cy="90" r="8" fill="#0F172A"/>
+    <circle cx="82" cy="88" r="3" fill="white"/>
+    <circle cx="122" cy="88" r="3" fill="white"/>
+    
+    <!-- Blush -->
+    <circle cx="70" cy="100" r="5" fill="#FFB6C1" opacity="0.6"/>
+    <circle cx="130" cy="100" r="5" fill="#FFB6C1" opacity="0.6"/>
+    
+    <!-- Mouth -->
+    <path d="M90 105Q100 115 110 105" stroke="#0F172A" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Backpack (Straps) -->
+    <path d="M55 110C50 110 45 120 45 130" stroke="#1E40AF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M145 110C150 110 155 120 155 130" stroke="#1E40AF" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Antenna (Tech element) -->
+    <path d="M100 40L100 25" stroke="#2563EB" stroke-width="3"/>
+    <circle cx="100" cy="20" r="4" fill="#3B82F6"/>
+    
+    <!-- Shadow -->
+    <ellipse cx="100" cy="180" rx="50" ry="5" fill="#000000" fill-opacity="0.1"/>
+</svg>

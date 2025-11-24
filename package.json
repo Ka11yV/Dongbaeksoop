@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "watch": "npx tailwindcss -i ./src/main/webapp/styles/input.css -o ./src/main/webapp/styles/output.css --watch"
+    "watch": "npx tailwindcss -i src/main/webapp/assets/styles/input.css -o ./src/main/webapp/assets/styles/output.css --watch"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.17",
+    "simple-notify": "^1.0.6",
     "tailwindcss": "^4.1.17"
   }
 }

@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>구독 관리 - 동백숲</title>
-        <link href="${pageContext.request.contextPath}/styles/output.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
         <link rel="stylesheet" as="style" crossorigin
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         <style>
@@ -237,6 +237,8 @@
                     </div>
                 </div>
             </main>
+        <%@ include file="/view/common/footer.jsp" %>
+
 
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {

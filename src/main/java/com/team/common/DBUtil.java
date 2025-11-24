@@ -3,6 +3,7 @@ package com.team.common;
 import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DBUtil {
@@ -25,6 +26,19 @@ public class DBUtil {
             System.err.println("환경변수 로드 실패! .env 파일 위치를 확인하세요.");
         }
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+    }
+
+    public static PreparedStatement getPreparedStatement(Connection conn, String sql) throws SQLException {
+        return conn.prepareStatement(sql);
+    }
+
+    public static void close(Connection conn, PreparedStatement pstmt) {
+        try {
+            conn.close();
+            pstmt.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
