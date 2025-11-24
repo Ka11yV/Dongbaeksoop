@@ -4,34 +4,36 @@ import com.team.common.DBUtil;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class AuthDAO {
     public User getByUserId(String userId) {
         String sql = "SELECT user_id, password FROM user WHERE user_id = ?;";
-        User user = new User();
 
-        try(
+        try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+        ) {
             pstmt.setString(1, userId);
 
-            ResultSet rs = pstmt.executeQuery();
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    System.out.println("1번 컬럼(ID): " + rs.getString(1));
+                    System.out.println("2번 컬럼(PW): " + rs.getString(2));
 
-            String login_id = rs.getString("user_id");
-            String password = rs.getString("password");
 
-            user.setUserId(login_id);
-            user.setPassword(password);
+                    User user = new User();
+                    user.setUserId(rs.getString("user_id"));
+                    user.setPassword(rs.getString("password"));
+
+                    return user;
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return user;
+        return null;
     }
 }
