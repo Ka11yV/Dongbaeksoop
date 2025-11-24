@@ -99,41 +99,25 @@ const guideText = document.querySelectorAll('.guide');
 let timerInterval;
 const TIMER_DURATION = 180; // 3 minutes in seconds
 
-if (sendEmailBtn && verificationContainer) {
-  sendEmailBtn.addEventListener('click', () => {
-    // Show the verification input container
-    verificationContainer.classList.remove('hidden');
+sendEmailBtn.addEventListener('click', () => {
 
-    // Reset and Start Timer
-    startTimer(TIMER_DURATION);
+  if (isValidateEmail(emailInput.value.trim())) {
+    sendEmailBtn.innerText = '전송중..';
+    sendVeirificationCode()
 
-    // Enable inputs and button
-    verificationInputs.forEach(input => {
-      input.disabled = false;
-      input.value = '';
-    });
-    confirmVerificationBtn.disabled = false;
-    confirmVerificationBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-    confirmVerificationBtn.classList.add('bg-primary', 'hover:bg-secondary');
 
-    // Focus the first input field
-    if (verificationInputs.length > 0) {
-      verificationInputs[0].focus();
-    }
-
-    toast('success', '인증번호 전송', '이메일로 인증번호가 전송되었습니다.');
-  });
-}
+  }
+});
 
 if (confirmVerificationBtn) {
-  confirmVerificationBtn.addEventListener('click', () => {
+  confirmVerificationBtn.addEventListener('click', async () => {
     const code = Array.from(verificationInputs).map(input => input.value).join('');
     if (code.length !== 6) {
       toast('error', '인증 실패', '인증번호 6자리를 모두 입력해주세요.');
       return;
     }
     // Placeholder for verification logic
-    toast('info', '인증 확인', `입력된 코드: ${code} (서버 검증 필요)`);
+    await checkEmailVerification()
   });
 }
 
@@ -215,20 +199,36 @@ async function sendVeirificationCode() {
     emailErrorMessage.classList.remove('border-red-500');
     emailErrorMessage.classList.add('text-green-500');
     verificationContainer.classList.remove('hidden');
-    sendEmailBtn.textContent('재전송')
-    guideText.classList.add('remove')
+    sendEmailBtn.innerText = '재전송';
+    guideText.forEach(element => {
+      element.classList.add('hidden');
+    });
 
+    // Show the verification input container
+    verificationContainer.classList.remove('hidden');
+
+    // Reset and Start Timer
+    startTimer(TIMER_DURATION);
+
+    // Enable inputs and button
+    verificationInputs.forEach(input => {
+      input.disabled = false;
+      input.value = '';
+    });
+    confirmVerificationBtn.disabled = false;
+    confirmVerificationBtn.classList.remove('bg-gray-400',
+        'cursor-not-allowed');
+    confirmVerificationBtn.classList.add('bg-primary', 'hover:bg-secondary');
+
+    // Focus the first input field
+    if (verificationInputs.length > 0) {
+      verificationInputs[0].focus();
+    }
 
   } catch (error) {
     console.log(error)
   }
 }
-
-sendEmailBtn.addEventListener('click', () => {
-  if (isValidateEmail(emailInput.value.trim())) {
-    sendVeirificationCode()
-  }
-});
 
 emailInput.addEventListener('input', (e) => {
   emailInput.classList.remove('border-red-500');
@@ -253,4 +253,24 @@ verificationInputs.forEach((input, index) => {
       }
     }
   });
-})
+});
+
+async function checkEmailVerification(code) {
+  const url = contextPath + '/auth/verification';
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ code: code })
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    emailErrorMessage.textContent = data.message;
+    emailErrorMessage.classList.remove('border-red-500');
+    return;
+  }
+}
