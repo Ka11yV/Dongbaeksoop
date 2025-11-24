@@ -27,7 +27,7 @@
 
         <!-- Right Side Buttons -->
         <div class="hidden md:flex items-center space-x-4">
-          <a href="${pageContext.request.contextPath}/login"
+          <a href="${pageContext.request.contextPath}/auth/login"
             class="text-gray-600 hover:text-primary font-medium transition-colors">로그인</a>
           <a href="${pageContext.request.contextPath}/users/register"
             class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40">
