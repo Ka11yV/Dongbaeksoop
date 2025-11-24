@@ -48,9 +48,10 @@
                   class="flex-1 h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
                 <button type="button" id="check-id"
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">
-                  <span class="text-dark text-sm font-medium">중복확인</span>
+                  <span id="checkIdBtnText" class="text-dark text-sm font-medium">중복확인</span>
                 </button>
               </div>
+              <p id="idErrorMessage" class="text-red-500"></p>
             </div>
 
             <div class="w-full space-y-2">
@@ -62,6 +63,26 @@
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">
                   <span class="text-dark text-sm font-medium">인증하기</span>
                 </button>
+              </div>
+
+              <!-- Email Verification Code Section (Hidden by default) -->
+              <div id="verification-container" class="w-full space-y-2 hidden">
+                <label class="text-sm font-medium text-dark">인증번호 입력</label>
+                <div class="flex gap-1 justify-between">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                  <input type="text" maxlength="1"
+                    class="verification-input w-12 h-12 text-center text-xl font-bold bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all">
+                </div>
+                <p class="text-xs text-gray-500 mt-1 pl-1">이메일로 전송된 6자리 인증번호를 입력해주세요</p>
               </div>
               <p class="text-xs text-gray-500 mt-1 pl-1">반드시 @m365.dongyang.ac.kr 이메일을 사용해야 합니다</p>
             </div>
