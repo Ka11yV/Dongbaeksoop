@@ -42,11 +42,10 @@
 
                     <div class="w-full border-t border-gray-100"></div>
 
-                    <form class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/login"
-                        method="post">
+                    <form class="w-full flex flex-col space-y-6" method="post" action="/auth/login">
                         <div class="w-full space-y-2">
                             <label for="username" class="text-sm font-medium text-dark">아이디</label>
-                            <input id="username" name="username" type="text" placeholder="아이디를 입력하세요"
+                            <input id="username" name="id" type="text" placeholder="아이디를 입력하세요"
                                 class="w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
                         </div>
 
@@ -56,7 +55,7 @@
                                 class="w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
                         </div>
 
-                        <button type="submit"
+                        <button type="submit" id="submit"
                             class="cursor-pointer w-full h-12 bg-primary hover:bg-secondary rounded-xl flex items-center justify-center transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transform hover:-translate-y-0.5">
                             <span class="text-white text-base font-bold">로그인</span>
                         </button>
@@ -74,6 +73,7 @@
                     </footer>
                 </div>
             </main>
+        <script src="${pageContext.request.contextPath}/assets/scripts/login.js"></script>
     <%@ include file="/view/common/footer.jsp" %>
     </body>
 
