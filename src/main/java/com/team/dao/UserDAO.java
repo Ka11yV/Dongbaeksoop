@@ -1,5 +1,6 @@
 package com.team.dao;
 
+import com.mysql.cj.protocol.Resultset;
 import com.team.common.DBUtil;
 import com.team.entity.User;
 import java.sql.Connection;
@@ -14,7 +15,7 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = DBUtil.getPreparedStatement(conn, sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, user.getUserId());
             pstmt.setString(2, user.getEmail());
@@ -31,12 +32,12 @@ public class UserDAO {
         }
     }
 
-
     public boolean isUserIdExists(String userId) {
 
         String sql = "SELECT COUNT(*) FROM user WHERE user_id = ?";
 
-        try (Connection conn = DBUtil.getConnection();
+        try (
+                Connection conn = DBUtil.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, userId);
