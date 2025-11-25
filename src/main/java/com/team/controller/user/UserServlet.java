@@ -31,6 +31,7 @@ public class UserServlet extends HttpServlet {
         }
 
         else if (pathInfo.equals("/check/id")) {
+            System.out.println("checkId");
             String userId = request.getParameter("id");
 
             boolean isAvailable = userService.isUserIdExists(userId);

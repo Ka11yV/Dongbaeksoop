@@ -54,5 +54,28 @@ public class UserDAO {
             throw new RuntimeException("Database error occurred while checking ID.", e);
         }
     }
+
+    public boolean isEmailExists(String email) {
+
+        String sql = "SELECT COUNT(*) FROM user WHERE email = ?";
+
+        try (
+                Connection conn = DBUtil.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, email);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+            return false;
+
+        } catch (SQLException e) {
+            System.err.println("DB Error during email check: " + e.getMessage());
+            throw new RuntimeException("Database error occurred while checking email.", e);
+        }
+    }
 }
 

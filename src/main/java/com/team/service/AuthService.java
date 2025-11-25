@@ -4,16 +4,19 @@ import com.oracle.wls.shaded.org.apache.bcel.verifier.VerificationResult;
 import com.team.common.EmailAuthCodeGenerator;
 import com.team.common.EmailSender;
 import com.team.dao.AuthDAO;
+import com.team.dao.UserDAO;
 import com.team.dto.auth.VerificationResultDTO;
 import com.team.entity.User;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 
 public class AuthService {
-    static AuthDAO authDAO = new AuthDAO();
+    AuthDAO authDAO = new AuthDAO();
+    UserDAO userDAO = new UserDAO();
+
     private static final long AUTH_TIME_LIMIT_MS = 180 * 1000; // 3분 (180초)
 
-    public static User login(String loginId) {
+    public User login(String loginId) {
         return authDAO.getByUserId(loginId);
     }
 
@@ -26,7 +29,13 @@ public class AuthService {
             return new VerificationResultDTO(false, "학교 이메일(\"@m365.dongyang.ac.kr\")만 사용할 수 있습니다.");
         }
 
+
         try {
+
+            if(userDAO.isUserIdExists(email)) {
+                return new VerificationResultDTO(false, "중복된 이메일 입니다.");
+            }
+
             // 6자리 랜덤 인증번호 생성
             String verificationCode = EmailAuthCodeGenerator.generateCode();
 

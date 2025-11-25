@@ -13,4 +13,8 @@ public class UserService {
     public boolean isUserIdExists(String userId) {
         return userDAO.isUserIdExists(userId);
     }
+
+    public boolean isEmailExists(String email) {
+        return userDAO.isEmailExists(email);
+    }
 }

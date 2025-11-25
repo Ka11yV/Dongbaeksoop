@@ -7,6 +7,7 @@ import com.team.dto.auth.VerificationResultDTO;
 import com.team.dto.user.EmailRequestDTO;
 import com.team.entity.User;
 import com.team.service.AuthService;
+import com.team.service.UserService;
 import jakarta.mail.Session;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -22,7 +23,9 @@ import java.io.IOException;
 public class AuthServlet extends HttpServlet {
 
     public AuthService authService = new AuthService();
+    public UserService userService = new UserService();
     private final Gson gson = new Gson();
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,7 +43,7 @@ public class AuthServlet extends HttpServlet {
 
         if (pathInfo.equals("/login")) {  // login 로직
             String loginId = request.getParameter("id");
-            User loginUser = AuthService.login(loginId);
+            User loginUser = authService.login(loginId);
         }
 
         if (pathInfo.equals("/verification-code")) {
@@ -56,6 +59,7 @@ public class AuthServlet extends HttpServlet {
             EmailRequestDTO emailDTO = gson.fromJson(body, EmailRequestDTO.class);
 
             VerificationResultDTO resultDTO = authService.sendVerificationCode(emailDTO.getEmail(), session);
+
 
             String jsonResponse = gson.toJson(resultDTO);
 
@@ -81,15 +85,18 @@ public class AuthServlet extends HttpServlet {
                 return;
             }
 
-            // email 필드의 값을 문자열로 추출
-            String code = jsonObject.get("email").getAsString();
+            // code 필드의 값을 문자열로 추출
+            String code = jsonObject.get("code").getAsString();
 
-            if (code == session.getAttribute("verificationCode")) {
-                System.out.println("일치한다 ㅆㅂ");
+            if (code.equals(session.getAttribute("verificationCode"))) {
+                response.getWriter().write("{\"success\": true, \"message\": \"이메일 인증이 완료되었습니다.\"}");
+                response.getWriter().flush();
+                return;
+            } else {
+                response.getWriter().write("{\"success\": false, \"message\": \"인증번호가 일치하지 않습니다.\"}");
+                response.getWriter().flush();
+                return;
             }
-
-
-
         }
     }
 }
