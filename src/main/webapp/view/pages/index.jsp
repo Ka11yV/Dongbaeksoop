@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동백숲 - 대학 생활의 모든 것</title>
-    <link href="${pageContext.request.contextPath}/styles/output.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
     <style>
       body {
         font-family: 'Pretendard', sans-serif;

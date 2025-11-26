@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>로그인 - 동백숲</title>
-        <link href="${pageContext.request.contextPath}/styles/output.css" rel="stylesheet">
+        <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
         <link rel="stylesheet" as="style" crossorigin
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         <style>
@@ -33,8 +33,8 @@
                     class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 flex flex-col items-center p-6 sm:p-8 space-y-6">
 
                     <header class="w-full flex flex-col items-center space-y-4 pt-4">
-                        <div class="size-16 bg-blue-50 rounded-2xl flex items-center justify-center">
-                            <span class="text-4xl">🌲</span>
+                        <div class="size-16 rounded-2xl flex items-center justify-center">
+                            <img src="${pageContext.request.contextPath}/assets/images/mascot.svg" alt="동백숲 마스코트">
                         </div>
                         <h1 class="text-2xl font-bold text-dark">동백숲에 오신 것을 환영합니다</h1>
                         <p class="text-base text-gray-500">동양미래대 학생들을 위한 스마트 캠퍼스</p>
@@ -74,6 +74,7 @@
                     </footer>
                 </div>
             </main>
+    <%@ include file="/view/common/footer.jsp" %>
     </body>
 
     </html>

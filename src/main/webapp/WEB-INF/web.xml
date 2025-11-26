@@ -6,10 +6,7 @@
 
   <!-- 정적 파일 폴더 매핑 -->
   <!-- Default Servlet에 정적 파일 매핑  -->
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/styles/*</url-pattern>
-  </servlet-mapping>
+
 
   <servlet-mapping>
     <servlet-name>default</servlet-name>
