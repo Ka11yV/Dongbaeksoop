@@ -4,13 +4,9 @@ public class UserLoginDTO {
     private String userId;
     private String password;
 
-    public UserLoginDTO(String password, String userId) {
+    public UserLoginDTO(String userId, String password)  {
         this.userId = userId;
         this.password = password;
-    }
-
-    public UserLoginDTO() {
-
     }
 
     public String getUserId() {
