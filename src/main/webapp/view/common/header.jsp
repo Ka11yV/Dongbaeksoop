@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <header class="fixed w-full top-0 z-50 glass-header transition-all duration-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
@@ -25,33 +26,34 @@
 
         <!-- Right Side Buttons -->
         <div class="hidden md:flex items-center space-x-4">
-            <%@ page import="com.team.entity.User" %>
-            <%
-                User loggedInUser = (User)session.getAttribute("loggedInUser");
-                String mainLoginUrl;
-                String mainIsLogin;
-                String subLoginUrl;
-                String subIsLogin;
+            <c:set var="userRole" value="${sessionScope.loggedInUser.role}" />
 
-                if(loggedInUser != null) {  // 로그인 상태
-                    // 자바 컴파일러는 EL 구문을 알지 못 하기 때문에 "${pageContext.request.contextPath}/auth/logout" 처럼 사용할 수 없음
-                    mainLoginUrl = request.getContextPath() + "/auth/logout";
-                    mainIsLogin = "로그아웃";
-                    subLoginUrl = request.getContextPath() + "/my-page";
-                    subIsLogin = "마이페이지";
-                } else {  // 로그아웃 상태
-                    mainLoginUrl = request.getContextPath() + "/auth/login";
-                    mainIsLogin = "로그인";
-                    subLoginUrl = request.getContextPath() + "/users/register";
-                    subIsLogin = "회원가입";
-                }
-            %>
-            <a href="<%= mainLoginUrl %>" class="text-gray-600 hover:text-primary font-medium transition-colors">
-                <%= mainIsLogin %>
+            <a href="<c:url value='${sessionScope.loggedInUser != null ? "/auth/logout" : "/auth/login"}'/>"
+               class="text-gray-600 hover:text-primary font-medium transition-colors">
+                <c:out value="${sessionScope.loggedInUser != null ? '로그아웃' : '로그인'}"/>
             </a>
-            <a href="<%= subLoginUrl%>"  class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40">
-                <%= subIsLogin%>
-            </a>
+
+            <c:choose>
+                <c:when test="${userRole == 'ADMIN'}">
+                    <a href="<c:url value='${pageContext.request.contextPath}/admin'/>"
+                       class="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-red-500/30 hover:shadow-red-500/40">
+                        <c:out value="관리자" />
+                    </a>
+                </c:when>
+                <c:when test="${userRole == 'USER'}">
+                    <a href="<c:url value='${pageContext.request.contextPath}/my-page'/>"
+                    class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40">
+                        <c:out value="마이페이지" />
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="<c:url value='${pageContext.request.contextPath}/users/register' />"
+                       class="bg-primary hover:bg-secondary text-white px-5 py-2 rounded-full font-medium transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40">
+                        <c:out value="회원가입" />
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
         </div>
 
         <!-- Mobile Menu Button -->

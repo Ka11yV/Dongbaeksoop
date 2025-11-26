@@ -44,7 +44,7 @@ function initUserGrowthChart() {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
             datasets: [{
                 label: '신규 가입자',
                 data: [65, 78, 90, 85, 98, 112],

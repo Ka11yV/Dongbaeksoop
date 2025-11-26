@@ -32,6 +32,13 @@ public class AuthServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
 
         if (pathInfo.equals("/login")) {  // 페이지 forward 용도
+
+            HttpSession session = request.getSession();
+            if (session.getAttribute("user") != null) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
+            }
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
             dispatcher.forward(request, response);
         }
@@ -62,7 +69,7 @@ public class AuthServlet extends HttpServlet {
                 // 로그인 성공
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", user);
-                response.sendRedirect("/view/pages/index.jsp");  // 로그인 성공 시 홈 화면으로 이동
+                response.sendRedirect("/");  // 로그인 성공 시 홈 화면으로 이동
             } catch(RuntimeException e) {
                 // 로그인 실패
                 e.printStackTrace();
