@@ -1,6 +1,11 @@
 package com.team.controller.user;
 
+import static com.team.common.ServletResponseUtil.sendJsonResponse;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.team.common.JsonUtil;
+import com.team.dto.response.ApiResponse;
 import com.team.dto.user.UserRegisterDTO;
 import com.team.service.UserService;
 import jakarta.servlet.RequestDispatcher;
@@ -9,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.xml.bind.ValidationException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,41 +37,56 @@ public class UserServlet extends HttpServlet {
         }
 
         else if (pathInfo.equals("/check/id")) {
-            System.out.println("checkId");
             String userId = request.getParameter("id");
 
             boolean isAvailable = userService.isUserIdExists(userId);
 
-            Map<String, Object> responseMap = new HashMap<>();
-            responseMap.put("available", !isAvailable);
-            responseMap.put("message", isAvailable ? "이미 사용 중인 ID입니다." : "사용 가능한 ID입니다.");
 
-            String jsonResponse = gson.toJson(responseMap);
-            response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().write(jsonResponse);
-            response.getWriter().flush();
-            response.getWriter().close();
+            if (isAvailable) {
+                ApiResponse<Void> errorResponse = ApiResponse.error("이미 사용중인 아이디입니다.");
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
+            } else {
+                ApiResponse<Void> errorResponse = ApiResponse.success("사용 가능한 ID 입니다.");
+                sendJsonResponse(response, HttpServletResponse.SC_OK, errorResponse);
+            }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        UserRegisterDTO userDTO = getRegisterDTO(request);
 
-        userService.registerUser(userDTO);
-    }
+        String body = JsonUtil.getJsonBody(request);
+        UserRegisterDTO dto = null;
 
-    // request에서 parameter를 추출해 UserRegisterDTO로 반환합니다.
-    private UserRegisterDTO getRegisterDTO(HttpServletRequest request) {
+        try {
+            dto = gson.fromJson(body, UserRegisterDTO.class);
+        } catch (JsonSyntaxException e) {
+            ApiResponse<Void> errorResponse = ApiResponse.error("요청 본문이 비어있습니다.");
+            sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
+            return;
+        }
 
-        String userId = request.getParameter("userId");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirmPassword");
-        int deptId = Integer.parseInt(request.getParameter("deptId"));
-        int grade = Integer.parseInt(request.getParameter("grade"));
+        if (dto == null || dto.getEmail() == null || dto.getPassword() == null || dto.getDeptId() == null || dto.getGrade() == null) {
+            ApiResponse<Void> errorResponse = ApiResponse.error("필수 필드가 누락되었습니다.");
+            sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
+            return;
+        }
 
-        return new UserRegisterDTO(userId, email, password, confirmPassword, deptId, grade);
+        try {
+            userService.registerUser(dto);
+
+            ApiResponse<Void> successResponse = ApiResponse.success("회원가입에 성공했습니다.");
+            sendJsonResponse(response, HttpServletResponse.SC_OK, successResponse);
+
+
+        } catch (ValidationException e) {
+            ApiResponse<Void> errorResponse = ApiResponse.error(e.getMessage());
+            sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
+        } catch (Exception e) {
+            e.printStackTrace();
+            ApiResponse<Void> errorResponse = ApiResponse.error(e.getMessage());
+            sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
+        }
     }
 }

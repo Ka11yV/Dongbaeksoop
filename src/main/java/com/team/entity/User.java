@@ -19,6 +19,14 @@ public class User {
 
     public User() {}
 
+    public User(String userId, String email, String password, int deptId, int grade) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.deptId = deptId;
+        this.grade = grade;
+    }
+
     public int getId() {
         return id;
     }

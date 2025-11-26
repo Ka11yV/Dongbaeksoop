@@ -29,17 +29,16 @@ public class AuthService {
             return new VerificationResultDTO(false, "학교 이메일(\"@m365.dongyang.ac.kr\")만 사용할 수 있습니다.");
         }
 
-
         try {
-
-            if(userDAO.isUserIdExists(email)) {
+            if (userDAO.isEmailExists(email)) {
                 return new VerificationResultDTO(false, "중복된 이메일 입니다.");
             }
 
             // 6자리 랜덤 인증번호 생성
             String verificationCode = EmailAuthCodeGenerator.generateCode();
+            System.out.println(verificationCode);
 
-            //세션에 인증번호 저장
+            // 세션에 인증번호 저장
             session.setAttribute("verificationCode", verificationCode);
             session.setAttribute("verificationTime", System.currentTimeMillis());
             session.setMaxInactiveInterval(300);
@@ -47,7 +46,6 @@ public class AuthService {
             EmailSender.sendVerificationEmail(email, verificationCode);
 
             return new VerificationResultDTO(true, "인증번호가 발송되었습니다. 3분 이내에 입력해주세요.");
-
 
         } catch (MessagingException e) {
             e.printStackTrace();

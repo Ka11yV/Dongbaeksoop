@@ -38,13 +38,13 @@
 
           <div class="w-full border-t border-gray-100"></div>
 
-          <form class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/users/register"
+          <div class="w-full flex flex-col space-y-6" action="${pageContext.request.contextPath}/users/register"
             method="POST">
 
             <div class="w-full space-y-2">
               <label for="userId" class="text-sm font-medium text-dark">아이디</label>
               <div class="flex gap-2">
-                <input id="userId" name="userId" type="text" placeholder="아이디를 입력하세요"
+                <input id="userId" name="userId" type="text" placeholder="아이디를 입력하세요" required
                   class="flex-1 h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
                 <button type="button" id="check-id"
                   class="w-24 h-11 px-4 bg-white rounded-xl border border-gray-200 hover:bg-gray-50 hover:border-gray-300 transition-all flex items-center justify-center">
@@ -105,6 +105,7 @@
               <label for="confirm-password" class="text-sm font-medium text-dark">비밀번호 확인</label>
               <input id="confirm-password" name="confirm-password" type="password" placeholder="비밀번호 재입력"
                 class="w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm placeholder-gray-400">
+              <p id="passwordErrorMessage">안녕하세요</p>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
@@ -170,7 +171,7 @@
               class="cursor-pointer w-full h-12 bg-primary hover:bg-secondary rounded-xl flex items-center justify-center transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transform hover:-translate-y-0.5 mt-4">
               <span class="text-white text-base font-bold">회원가입</span>
             </button>
-          </form>
+          </div>
 
           <footer class="w-full flex items-center justify-center pt-4 border-t border-gray-100">
             <span class="text-sm text-gray-500">이미 계정이 있으신가요?</span>

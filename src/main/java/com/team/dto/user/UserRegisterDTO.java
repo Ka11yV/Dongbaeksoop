@@ -4,15 +4,13 @@ public class UserRegisterDTO {
     private String userId;
     private String email;
     private String password;
-    private String confirmPassword;
-    private int deptId;
-    private int grade;
+    private String deptId;
+    private String grade;
 
-    public UserRegisterDTO(String userId, String email, String password, String confirmPassword, int deptId, int grade) {
+    public UserRegisterDTO(String userId, String email, String password, String confirmPassword, String deptId, String grade) {
         this.userId = userId;
         this.email = email;
         this.password = password;
-        this.confirmPassword = confirmPassword;
         this.deptId = deptId;
         this.grade = grade;
     }
@@ -41,27 +39,19 @@ public class UserRegisterDTO {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
-
-    public int getDeptId() {
+    public String getDeptId() {
         return deptId;
     }
 
-    public void setDeptId(int deptId) {
+    public void setDeptId(String deptId) {
         this.deptId = deptId;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

@@ -26,22 +26,23 @@ public class AuthServlet extends HttpServlet {
     public UserService userService = new UserService();
     private final Gson gson = new Gson();
 
-
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
 
-        if (pathInfo.equals("/login")) {  // 페이지 forward 용도
+        if (pathInfo.equals("/login")) { // 페이지 forward 용도
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
             dispatcher.forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
 
-        if (pathInfo.equals("/login")) {  // login 로직
+        if (pathInfo.equals("/login")) { // login 로직
             String loginId = request.getParameter("id");
             User loginUser = authService.login(loginId);
         }
@@ -60,6 +61,9 @@ public class AuthServlet extends HttpServlet {
 
             VerificationResultDTO resultDTO = authService.sendVerificationCode(emailDTO.getEmail(), session);
 
+            if (!resultDTO.isSuccess()) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            }
 
             String jsonResponse = gson.toJson(resultDTO);
 
