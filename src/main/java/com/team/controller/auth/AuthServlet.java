@@ -51,8 +51,6 @@ public class AuthServlet extends HttpServlet {
             String loginPassword = request.getParameter("password");
 
             UserLoginDTO userLoginDTO = new UserLoginDTO(loginId, loginPassword);
-            User loginUser = authService.login(loginId);
-        }
 
             try {
                 // 로그인 시도
@@ -71,8 +69,13 @@ public class AuthServlet extends HttpServlet {
                 System.out.println("로그인 실패");
                 request.setAttribute("loginErrorMsg", e.getMessage());
                 System.out.println(request.getAttribute("loginErrorMsg"));
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher(
+                        "/view/pages/login.jsp");
                 dispatcher.forward(request, response);
+            }
+        }
+
+
         if (pathInfo.equals("/verification-code")) {
             String body = JsonUtil.getJsonBody(request);
             HttpSession session = request.getSession();
