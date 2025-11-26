@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class AuthDAO {
     public User getByUserId(String userId) {
-        String sql = "SELECT user_id, password FROM user WHERE user_id = ?;";
+        String sql = "SELECT * FROM user WHERE user_id = ?;";
 
         try (
                 Connection conn = DBUtil.getConnection();
