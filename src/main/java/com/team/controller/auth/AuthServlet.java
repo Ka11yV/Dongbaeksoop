@@ -26,6 +26,11 @@ public class AuthServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
             dispatcher.forward(request, response);
         }
+        if(pathInfo.equals("/logout")) {
+            HttpSession session = request.getSession();
+            session.removeAttribute("loggedInUser");
+            response.sendRedirect(request.getContextPath() + "/");
+        }
     }
 
     @Override
@@ -42,8 +47,8 @@ public class AuthServlet extends HttpServlet {
                 // 로그인 시도
                 User user = authService.login(userLoginDTO);  // true면 로그인 성공
 
-                System.out.println(user.getUserId());
-                System.out.println(user.getPassword());
+                System.out.println("로그인 아이디 : " + user.getUserId());
+                System.out.println("로그인 비밀번호 : " + user.getPassword());
 
                 // 로그인 성공
                 HttpSession session = request.getSession();

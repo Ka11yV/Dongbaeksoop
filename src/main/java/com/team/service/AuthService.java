@@ -3,6 +3,7 @@ package com.team.service;
 import com.team.dao.AuthDAO;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
+import jakarta.xml.bind.ValidationException;
 
 public class AuthService {
     AuthDAO authDAO = new AuthDAO();
@@ -16,7 +17,6 @@ public class AuthService {
              throw new RuntimeException("비밀번호가 비어있습니다.");
          }
 
-         System.out.println(userLoginDTO.getUserId());
          // 아이디로 조회 했을때 컬럼이 있는지 확인
          User user = authDAO.getByUserId(userLoginDTO.getUserId());  // SELECT user_id, password FROM user WHERE user_id = "userLoginDTO.getUSerId()";  쿼리 수행. 조회되면 User 객체 반환, 아니면 null 반환
 
@@ -24,14 +24,7 @@ public class AuthService {
              String formPassword = userLoginDTO.getPassword();
              String dbPassword = user.getPassword();
 
-             // 디버깅을 위해 두 비밀번호와 길이를 콘솔에 출력
-             System.out.println("Form Password: [" + formPassword + "], Length: " + formPassword.length());
-             System.out.println("DB Password: [" + dbPassword + "], Length: " + dbPassword.length());
-
-             System.out.println("user id :" + user.getUserId());
-             System.out.println("user password :" + user.getPassword());
-             // .trim()으로 양쪽 공백을 제거한 후 비교
-             if(formPassword.trim().equals(dbPassword.trim())) {
+             if(formPassword.equals(dbPassword)) {
                  return user;
              } else {
                  throw new RuntimeException("비밀번호가 틀렸습니다.");
