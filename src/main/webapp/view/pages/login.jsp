@@ -42,7 +42,7 @@
 
                     <div class="w-full border-t border-gray-100"></div>
 
-                    <form class="w-full flex flex-col space-y-6" method="post" action="/auth/login">
+                        <form class="w-full flex flex-col space-y-6" method="post" action="/auth/login">
                         <div class="w-full space-y-2">
                             <label for="username" class="text-sm font-medium text-dark">아이디</label>
                             <input id="username" name="id" type="text" placeholder="아이디를 입력하세요"

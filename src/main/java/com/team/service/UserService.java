@@ -2,7 +2,7 @@ package com.team.service;
 
 import com.team.common.PasswordUtil;
 import com.team.dao.UserDAO;
-import com.team.dto.auth.VerificationResultDTO;
+import com.team.dto.user.UpdateInfoDTO;
 import com.team.dto.user.UserRegisterDTO;
 import com.team.entity.User;
 import jakarta.xml.bind.ValidationException;
@@ -60,5 +60,29 @@ public class UserService {
 
     public boolean isEmailExists(String email) {
         return userDAO.isEmailExists(email);
+    }
+
+    public String selectUserDept(User user) {return userDAO.selectUserDept(user);}
+
+    public boolean updateDeptAndGrade(UpdateInfoDTO updateInfoDTO) {
+        boolean isUpdate = userDAO.updateProfileInformation(updateInfoDTO.getDept_id(), updateInfoDTO.getGrade(),updateInfoDTO.getUser_id());
+
+        if(isUpdate) {  // update 성공
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean updatePassword(UpdateInfoDTO updateInfoDTO) {
+
+        String hashedPassword = PasswordUtil.hashPassword(updateInfoDTO.getPassword());
+        boolean isUpdate = userDAO.updatePassword(hashedPassword, updateInfoDTO.getUser_id());
+
+        if(isUpdate) {  // update 성공
+            return true;
+        } else {
+            return false;
+        }
     }
 }
