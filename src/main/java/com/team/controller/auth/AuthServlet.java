@@ -24,7 +24,6 @@ import java.io.IOException;
 public class AuthServlet extends HttpServlet {
 
     public AuthService authService = new AuthService();
-    public UserService userService = new UserService();
     private final Gson gson = new Gson();
 
     @Override

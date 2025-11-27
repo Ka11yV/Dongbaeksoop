@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -7,8 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>마이페이지 - 동백숲</title>
         <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
-        <link rel="stylesheet" as="style" crossorigin
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.css" />
+        <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
         <style>
             body {
                 font-family: 'Pretendard', sans-serif;
@@ -54,50 +56,44 @@
 
                     <!-- Profile Section -->
                     <div id="section-profile" class="flex flex-col gap-6">
-<%--                        <!-- Profile Card -->--%>
-<%--                        <div--%>
-<%--                            class="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">--%>
-<%--                            <div class="relative">--%>
-<%--                                <div--%>
-<%--                                    class="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-primary text-3xl font-bold border-4 border-white shadow-md">--%>
-<%--                                    홍--%>
-<%--                                </div>--%>
-<%--                                <div--%>
-<%--                                    class="absolute bottom-0 right-0 h-8 w-8 bg-white rounded-full flex items-center justify-center shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50">--%>
-<%--                                    <svg class="w-4 h-4 text-gray-500" fill="none" viewBox="0 0 24 24"--%>
-<%--                                        stroke="currentColor" stroke-width="2">--%>
-<%--                                        <path stroke-linecap="round" stroke-linejoin="round"--%>
-<%--                                            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />--%>
-<%--                                        <path stroke-linecap="round" stroke-linejoin="round"--%>
-<%--                                            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />--%>
-<%--                                    </svg>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                        <!-- Profile Card -->
+                        <div
+                            class="flex flex-col md:flex-row items-center md:items-start gap-6 p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                            <div class="relative">
+                                <div
+                                    class="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-primary text-3xl font-bold border-4 border-white shadow-md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+                                        <g fill="none" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linejoin="round" d="M4 18a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" />
+                                            <circle cx="12" cy="7" r="3" />
+                                        </g>
+                                    </svg>
+                                </div>
+                            </div>
 
-<%--                            <div class="text-center md:text-left flex-1">--%>
-<%--                                <h2 class="text-2xl font-bold text-dark mb-1">홍길동</h2>--%>
-<%--                                <p class="text-gray-500 mb-4">example@m365.dongyang.ac.kr</p>--%>
-<%--                                <div class="flex items-center justify-center md:justify-start gap-2">--%>
-<%--                                    <span--%>
-<%--                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">컴퓨터정보과</span>--%>
-<%--                                    <span--%>
-<%--                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">2학년</span>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
+                            <div class="text-center md:text-left flex-1">
+                                <h2 class="text-2xl font-bold text-dark mb-1">${loggedInUser.userId}</h2>
+                                <p class="text-gray-500 mb-4">${loggedInUser.email}</p>
+                                <div class="flex items-center justify-center md:justify-start gap-2">
+                                    <span
+                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">${dept_name}</span>
+                                    <span
+                                        class="px-3 py-1 rounded-full bg-gray-100 text-xs font-bold text-gray-600">${loggedInUser.grade}학년</span>
+                                </div>
+                            </div>
 
-<%--                            <div--%>
-<%--                                class="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-xl min-w-[120px]">--%>
-<%--                                <span class="text-3xl font-bold text-primary mb-1">12</span>--%>
-<%--                                <span class="text-sm font-medium text-blue-600">작성한 평가</span>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
+                            <div
+                                class="flex flex-col items-center justify-center p-4 bg-blue-50 rounded-xl min-w-[120px]">
+                                <span class="text-3xl font-bold text-primary mb-1">12</span>
+                                <span class="text-sm font-medium text-blue-600">작성한 평가</span>
+                            </div>
+                        </div>
 
                         <!-- Edit Profile Section -->
-                        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                        <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm" id="my_info_div">
                             <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                                 <h3 class="text-lg font-bold text-dark">프로필 정보</h3>
-                                <button
-                                    class="text-sm font-bold text-primary hover:text-secondary transition-colors">수정하기</button>
+                                <button class="text-sm font-bold text-primary hover:text-secondary transition-colors" id="updateBtn">수정하기</button>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -105,7 +101,7 @@
                                     <label class="text-sm font-bold text-gray-700">전공</label>
                                     <div
                                         class="flex items-center justify-between w-full h-12 px-4 bg-gray-50 rounded-xl border border-gray-200 text-gray-500">
-                                        <span>컴퓨터정보과</span>
+                                        <span id="deptNameSpan">${dept_name}</span>
                                         <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -118,7 +114,7 @@
                                     <label class="text-sm font-bold text-gray-700">학년</label>
                                     <div
                                         class="flex items-center justify-between w-full h-12 px-4 bg-gray-50 rounded-xl border border-gray-200 text-gray-500">
-                                        <span>2학년</span>
+                                        <span id="gradeSpan">${loggedInUser.grade}학년</span>
                                         <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -129,6 +125,60 @@
                             </div>
                         </div>
 
+                        <%--수정하기 div--%>
+                        <form class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm hidden" id="edit_div" method="post" action="">
+                            <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
+                                <h3 class="text-lg font-bold text-dark">프로필 정보</h3>
+
+                                <div class="flex items-center gap-3">
+                                    <button class="text-sm font-bold text-red-500 hover:text-red-700 transition-colors" id="cancelBtn">취소하기</button>
+                                    <button class="text-sm font-bold text-green-600 hover:text-green-800 transition-colors" id="saveBtn">저장하기</button>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-gray-700">전공</label>
+                                    <select id = "selectDept" class="appearance-none w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm text-gray-600">
+                                        <option value="" selected disabled>학과를 선택하세요</option>
+                                        <option value="1">기계공학과</option>
+                                        <option value="2">기계설계공학과</option>
+                                        <option value="3">자동화공학과</option>
+                                        <option value="4">로봇소프트웨어과</option>
+                                        <option value="5">전기공학과</option>
+                                        <option value="6">반도체전자공학과</option>
+                                        <option value="7">정보통신공학과</option>
+                                        <option value="8">소방안전관리과</option>
+                                        <option value="9">웹응용소프트웨어공학과</option>
+                                        <option value="10">컴퓨터소프트웨어공학과</option>
+                                        <option value="11">인공지능소프트웨어과</option>
+                                        <option value="12">생명화학공학과</option>
+                                        <option value="13">바이오융합공학과</option>
+                                        <option value="14">건축과</option>
+                                        <option value="15">실내건축디자인과</option>
+                                        <option value="16">시각디자인과</option>
+                                        <option value="17">AR·VR콘텐츠디자인과</option>
+                                        <option value="18">경영학과</option>
+                                        <option value="19">세무회계학과</option>
+                                        <option value="20">유통마케팅학과</option>
+                                        <option value="21">호텔관광학과</option>
+                                        <option value="22">경영정보학과</option>
+                                        <option value="23">빅데이터경영과</option>
+                                    </select>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="text-sm font-bold text-gray-700">학년</label>
+                                    <select id = "selectGrade" class="appearance-none w-full h-11 px-4 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-sm text-gray-600">
+                                        <option value="1">1학년</option>
+                                        <option value="2">2학년</option>
+                                        <option value="3">3학년</option>
+                                        <option value="4">4학년</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+
                         <!-- Change Password Section -->
                         <div class="p-8 rounded-2xl bg-white border border-gray-100 shadow-sm">
                             <h3 class="text-lg font-bold text-dark mb-6">비밀번호 변경</h3>
@@ -136,24 +186,24 @@
                             <form class="space-y-4 max-w-md">
                                 <div class="space-y-2">
                                     <label class="text-sm font-bold text-gray-700">현재 비밀번호</label>
-                                    <input type="password"
+                                    <input type="password" id = "currentPwd"
                                         class="w-full h-12 px-4 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" />
                                 </div>
 
                                 <div class="space-y-2">
                                     <label class="text-sm font-bold text-gray-700">새 비밀번호</label>
-                                    <input type="password" placeholder="8자 이상 입력해주세요"
+                                    <input type="password" placeholder="8자 이상 입력해주세요" id = "newPwd"
                                         class="w-full h-12 px-4 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all placeholder-gray-400" />
                                 </div>
 
                                 <div class="space-y-2">
                                     <label class="text-sm font-bold text-gray-700">새 비밀번호 확인</label>
-                                    <input type="password"
+                                    <input type="password" id = "newPwdCheck"
                                         class="w-full h-12 px-4 bg-white rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" />
                                 </div>
 
                                 <div class="pt-2">
-                                    <button type="submit"
+                                    <button type="submit" id = "changePwd"
                                         class="px-6 py-3 bg-dark text-white font-bold rounded-xl hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20">
                                         비밀번호 변경
                                     </button>
@@ -357,6 +407,10 @@
                         }
                     }
                 </script>
+                <script>
+                    const contextPath = '${pageContext.request.contextPath}';
+                </script>
+        <script src="${pageContext.request.contextPath}/assets/scripts/my-page.js"></script>
     </body>
 
     </html>
