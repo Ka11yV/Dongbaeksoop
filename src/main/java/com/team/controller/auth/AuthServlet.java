@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.team.common.JsonUtil;
 import com.team.dto.auth.VerificationResultDTO;
+import com.team.dto.response.ApiResponse;
 import com.team.dto.user.EmailRequestDTO;
 import com.sun.net.httpserver.Request;
 import com.team.dto.user.UserLoginDTO;
@@ -19,6 +20,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+
+import static com.team.common.ServletResponseUtil.sendJsonResponse;
 
 @WebServlet("/auth/*")
 public class AuthServlet extends HttpServlet {
@@ -111,16 +114,16 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (body.isEmpty()) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write("{\"success\": false, \"message\": \"요청 본문이 비어있습니다.\"}");
+                ApiResponse<Void> errorResponse = ApiResponse.error("요청 본문이 비어있습니다..");
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
                 return;
             }
 
             JsonObject jsonObject = gson.fromJson(body, JsonObject.class);
 
             if (jsonObject == null || !jsonObject.has("code")) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write(gson.toJson(new VerificationResultDTO(false, "JSON 필드 'code'가 누락되었습니다.")));
+                ApiResponse<Void> errorResponse = ApiResponse.error("요청에 'code'가 없습니다.");
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
                 return;
             }
 
@@ -128,12 +131,12 @@ public class AuthServlet extends HttpServlet {
             String code = jsonObject.get("code").getAsString();
 
             if (code.equals(session.getAttribute("verificationCode"))) {
-                response.getWriter().write("{\"success\": true, \"message\": \"이메일 인증이 완료되었습니다.\"}");
-                response.getWriter().flush();
+                ApiResponse<Void> successResponse = ApiResponse.success("이메일 인증이 완료되었습니다..");
+                sendJsonResponse(response, HttpServletResponse.SC_OK, successResponse);
                 return;
             } else {
-                response.getWriter().write("{\"success\": false, \"message\": \"인증번호가 일치하지 않습니다.\"}");
-                response.getWriter().flush();
+                ApiResponse<Void> successResponse = ApiResponse.error("인증번호가 일치하지않습니다.");
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, successResponse);
                 return;
             }
         }
