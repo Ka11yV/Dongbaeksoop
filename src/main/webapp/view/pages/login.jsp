@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <!DOCTYPE html>
     <html lang="ko">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +8,10 @@
         <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
         <link rel="stylesheet" as="style" crossorigin
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.css" />
+
+        <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
+
         <style>
             body {
                 font-family: 'Pretendard', sans-serif;
@@ -66,6 +69,49 @@
                         </div>
                     </form>
 
+                    <%
+                        String loginErrorMsg = (String) request.getAttribute("loginErrorMsg");
+
+                        if(loginErrorMsg != null) {
+                    %>
+
+                    <script>
+                        const loginErrorMsg = '<%= loginErrorMsg%>' ;
+                        toast('error', "로그인 실패", loginErrorMsg);
+
+                        // 토스트 띄우는 함수
+                        function toast(status, title, text) {
+                            new Notify ({
+                                status: status,
+                                title: title,
+                                text: text,
+                                effect: 'fade',
+                                speed: 300,
+                                customClass: '',
+                                customIcon: '',
+                                showIcon: true,
+                                showCloseButton: true,
+                                autoclose: true,
+                                autotimeout: 3000,
+                                notificationsGap: null,
+                                notificationsPadding: null,
+                                type: 'outline',
+                                position: 'right top',
+                                customWrapper: '',
+                            })
+                        }
+                    </script>
+                    <%
+                        } else {
+
+                    %>
+                    <script>
+
+                    </script>
+                    <%
+                        }
+                    %>
+
                     <footer class="w-full flex items-center justify-center pt-4">
                         <span class="text-sm text-gray-500">계정이 없으신가요?</span>
                         <a href="${pageContext.request.contextPath}/register"
@@ -73,7 +119,6 @@
                     </footer>
                 </div>
             </main>
-        <script src="${pageContext.request.contextPath}/assets/scripts/login.js"></script>
     <%@ include file="/view/common/footer.jsp" %>
     </body>
 
