@@ -33,7 +33,17 @@
                     <!-- Header Section -->
                     <div class="mb-8">
                         <h1 class="text-3xl md:text-4xl font-bold text-dark mb-3">강의 평가</h1>
-                        <p class="text-lg text-gray-600">원하는 강의를 선택하고 실제 수강생들의 평가를 확인해보세요.</p>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <p class="text-lg text-gray-600">원하는 강의를 선택하고 실제 수강생들의 평가를 확인해보세요.</p>
+                            <button id="writeReviewBtn"
+                                class="flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm text-white font-bold shadow-md hover:bg-opacity-90 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                </svg>
+                                강의 평가 작성하기
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Search & Filter Section -->
@@ -236,6 +246,7 @@
             </main>
 
             <%@ include file="/view/common/footer.jsp" %>
+        <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js"></script>
     </body>
 
     </html>
