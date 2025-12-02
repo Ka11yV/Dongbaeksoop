@@ -35,14 +35,6 @@
                         <h1 class="text-3xl md:text-4xl font-bold text-dark mb-3">강의 평가</h1>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                             <p class="text-lg text-gray-600">원하는 강의를 선택하고 실제 수강생들의 평가를 확인해보세요.</p>
-                            <button id="writeReviewBtn"
-                                class="flex h-10 items-center gap-2 rounded-full bg-primary px-4 text-sm text-white font-bold shadow-md hover:bg-opacity-90 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                </svg>
-                                강의 평가 작성하기
-                            </button>
                         </div>
                     </div>
 
@@ -85,11 +77,11 @@
                     <div class="flex w-full flex-col gap-4">
                         <!-- Course Item 1 -->
                         <div
-                            class="group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            class="courseItemBtn group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                             <div class="flex flex-1 flex-col justify-start gap-2 pr-4 md:pr-10">
                                 <div class="flex items-center gap-3">
                                     <h3
-                                        class="truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
+                                        class="lectureName truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
                                         데이터베이스</h3>
                                     <span
                                         class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-primary">전공</span>
@@ -141,7 +133,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    class="courseItemBtn h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                         stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -152,11 +144,11 @@
 
                         <!-- Course Item 2 -->
                         <div
-                            class="group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            class="courseItemBtn group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                             <div class="flex flex-1 flex-col justify-start gap-2 pr-4 md:pr-10">
                                 <div class="flex items-center gap-3">
                                     <h3
-                                        class="truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
+                                        class="lectureName truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
                                         알고리즘</h3>
                                     <span
                                         class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-primary">전공</span>
@@ -246,7 +238,7 @@
             </main>
 
             <%@ include file="/view/common/footer.jsp" %>
-        <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js"></script>
+                <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
     </body>
 
     </html>
