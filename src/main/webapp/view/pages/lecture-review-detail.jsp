@@ -41,8 +41,7 @@
                         <!-- Left Column: Lecture Info -->
                         <div class="lg:w-1/3 space-y-6">
                             <!-- Added max-h and overflow-y-auto to ensure button is accessible on smaller screens -->
-                            <div
-                                class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+                            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-8 sticky top-24">
                                 <!-- Lecture Header -->
                                 <div class="mb-6">
                                     <span
@@ -148,7 +147,7 @@
                                     </div>
                                 </div>
 
-                                <button
+                                <button onclick="openModal()"
                                     class="w-full py-3 bg-primary hover:bg-secondary text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                         stroke-width="2">
@@ -438,7 +437,172 @@
                 </div>
             </main>
 
+            <!-- Write Review Modal -->
+            <div id="reviewModalBackdrop"
+                class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"
+                onclick="closeModal()"></div>
+            <div id="reviewModal"
+                class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-3xl shadow-2xl z-50 hidden transition-all duration-300 opacity-0 scale-95 max-h-[85vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-2xl font-bold text-dark">강의 리뷰 작성</h2>
+                        <button onclick="closeModal()"
+                            class="p-2 hover:bg-gray-100 rounded-full transition-colors text-gray-400 hover:text-gray-600">
+                            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <form onsubmit="event.preventDefault();" class="space-y-6">
+                        <!-- Semester Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-dark mb-2">수강 학기</label>
+                            <div class="relative">
+                                <select
+                                    class="appearance-none w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 font-medium transition-all">
+                                    <option>2024년 2학기</option>
+                                    <option>2024년 1학기</option>
+                                    <option>2023년 2학기</option>
+                                    <option>2023년 1학기</option>
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Star Rating -->
+                        <div>
+                            <label class="block text-sm font-medium text-dark mb-2">총점</label>
+                            <div class="flex gap-2">
+                                <button type="button"
+                                    class="star-btn group transform transition-transform active:scale-95"
+                                    onclick="setRating(1)">
+                                    <svg class="w-10 h-10 text-gray-200 fill-current group-hover:text-yellow-400 transition-colors"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                                <button type="button"
+                                    class="star-btn group transform transition-transform active:scale-95"
+                                    onclick="setRating(2)">
+                                    <svg class="w-10 h-10 text-gray-200 fill-current group-hover:text-yellow-400 transition-colors"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                                <button type="button"
+                                    class="star-btn group transform transition-transform active:scale-95"
+                                    onclick="setRating(3)">
+                                    <svg class="w-10 h-10 text-gray-200 fill-current group-hover:text-yellow-400 transition-colors"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                                <button type="button"
+                                    class="star-btn group transform transition-transform active:scale-95"
+                                    onclick="setRating(4)">
+                                    <svg class="w-10 h-10 text-gray-200 fill-current group-hover:text-yellow-400 transition-colors"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                                <button type="button"
+                                    class="star-btn group transform transition-transform active:scale-95"
+                                    onclick="setRating(5)">
+                                    <svg class="w-10 h-10 text-gray-200 fill-current group-hover:text-yellow-400 transition-colors"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Criteria -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Difficulty -->
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">난이도</label>
+                                <div class="flex gap-2">
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">쉬움</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">어려움</button>
+                                </div>
+                            </div>
+                            <!-- Homework -->
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">과제량</label>
+                                <div class="flex gap-2">
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">많음</button>
+                                </div>
+                            </div>
+                            <!-- Team Project -->
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">조모임</label>
+                                <div class="flex gap-2">
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">있음</button>
+                                </div>
+                            </div>
+                            <!-- Grade -->
+                            <div>
+                                <label class="block text-sm font-medium text-dark mb-2">학점</label>
+                                <div class="flex gap-2">
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">힘듦</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
+                                    <button type="button"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">너그러움</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review Text -->
+                        <div>
+                            <label class="block text-sm font-medium text-dark mb-2">총평</label>
+                            <textarea
+                                class="w-full h-32 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 resize-none transition-all placeholder-gray-400"
+                                placeholder="이 강의에 대한 솔직한 리뷰를 남겨주세요. (최소 20자 이상)"></textarea>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="flex gap-3 pt-4">
+                            <button type="button" onclick="closeModal()"
+                                class="flex-1 py-4 rounded-xl bg-white border border-gray-200 text-gray-600 font-bold hover:bg-gray-50 hover:border-gray-300 transition-all">취소</button>
+                            <button type="submit"
+                                class="flex-1 py-4 rounded-xl bg-primary text-white font-bold hover:bg-secondary shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5">리뷰
+                                등록하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <%@ include file="/view/common/footer.jsp" %>
+
+        <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
     </body>
 
     </html>
