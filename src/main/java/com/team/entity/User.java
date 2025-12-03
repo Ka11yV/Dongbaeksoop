@@ -83,16 +83,16 @@ public class User {
         this.deptId = deptId;
     }
 
-    public boolean isBan() {
+    public boolean getIsBan() {
         return isBan;
     }
 
-    public void setBan(boolean isBan) {
+    public void setIsBan(boolean isBan) {
         this.isBan = isBan;
     }
 
-    public boolean isNoticeAlertEnabled() {
-        return isNoticeAlertEnabled;
+    public boolean isNoticeAlertEnabled(boolean isNoticeAlertEnabled) {
+        return this.isNoticeAlertEnabled;
     }
 
     public void setNoticeAlertEnabled(boolean noticeAlertEnabled) {
