@@ -2,8 +2,6 @@ package com.team.dao;
 
 import com.team.common.DBUtil;
 import com.team.dto.lecture.LectureCardDTO;
-import com.team.dto.lecture.LectureReviewDTO;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

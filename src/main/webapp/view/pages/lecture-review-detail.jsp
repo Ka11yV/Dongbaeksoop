@@ -10,25 +10,6 @@
         <link rel="stylesheet" as="style" crossorigin
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
         <style>
-            body {
-                font-family: 'Pretendard', sans-serif;
-                background-color: #F8FAFC;
-                color: #0F172A;
-            }
-
-            /* Custom scrollbar for the sticky sidebar */
-            .custom-scrollbar::-webkit-scrollbar {
-                width: 4px;
-            }
-
-            .custom-scrollbar::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            .custom-scrollbar::-webkit-scrollbar-thumb {
-                background-color: #CBD5E1;
-                border-radius: 20px;
-            }
         </style>
     </head>
 
@@ -455,18 +436,21 @@
                         </button>
                     </div>
 
-                    <form onsubmit="event.preventDefault();" class="space-y-6">
+                    <form method="post" action="//lecture-review-detail" class="space-y-6">
                         <!-- Semester Selection -->
                         <div>
                             <label class="block text-sm font-medium text-dark mb-2">수강 학기</label>
                             <div class="relative">
-                                <select
-                                    class="appearance-none w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 font-medium transition-all">
-                                    <option>2024년 2학기</option>
-                                    <option>2024년 1학기</option>
-                                    <option>2023년 2학기</option>
-                                    <option>2023년 1학기</option>
-                                </select>
+                                <label>
+                                    <select
+                                        class="appearance-none w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 font-medium transition-all">
+                                        <option>2024년 2학기</option>
+                                        <option>2024년 1학기</option>
+                                        <option>2023년 2학기</option>
+                                        <option>2023년 1학기</option>
+                                    </select>
+                                    <input type="text" id = "semester" name="semester" class="hidden">
+                                </label>
                                 <div
                                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
                                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -527,6 +511,7 @@
                                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                     </svg>
                                 </button>
+                                <input type="text" id = "rating" name = "rating" class="hidden">
                             </div>
                         </div>
 
@@ -535,55 +520,59 @@
                             <!-- Difficulty -->
                             <div>
                                 <label class="block text-sm font-medium text-dark mb-2">난이도</label>
-                                <div class="flex gap-2">
-                                    <button type="button"
+                                <div class="flex gap-2" id="difficultyBtnGroup">
+                                    <button type="button" data-value="easy"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">쉬움</button>
-                                    <button type="button"
+                                    <button type="button" data-value="normal"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
-                                    <button type="button"
+                                    <button type="button" data-value="hard"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">어려움</button>
                                 </div>
+                                <input type="text" id = "difficulty" name = "difficulty" class="hidden">
                             </div>
                             <!-- Homework -->
                             <div>
                                 <label class="block text-sm font-medium text-dark mb-2">과제량</label>
-                                <div class="flex gap-2">
-                                    <button type="button"
+                                <div class="flex gap-2" id = "workloadBtnGroup">
+                                    <button type="button" data-value = "none"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
-                                    <button type="button"
+                                    <button type="button" data-value = "normal"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
-                                    <button type="button"
+                                    <button type="button" data-value = "heavy"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">많음</button>
                                 </div>
+                                <input type="text" id = "workload" name = "workload" class="hidden">
                             </div>
                             <!-- Team Project -->
                             <div>
-                                <label class="block text-sm font-medium text-dark mb-2">조모임</label>
-                                <div class="flex gap-2">
-                                    <button type="button"
+                                <label class="block text-sm font-medium text-dark mb-2">팀플</label>
+                                <div class="flex gap-2" id = "team_projectBtnGroup">
+                                    <button type="button" data-value = "notExist"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
-                                    <button type="button"
+                                    <button type="button" data-value = "exist"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">있음</button>
                                 </div>
+                                <input type="text" id = "team_project" name = "team_project" class="hidden">
                             </div>
                             <!-- Grade -->
                             <div>
-                                <label class="block text-sm font-medium text-dark mb-2">학점</label>
-                                <div class="flex gap-2">
-                                    <button type="button"
-                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">힘듦</button>
-                                    <button type="button"
-                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
-                                    <button type="button"
-                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">너그러움</button>
+                                <label class="block text-sm font-medium text-dark mb-2">출결방식</label>
+                                <div class="flex gap-2" id = "attendance_methodBtnGroup">
+                                    <button type="button" data-value = "electronic"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">전자출결</button>
+                                    <button type="button" data-value = "Handwritten"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">수기</button>
+                                    <button type="button" data-value = "notCheck"
+                                        class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">체크X</button>
                                 </div>
+                                <input type="text" id = "attendance_method" class="hidden">
                             </div>
                         </div>
 
                         <!-- Review Text -->
                         <div>
                             <label class="block text-sm font-medium text-dark mb-2">총평</label>
-                            <textarea
+                            <textarea id = "content" name = "content"
                                 class="w-full h-32 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 resize-none transition-all placeholder-gray-400"
                                 placeholder="이 강의에 대한 솔직한 리뷰를 남겨주세요. (최소 20자 이상)"></textarea>
                         </div>

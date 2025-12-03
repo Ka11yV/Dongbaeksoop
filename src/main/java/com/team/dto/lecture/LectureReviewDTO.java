@@ -1,10 +1,7 @@
-package com.team.entity;
+package com.team.dto.lecture;
 
-import java.time.LocalDateTime;
-
-// 강의리뷰(id, user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content, created_at)
-public class LectureReview {
-    private int id;
+// (user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content)
+public class LectureReviewDTO {
     private int user_id;
     private int lecture_id;
     private int professor_id;
@@ -15,11 +12,9 @@ public class LectureReview {
     private String team_project;
     private String attendance_method;
     private String content;
-    private LocalDateTime created_at;
 
-    public LectureReview() {}
 
-    public LectureReview(int user_id, int lecture_id, int professor_id, String course_semester, int rating, String difficulty, String workload, String team_project, String attendance_method, String content) {
+    public LectureReviewDTO(int user_id, int lecture_id, int professor_id, String course_semester, int rating, String difficulty, String workload, String team_project, String attendance_method, String content) {
         this.user_id = user_id;
         this.lecture_id = lecture_id;
         this.professor_id = professor_id;
@@ -30,14 +25,6 @@ public class LectureReview {
         this.team_project = team_project;
         this.attendance_method = attendance_method;
         this.content = content;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getUser_id() {
@@ -118,13 +105,5 @@ public class LectureReview {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
     }
 }
