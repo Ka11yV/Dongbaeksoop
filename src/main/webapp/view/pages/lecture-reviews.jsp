@@ -82,7 +82,7 @@
                                 <div class="flex items-center gap-3">
                                     <h3
                                         class="lectureName truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
-                                        데이터베이스</h3>
+                                        request.lecturename</h3>
                                     <span
                                         class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-primary">전공</span>
                                 </div>
@@ -238,7 +238,7 @@
             </main>
 
             <%@ include file="/view/common/footer.jsp" %>
-                <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
+                <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js"></script>
     </body>
 
     </html>

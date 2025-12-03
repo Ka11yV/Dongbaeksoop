@@ -9,7 +9,7 @@ public class LectureDetail {
 
     public LectureDetail() {}
 
-    public LectureDetail(int lecture_id, String session, int professor_id, int dept_id) {
+    public LectureDetail(int lecture_id, int professor_id, String session, int dept_id) {
         this.lecture_id = lecture_id;
         this.session = session;
         this.professor_id = professor_id;
@@ -24,6 +24,14 @@ public class LectureDetail {
         this.lecture_id = lecture_id;
     }
 
+    public int getProfessor_id() {
+        return professor_id;
+    }
+
+    public void setProfessor_id(int professor_id) {
+        this.professor_id = professor_id;
+    }
+
     public String getSession() {
         return session;
     }
@@ -32,13 +40,6 @@ public class LectureDetail {
         this.session = session;
     }
 
-    public int getProfessor_id() {
-        return professor_id;
-    }
-
-    public void setProfessor_id(int professor_id) {
-        this.professor_id = professor_id;
-    }
 
     public int getDept_id() {
         return dept_id;
