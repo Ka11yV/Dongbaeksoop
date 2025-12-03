@@ -30,7 +30,7 @@ public class AuthService {
          }
 
          // 아이디로 조회 했을때 컬럼이 있는지 확인
-         User user = authDAO.getByUserId(userLoginDTO.getUserId());  // SELECT user_id, password FROM user WHERE user_id = "userLoginDTO.getUSerId()";  쿼리 수행. 조회되면 User 객체 반환, 아니면 null 반환
+         User user = userDAO.getByUserId(userLoginDTO.getUserId());  // SELECT user_id, password FROM user WHERE user_id = "userLoginDTO.getUSerId()";  쿼리 수행. 조회되면 User 객체 반환, 아니면 null 반환
 
          if(user != null) {  // 반환값 있으면
              String formPassword = userLoginDTO.getPassword();

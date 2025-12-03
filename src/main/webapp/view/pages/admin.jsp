@@ -8,6 +8,7 @@
         <title>동백숲 - 관리자 대시보드</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/output.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <style>
             /* Apple-style subtle refinements */
             body {
@@ -104,19 +105,19 @@
                         <div class="flex justify-between items-start">
                             <p class="text-sm font-medium text-[#86868B]">총 사용자</p>
                             <span
-                                class="text-[10px] font-bold text-[#0071E3] bg-blue-50 px-2 py-0.5 rounded-full">+12%</span>
+                                class="text-[10px] font-bold text-[#0071E3] bg-blue-50 px-2 py-0.5 rounded-full"></span>
                         </div>
-                        <p class="text-3xl font-semibold text-[#1D1D1F]">1,247</p>
+                        <p class="text-3xl font-semibold text-[#1D1D1F]">${userCount}</p>
                     </div>
 
                     <!-- Active Users -->
                     <div class="apple-card p-6 flex flex-col justify-between h-32">
                         <div class="flex justify-between items-start">
-                            <p class="text-sm font-medium text-[#86868B]">활성 사용자</p>
+                            <p class="text-sm font-medium text-[#86868B]">현재 접속자</p>
                             <span
-                                class="text-[10px] font-bold text-[#34C759] bg-green-50 px-2 py-0.5 rounded-full">+5%</span>
+                                class="text-[10px] font-bold text-[#34C759] bg-green-50 px-2 py-0.5 rounded-full"></span>
                         </div>
-                        <p class="text-3xl font-semibold text-[#1D1D1F]">892</p>
+                        <p class="text-3xl font-semibold text-[#1D1D1F]">0</p>
                     </div>
 
                     <!-- Total Reviews -->
@@ -124,19 +125,19 @@
                         <div class="flex justify-between items-start">
                             <p class="text-sm font-medium text-[#86868B]">총 평가</p>
                             <span
-                                class="text-[10px] font-bold text-[#AF52DE] bg-purple-50 px-2 py-0.5 rounded-full">+8%</span>
+                                class="text-[10px] font-bold text-[#AF52DE] bg-purple-50 px-2 py-0.5 rounded-full"></span>
                         </div>
-                        <p class="text-3xl font-semibold text-[#1D1D1F]">543</p>
+                        <p class="text-3xl font-semibold text-[#1D1D1F]">0</p>
                     </div>
 
                     <!-- Total Questions -->
                     <div class="apple-card p-6 flex flex-col justify-between h-32">
                         <div class="flex justify-between items-start">
-                            <p class="text-sm font-medium text-[#86868B]">총 질문</p>
+                            <p class="text-sm font-medium text-[#86868B]">피드백</p>
                             <span
-                                class="text-[10px] font-bold text-[#FF9500] bg-orange-50 px-2 py-0.5 rounded-full">+3%</span>
+                                class="text-[10px] font-bold text-[#FF9500] bg-orange-50 px-2 py-0.5 rounded-full"></span>
                         </div>
-                        <p class="text-3xl font-semibold text-[#1D1D1F]">289</p>
+                        <p class="text-3xl font-semibold text-[#1D1D1F]">0</p>
                     </div>
                 </div>
 

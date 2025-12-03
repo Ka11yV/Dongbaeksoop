@@ -1,5 +1,6 @@
 package com.team.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
@@ -14,7 +15,7 @@ public class User {
     private boolean isNoticeAlertEnabled;
     private boolean isAssignmentAlertEnabled;
     private String role;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
 
     public User() {}
@@ -83,16 +84,16 @@ public class User {
         this.deptId = deptId;
     }
 
-    public boolean isBan() {
+    public boolean getIsBan() {
         return isBan;
     }
 
-    public void setBan(boolean isBan) {
+    public void setIsBan(boolean isBan) {
         this.isBan = isBan;
     }
 
-    public boolean isNoticeAlertEnabled() {
-        return isNoticeAlertEnabled;
+    public boolean isNoticeAlertEnabled(boolean isNoticeAlertEnabled) {
+        return this.isNoticeAlertEnabled;
     }
 
     public void setNoticeAlertEnabled(boolean noticeAlertEnabled) {
@@ -115,11 +116,11 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 }
