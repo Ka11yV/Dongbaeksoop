@@ -13,7 +13,7 @@ public class AdminDashboardService {
     }
 
     public List<User> getUserList() {
-        return userDAO.getUserList();
+        return userDAO.getAllUsers();
     }
 
 

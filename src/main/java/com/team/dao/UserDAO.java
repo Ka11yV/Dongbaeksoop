@@ -1,6 +1,5 @@
 package com.team.dao;
 
-import com.mysql.cj.protocol.Resultset;
 import com.team.common.DBUtil;
 import com.team.entity.User;
 import java.sql.Connection;
@@ -210,7 +209,7 @@ public class UserDAO {
         }
     }
 
-    public List<User> getUserList() {
+    public List<User> getAllUsers() {
 
         // 모든 유저 데이터를 조회하는 SQL
         String sql = "SELECT * FROM user";
