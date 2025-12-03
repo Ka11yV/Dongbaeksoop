@@ -20,16 +20,13 @@ const TIMER_DURATION = 180;
 let isIdVerified = false;
 let isEmailVerified = false;
 let isPasswordVerified = false;
-let isSelectedDepartment = false
-let isSelectedGrade = false;
-
 let timerInterval;
-
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 document.addEventListener('DOMContentLoaded', () => {
   initializeEventListeners();
 });
+
 
 function initializeEventListeners() {
   checkIdBtn.addEventListener('click', handleCheckId);
@@ -49,6 +46,7 @@ function initializeEventListeners() {
   submit.addEventListener('click', handleSubmit);
 }
 
+// ---- ID 체크 -----
 async function handleCheckId() {
   const userId = userIdInput.value;
 
@@ -59,15 +57,13 @@ async function handleCheckId() {
 
   await checkUserIdAvailability(userId);
 }
-
 function resetIdVerification() {
   isIdVerified = false;
   userIdInput.classList.remove('border-green-500', 'border-red-500');
   idErrorMessage.textContent = '';
   idErrorMessage.classList.remove('text-green-500', 'text-red-500');
 }
-
-function handleCheckIdSuccess() {
+function checkIdSuccess() {
   idErrorMessage.textContent = '사용 가능한 아이디 입니다.';
   idErrorMessage.classList.remove('text-red-500');
   idErrorMessage.classList.add('text-green-500');
@@ -75,9 +71,7 @@ function handleCheckIdSuccess() {
   userIdInput.classList.remove('border-red-500');
   isIdVerified = true;
 }
-
-function handleIdDuplicateError() {
-  console.log('아이디 중복')
+function checkIdFailed() {
   idErrorMessage.textContent = '이미 사용 중인 아이디입니다.'
   idErrorMessage.classList.add('text-red-500');
   idErrorMessage.classList.remove('text-green-500');
@@ -85,8 +79,6 @@ function handleIdDuplicateError() {
   userIdInput.classList.remove('border-green-500');
   isIdVerified = false;
 }
-
-
 async function checkUserIdAvailability(userId) {
   const url = `${contextPath}/users/check/id?id=${encodeURIComponent(userId)}`;
 
@@ -94,15 +86,11 @@ async function checkUserIdAvailability(userId) {
     const response = await fetch(url);
 
     if (!response.ok) {
-      toast("error", response.message);
+      checkIdFailed()
     }
 
-    const data = await response.json();
+    checkIdSuccess()
 
-    if (data.success) {
-      handleCheckIdSuccess()
-    } else
-      handleIdDuplicateError()
   } catch (e) {
     toast('error', e.message);
     userIdInput.classList.add('border-red-500');
@@ -110,6 +98,8 @@ async function checkUserIdAvailability(userId) {
   }
 }
 
+
+// ---- 이메일 인증 -----
 function handleSendEmail() {
   const email = emailInput.value.trim();
 
@@ -173,6 +163,8 @@ async function sendVerificationEmail(email) {
 
     const data = await response.json();
 
+    console.log(data);
+
     if (!response.ok) {
       emailErrorMessage.textContent = data.message;
       emailErrorMessage.classList.add('text-red-500');
@@ -196,7 +188,7 @@ async function sendVerificationEmail(email) {
     enableVerificationInputs();
 
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     sendEmailBtn.innerText = '인증하기';
   }
 }
@@ -243,7 +235,7 @@ async function verifyCode(code) {
       handleVerificationSuccess();
     } else {
       handleEmailError('인증번호가 일치하지 않습니다.')
-    }
+    }                                                         
   } catch (error) {
     handleEmailError('인증 확인 중 오류가 발생했습니다.')
   }
@@ -318,8 +310,6 @@ function handleVerificationKeydown(e, index, input) {
     }
   }
 }
-
-
 
 confirmPasswordInput.addEventListener('input', () => {
   password = passwordInput.value
@@ -404,6 +394,8 @@ async function register() {
   })
 
   const data = await response.json()
+
+  console.log(data)
 
   if (!response.ok) {
     toast("error", data.message)

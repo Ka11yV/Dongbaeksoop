@@ -16,9 +16,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.xml.bind.ValidationException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.DoubleStream;
 
 @WebServlet("/users/*")
 public class UserServlet extends HttpServlet {

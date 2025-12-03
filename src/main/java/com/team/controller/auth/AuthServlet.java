@@ -3,15 +3,11 @@ package com.team.controller.auth;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.team.common.JsonUtil;
-import com.team.dto.auth.VerificationResultDTO;
 import com.team.dto.response.ApiResponse;
 import com.team.dto.user.EmailRequestDTO;
-import com.sun.net.httpserver.Request;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
 import com.team.service.AuthService;
-import com.team.service.UserService;
-import jakarta.mail.Session;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +15,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 import static com.team.common.ServletResponseUtil.sendJsonResponse;
@@ -33,7 +30,7 @@ public class AuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
 
-        if (pathInfo.equals("/login")) {  // 페이지 forward 용도
+        if (pathInfo.equals("/login")) {
 
             HttpSession session = request.getSession();
             if (session.getAttribute("user") != null) {
@@ -65,9 +62,6 @@ public class AuthServlet extends HttpServlet {
                 // 로그인 시도
                 User user = authService.login(userLoginDTO);  // true면 로그인 성공
 
-                System.out.println("로그인 아이디 : " + user.getUserId());
-                System.out.println("로그인 비밀번호 : " + user.getPassword());
-
                 // 로그인 성공
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", user);
@@ -78,8 +72,7 @@ public class AuthServlet extends HttpServlet {
                 System.out.println("로그인 실패");
                 request.setAttribute("loginErrorMsg", e.getMessage());
                 System.out.println(request.getAttribute("loginErrorMsg"));
-                RequestDispatcher dispatcher = request.getRequestDispatcher(
-                        "/view/pages/login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
                 dispatcher.forward(request, response);
             }
         }
@@ -90,23 +83,25 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = request.getSession();
 
             if (body.isEmpty()) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-                response.getWriter().write("{\"success\": false, \"message\": \"요청 본문이 비어있습니다.\"}");
+                ApiResponse<Void> errorResponse = ApiResponse.error("요청 본문이 비어있습니다..");
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
                 return;
             }
 
             EmailRequestDTO emailDTO = gson.fromJson(body, EmailRequestDTO.class);
 
-            VerificationResultDTO resultDTO = authService.sendVerificationCode(emailDTO.getEmail(), session);
+            try {
+                authService.sendVerificationCode(emailDTO.getEmail(), session);
 
-            if (!resultDTO.isSuccess()) {
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                ApiResponse<String> successResponse = ApiResponse.success("인증코드가 이메일로 전송되었습니다. 3분 이내에 입력해주세요.");
+                sendJsonResponse(response, HttpServletResponse.SC_OK, successResponse);
+
+            } catch (Exception e) {
+                ApiResponse<Void> errorResponse = ApiResponse.error(e.getMessage());
+                sendJsonResponse(response, HttpServletResponse.SC_BAD_REQUEST, errorResponse);
             }
 
-            String jsonResponse = gson.toJson(resultDTO);
 
-            response.setContentType("application/json; charset=UTF-8");
-            response.getWriter().write(jsonResponse);
         }
 
         if (pathInfo.equals("/verification")) {
