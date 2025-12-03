@@ -1,52 +1,44 @@
 package com.team.entity;
 
-// 강의 세부(lecture_id, session, professor_id, dept_id);
+// 강의 세부 정보 (lectureId, session, professorId, deptId)
 public class LectureDetail {
-    private int lecture_id;
-    private String session;
-    private int professor_id;
-    private int dept_id;
+
+    // [변경] 스네이크 케이스(_사용) -> 카멜 케이스(대문자 구분)
+    private int lectureId;
+    private int professorId;
+    private int deptId;
 
     public LectureDetail() {}
 
-    public LectureDetail(int lecture_id, String session, int professor_id, int dept_id) {
-        this.lecture_id = lecture_id;
-        this.session = session;
-        this.professor_id = professor_id;
-        this.dept_id = dept_id;
+    public LectureDetail(int lectureId, int professorId, int deptId) {
+        this.lectureId = lectureId;
+        this.professorId = professorId;
+        this.deptId = deptId;
     }
 
-    public int getLecture_id() {
-        return lecture_id;
+    // Getter & Setter 메서드 이름도 표준 자바 규약(getLectureId)으로 변경됨
+
+    public int getLectureId() {
+        return lectureId;
     }
 
-    public void setLecture_id(int lecture_id) {
-        this.lecture_id = lecture_id;
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
     }
 
-    public String getSession() {
-        return session;
+    public int getProfessorId() {
+        return professorId;
     }
 
-    public void setSession(String session) {
-        this.session = session;
+    public void setProfessorId(int professorId) {
+        this.professorId = professorId;
     }
 
-    public int getProfessor_id() {
-        return professor_id;
+    public int getDeptId() {
+        return deptId;
     }
 
-    public void setProfessor_id(int professor_id) {
-        this.professor_id = professor_id;
-    }
-
-    public int getDept_id() {
-        return dept_id;
-    }
-
-    public void setDept_id(int dept_id) {
-        this.dept_id = dept_id;
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
     }
 }
-
-
