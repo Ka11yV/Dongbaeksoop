@@ -47,7 +47,7 @@ function initUserGrowthChart() {
             labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월'],
             datasets: [{
                 label: '신규 가입자',
-                data: [65, 78, 90, 85, 98, 112],
+                data: [65, 78, 90, 85, 98, 112, 132],
                 borderColor: '#0071E3', // Apple System Blue
                 backgroundColor: 'rgba(0, 113, 227, 0.1)',
                 borderWidth: 3,

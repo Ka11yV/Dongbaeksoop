@@ -85,4 +85,17 @@ public class UserService {
             return false;
         }
     }
+
+    public boolean updateBanStatus(String userId, Boolean isBan) throws ValidationException {
+
+        if (userId == null || isBan == null) {
+            throw new ValidationException("필수 필드가 누락되었습니다.");
+        }
+
+        if (!isUserIdExists(userId)) {
+            throw new ValidationException("유저가 존재하지 않습니다.");
+        }
+
+        return userDAO.updateBanStatus(userId, isBan);
+    }
 }

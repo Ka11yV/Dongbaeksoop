@@ -212,7 +212,11 @@ public class UserDAO {
     public List<User> getAllUsers() {
 
         // 모든 유저 데이터를 조회하는 SQL
-        String sql = "SELECT * FROM user";
+        String sql = """
+                    SELECT u.*, d.name AS dept_name\s
+                        FROM user u\s
+                        LEFT JOIN department d ON u.dept_id = d.id;
+                """;
 
         // 최종적으로 반환할 User 객체 리스트 초기화
         List<User> userList = new ArrayList<>();
@@ -242,6 +246,7 @@ public class UserDAO {
                     user.setIsBan(rs.getBoolean("is_ban"));
                     user.setAssignmentAlertEnabled(rs.getBoolean("is_assignment_alert_enabled"));
                     user.isNoticeAlertEnabled(rs.getBoolean("is_notice_alert_enabled"));
+                    user.setDeptName(rs.getString("dept_name"));
                     if (createdAt != null) {
                         user.setCreatedAt(createdAt.toLocalDateTime());
                     }
@@ -256,6 +261,24 @@ public class UserDAO {
             // DB 접속 또는 쿼리 실행 중 오류 발생 시 에러 처리
             System.err.println("DB Error during fetching user list: " + e.getMessage());
             throw new RuntimeException("Database error occurred while fetching user list.", e);
+        }
+    }
+
+    public Boolean updateBanStatus(String userId, boolean isBan) {
+        String sql = "UPDATE users SET is_ban = ? WHERE user_id = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // 파라미터 바인딩
+            pstmt.setBoolean(1, isBan);
+            pstmt.setString(2, userId);
+
+            return pstmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
