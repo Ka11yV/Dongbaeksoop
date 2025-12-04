@@ -1,25 +1,33 @@
 package com.team.dto.lecture;
 
-// lecture_id, courseType, professor_id, dept_id, reviewCount, ratingAVG
 public class LectureCardDTO {
-    private int lecture_id;
+    private String lectureName;
     private String courseType;
-    private int professor_id;
-    private int dept_id;
+    private String professorName;
+    private String deptName;
+    private int lectureId;
+    private int professorId;
 
-    public LectureCardDTO(int lecture_id, String courseType, int professor_id, int dept_id) {
-        this.lecture_id = lecture_id;
+    public LectureCardDTO(String lectureName, String courseType, String professorName, String deptName, int lectureId, int professorId) {
+        this.lectureName = lectureName;
         this.courseType = courseType;
-        this.professor_id = professor_id;
-        this.dept_id = dept_id;
+        this.professorName = professorName;
+        this.deptName = deptName;
+        this.lectureId = lectureId;
+        this.professorId = professorId;
     }
 
-    public int getLecture_id() {
-        return lecture_id;
+    public LectureCardDTO(int lectureId, int professorId) {
+        this.lectureId = lectureId;
+        this.professorId = professorId;
     }
 
-    public void setLecture_id(int lecture_id) {
-        this.lecture_id = lecture_id;
+    public String getLectureName() {
+        return lectureName;
+    }
+
+    public void setLectureName(String lectureName) {
+        this.lectureName = lectureName;
     }
 
     public String getCourseType() {
@@ -30,19 +38,35 @@ public class LectureCardDTO {
         this.courseType = courseType;
     }
 
-    public int getProfessor_id() {
-        return professor_id;
+    public String getProfessorName() {
+        return professorName;
     }
 
-    public void setProfessor_id(int professor_id) {
-        this.professor_id = professor_id;
+    public void setProfessorName(String professorName) {
+        this.professorName = professorName;
     }
 
-    public int getDept_id() {
-        return dept_id;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setDept_id(int dept_id) {
-        this.dept_id = dept_id;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public int getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
+    }
+
+    public int getProfessorId() {
+        return professorId;
+    }
+
+    public void setProfessorId(int professorId) {
+        this.professorId = professorId;
     }
 }

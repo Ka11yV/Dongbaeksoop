@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
     <html lang="ko">
 
@@ -26,12 +27,12 @@
                                 <!-- Lecture Header -->
                                 <div class="mb-6">
                                     <span
-                                        class="inline-block px-2.5 py-1 rounded-lg bg-blue-50 text-primary text-xs font-bold mb-2">전공</span>
-                                    <h1 class="text-2xl font-bold text-dark mb-1">웹 프로그래밍</h1>
+                                        class="inline-block px-2.5 py-1 rounded-lg bg-blue-50 text-primary text-xs font-bold mb-2">${currentLectureDetail.courseType}</span>
+                                    <h1 class="text-2xl font-bold text-dark mb-1">${currentLectureDetail.lectureName}</h1>
                                     <div class="text-gray-500 text-sm">
-                                        <span>김교수</span>
+                                        <span>${currentLectureDetail.professorName}</span>
                                         <span class="mx-1">·</span>
-                                        <span>소프트웨어과</span>
+                                        <span>${currentLectureDetail.deptName}</span>
                                     </div>
                                 </div>
 
@@ -436,7 +437,7 @@
                         </button>
                     </div>
 
-                    <form method="post" action="//lecture-review-detail" class="space-y-6">
+                    <form method="post" action="/lecture-review-detail"  class="space-y-6">
                         <!-- Semester Selection -->
                         <div>
                             <label class="block text-sm font-medium text-dark mb-2">수강 학기</label>
@@ -449,7 +450,7 @@
                                         <option>2023년 2학기</option>
                                         <option>2023년 1학기</option>
                                     </select>
-                                    <input type="text" id = "semester" name="semester" class="hidden">
+                                    <input type="text" id="semester" name="semester" class="hidden">
                                 </label>
                                 <div
                                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
@@ -511,7 +512,7 @@
                                             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                                     </svg>
                                 </button>
-                                <input type="text" id = "rating" name = "rating" class="hidden">
+                                <input type="text" id="rating" name="rating" class="hidden">
                             </div>
                         </div>
 
@@ -528,51 +529,51 @@
                                     <button type="button" data-value="hard"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">어려움</button>
                                 </div>
-                                <input type="text" id = "difficulty" name = "difficulty" class="hidden">
+                                <input type="text" id="difficulty" name="difficulty" class="hidden">
                             </div>
                             <!-- Homework -->
                             <div>
                                 <label class="block text-sm font-medium text-dark mb-2">과제량</label>
-                                <div class="flex gap-2" id = "workloadBtnGroup">
-                                    <button type="button" data-value = "none"
+                                <div class="flex gap-2" id="workloadBtnGroup">
+                                    <button type="button" data-value="none"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
-                                    <button type="button" data-value = "normal"
+                                    <button type="button" data-value="normal"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">보통</button>
-                                    <button type="button" data-value = "heavy"
+                                    <button type="button" data-value="heavy"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">많음</button>
                                 </div>
-                                <input type="text" id = "workload" name = "workload" class="hidden">
+                                <input type="text" id="workload" name="workload" class="hidden">
                             </div>
                             <!-- Team Project -->
                             <div>
                                 <label class="block text-sm font-medium text-dark mb-2">팀플</label>
-                                <div class="flex gap-2" id = "team_projectBtnGroup">
-                                    <button type="button" data-value = "notExist"
+                                <div class="flex gap-2" id="team_projectBtnGroup">
+                                    <button type="button" data-value="notExist"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">없음</button>
-                                    <button type="button" data-value = "exist"
+                                    <button type="button" data-value="exist"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">있음</button>
                                 </div>
-                                <input type="text" id = "team_project" name = "team_project" class="hidden">
+                                <input type="text" id="team_project" name="team_project" class="hidden">
                             </div>
                             <!-- Grade -->
                             <div>
                                 <label class="block text-sm font-medium text-dark mb-2">출결방식</label>
-                                <div class="flex gap-2" id = "attendance_methodBtnGroup">
-                                    <button type="button" data-value = "electronic"
+                                <div class="flex gap-2" id="attendance_methodBtnGroup">
+                                    <button type="button" data-value="electronic"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">전자출결</button>
-                                    <button type="button" data-value = "Handwritten"
+                                    <button type="button" data-value="Handwritten"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">수기</button>
-                                    <button type="button" data-value = "notCheck"
+                                    <button type="button" data-value="notCheck"
                                         class="flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">체크X</button>
                                 </div>
-                                <input type="text" id = "attendance_method" class="hidden">
+                                <input type="text" id="attendance_method" name="attendance_method" class="hidden">
                             </div>
                         </div>
 
                         <!-- Review Text -->
                         <div>
                             <label class="block text-sm font-medium text-dark mb-2">총평</label>
-                            <textarea id = "content" name = "content"
+                            <textarea id="content" name="content"
                                 class="w-full h-32 px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-gray-700 resize-none transition-all placeholder-gray-400"
                                 placeholder="이 강의에 대한 솔직한 리뷰를 남겨주세요. (최소 20자 이상)"></textarea>
                         </div>
@@ -585,13 +586,18 @@
                                 class="flex-1 py-4 rounded-xl bg-primary text-white font-bold hover:bg-secondary shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5">리뷰
                                 등록하기</button>
                         </div>
+
+                        <input value="${currentLectureDetail.lectureId}" name = "lectureId" class = "hidden">
+                        <input value="${currentLectureDetail.professorId}" name = "professorId" class = "hidden">
+                        <input value="${currentLectureDetail.deptName}" name = "deptName" class = "hidden">
                     </form>
                 </div>
             </div>
 
             <%@ include file="/view/common/footer.jsp" %>
 
-        <script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
+                <script
+                    src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
     </body>
 
     </html>
