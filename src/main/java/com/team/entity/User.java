@@ -6,6 +6,7 @@ import java.util.Date;
 public class User {
     private int id;
     private String userId;
+    private String deptName;
     private String password;
     private String schoolPassword;
     private String email;
@@ -18,7 +19,9 @@ public class User {
     private LocalDateTime createdAt;
 
 
-    public User() {}
+    public User(String deptName) {
+        this.deptName = deptName;
+    }
 
     public User(String userId, String email, String password, int deptId, int grade) {
         this.userId = userId;
@@ -26,6 +29,10 @@ public class User {
         this.password = password;
         this.deptId = deptId;
         this.grade = grade;
+    }
+
+    public User() {
+
     }
 
     public int getId() {
@@ -122,5 +129,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }
