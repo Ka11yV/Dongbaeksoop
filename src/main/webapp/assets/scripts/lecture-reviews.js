@@ -2,8 +2,10 @@ const courseItemBtns = document.querySelectorAll('.courseItemBtn');
 
 courseItemBtns.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        console.log('Card clicked');
-        const servletUrl = '/lecture-review-detail';
+        const lectureId = e.currentTarget.dataset.lectureId;
+        const professorId = e.currentTarget.dataset.professorId;
+
+        const servletUrl = `/lecture-review-detail?id=${lectureId}&professorId=${professorId}`;
         window.location.href = servletUrl;
     });
 });
@@ -51,7 +53,7 @@ function setRating(rating) {
         }
     });
 
-    if(rating) {
+    if (rating) {
         ratingInput.value = rating;
     }
 }
@@ -68,19 +70,21 @@ document.querySelectorAll('.grid button[type="button"]').forEach(btn => {
 });
 
 const semester = document.getElementById('semester');
-const semesterSelect = semester.parentElement.querySelector('select');
-// 초기값 설정
-semester.value = semesterSelect.value;
+if (semester) {
+    const semesterSelect = semester.parentElement.querySelector('select');
+    // 초기값 설정
+    semester.value = semesterSelect.value;
 
-// 변경 이벤트 리스너 추가
-semesterSelect.addEventListener('change', function () {
-    semester.value = this.value;
-});
+    // 변경 이벤트 리스너 추가
+    semesterSelect.addEventListener('change', function () {
+        semester.value = this.value;
+    });
+}
 
 const difficulty = document.getElementById('difficulty');
-const difficultyBtnGroup =  document.getElementById('difficultyBtnGroup');
+const difficultyBtnGroup = document.getElementById('difficultyBtnGroup');
 
-if(difficultyBtnGroup) {
+if (difficultyBtnGroup) {
     const difficultyBtn = difficultyBtnGroup.querySelectorAll('.flex-1')
 
     difficultyBtn.forEach(btn => {
@@ -92,7 +96,7 @@ if(difficultyBtnGroup) {
 
 const workload = document.getElementById('workload')
 const workloadBtnGroup = document.getElementById('workloadBtnGroup')
-if(workloadBtnGroup) {
+if (workloadBtnGroup) {
     const workloadBtn = workloadBtnGroup.querySelectorAll('.flex-1')
 
     workloadBtn.forEach(btn => {
@@ -104,7 +108,7 @@ if(workloadBtnGroup) {
 
 const team_project = document.getElementById('team_project')
 const team_projectBtnGroup = document.getElementById('team_projectBtnGroup')
-if(team_projectBtnGroup) {
+if (team_projectBtnGroup) {
     const team_projectBtn = team_projectBtnGroup.querySelectorAll('.flex-1')
 
     team_projectBtn.forEach(btn => {
@@ -116,7 +120,7 @@ if(team_projectBtnGroup) {
 
 const attendance_method = document.getElementById('attendance_method')
 const attendance_methodBtnGroup = document.getElementById('attendance_methodBtnGroup')
-if(attendance_methodBtnGroup) {
+if (attendance_methodBtnGroup) {
     const attendance_methodBtn = attendance_methodBtnGroup.querySelectorAll('.flex-1')
 
     attendance_methodBtn.forEach(btn => {
@@ -125,5 +129,3 @@ if(attendance_methodBtnGroup) {
         })
     })
 }
-
-
