@@ -5,7 +5,7 @@ import com.team.dao.UserDAO;
 import com.team.dto.user.UpdateInfoDTO;
 import com.team.dto.user.UserRegisterDTO;
 import com.team.entity.User;
-import jakarta.xml.bind.ValidationException;
+import com.team.exception.ValidationException;
 
 public class UserService {
     UserDAO userDAO = new UserDAO();

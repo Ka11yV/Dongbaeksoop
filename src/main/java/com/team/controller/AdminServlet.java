@@ -13,8 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.xml.bind.ValidationException;
-
+import com.team.exception.ValidationException;
 import java.io.IOException;
 import java.util.List;
 

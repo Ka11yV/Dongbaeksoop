@@ -111,7 +111,7 @@
                             </div>
 
                             <div class="flex justify-between items-center pt-4 border-t border-gray-50">
-                                <span class="text-sm font-medium text-gray-500">156개의 공지</span>
+                                <span class="text-sm font-medium text-gray-500"></span>
                                 <button
                                     class="text-sm font-bold text-rose-500 hover:text-rose-700 transition-colors flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -157,7 +157,7 @@
                             </div>
 
                             <div class="flex justify-between items-center pt-4 border-t border-gray-50">
-                                <span class="text-sm font-medium text-gray-500">89개의 공지</span>
+                                <span class="text-sm font-medium text-gray-500"></span>
                                 <button
                                     class="text-sm font-bold text-rose-500 hover:text-rose-700 transition-colors flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -185,8 +185,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="font-bold text-gray-500">장학금 안내</h3>
-                                        <p class="text-xs text-gray-400">장학금 신청 및 선발</p>
+                                        <h3 class="font-bold text-dark">장학금 안내</h3>
+                                        <p class="text-xs text-gray-500">장학금 신청 및 선발</p>
                                     </div>
                                 </div>
                                 <div
@@ -197,14 +197,14 @@
                             </div>
 
                             <div class="flex flex-wrap gap-2 mb-4 opacity-50">
+                                  <span
+                                          class="px-2.5 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">장학금</span>
                                 <span
-                                    class="px-2.5 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">장학금</span>
-                                <span
-                                    class="px-2.5 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">학자금</span>
+                                        class="px-2.5 py-1 bg-gray-100 rounded-lg text-xs font-bold text-gray-600">학자금</span>
                             </div>
 
                             <div class="flex justify-between items-center pt-4 border-t border-gray-50">
-                                <span class="text-sm font-medium text-gray-400">34개의 공지</span>
+                                <span class="text-sm font-medium text-gray-400"></span>
                                 <button
                                     class="text-sm font-bold text-rose-500 hover:text-rose-700 transition-colors flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -309,7 +309,7 @@
                                 </div>
 
                                 <div class="flex justify-between items-center pt-4 border-t border-gray-50">
-                                    <span class="text-sm font-medium text-gray-500">0개의 공지</span>
+                                    <span class="text-sm font-medium text-gray-500"></span>
                                     <button class="text-sm font-bold text-rose-500 hover:text-rose-700 transition-colors flex items-center gap-1" onclick="this.closest('.group').remove()">
                                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
         <!DOCTYPE html>
         <html lang="ko">
 
@@ -77,8 +77,7 @@
                         <!-- Course List -->
                         <div class="flex w-full flex-col gap-4">
                             <c:forEach var="lecture" items="${lectureList}">
-                                <div data-lecture-id="${lecture.lectureId}"
-                                     data-professor-id="${lecture.professorId}"
+                                <div data-lecture-id="${lecture.lectureId}" data-professor-id="${lecture.professorId}"
                                     class="courseItemBtn group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                                     <div class="flex flex-1 flex-col justify-start gap-2 pr-4 md:pr-10">
                                         <div class="flex items-center gap-3">

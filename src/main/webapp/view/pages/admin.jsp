@@ -8,78 +8,78 @@
         <title>동백숲 - 관리자 대시보드</title>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/styles/output.css">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-        <style>
-            /* Apple-style subtle refinements */
-            body {
-                background-color: #F5F5F7;
-                /* Apple's light gray background */
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-            }
+        <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+            <style>
+                /* Apple-style subtle refinements */
+                body {
+                    background-color: #F5F5F7;
+                    /* Apple's light gray background */
+                    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                }
 
-            .apple-card {
-                background: #FFFFFF;
-                border-radius: 18px;
-                /* Slightly more rounded */
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-                /* Very subtle, premium shadow */
-                border: 1px solid rgba(0, 0, 0, 0.03);
-            }
+                .apple-card {
+                    background: #FFFFFF;
+                    border-radius: 18px;
+                    /* Slightly more rounded */
+                    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+                    /* Very subtle, premium shadow */
+                    border: 1px solid rgba(0, 0, 0, 0.03);
+                }
 
-            .apple-button-primary {
-                background-color: #0071E3;
-                /* Apple System Blue */
-                color: white;
-                font-weight: 500;
-                transition: all 0.2s ease;
-            }
+                .apple-button-primary {
+                    background-color: #0071E3;
+                    /* Apple System Blue */
+                    color: white;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+                }
 
-            .apple-button-primary:hover {
-                background-color: #0077ED;
-                transform: scale(1.02);
-            }
+                .apple-button-primary:hover {
+                    background-color: #0077ED;
+                    transform: scale(1.02);
+                }
 
-            .apple-button-danger {
-                background-color: #FF3B30;
-                /* Apple System Red */
-                color: white;
-                font-weight: 500;
-                transition: all 0.2s ease;
-            }
+                .apple-button-danger {
+                    background-color: #FF3B30;
+                    /* Apple System Red */
+                    color: white;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+                }
 
-            .apple-button-danger:hover {
-                background-color: #FF453A;
-                transform: scale(1.02);
-            }
+                .apple-button-danger:hover {
+                    background-color: #FF453A;
+                    transform: scale(1.02);
+                }
 
-            .apple-button-secondary {
-                background-color: #E8E8ED;
-                color: #1D1D1F;
-                font-weight: 500;
-                transition: all 0.2s ease;
-            }
+                .apple-button-secondary {
+                    background-color: #E8E8ED;
+                    color: #1D1D1F;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+                }
 
-            .apple-button-secondary:hover {
-                background-color: #D2D2D7;
-            }
+                .apple-button-secondary:hover {
+                    background-color: #D2D2D7;
+                }
 
-            .table-header {
-                font-size: 12px;
-                font-weight: 600;
-                color: #86868B;
-                /* Apple's secondary text color */
-                text-transform: uppercase;
-                letter-spacing: 0.02em;
-            }
+                .table-header {
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: #86868B;
+                    /* Apple's secondary text color */
+                    text-transform: uppercase;
+                    letter-spacing: 0.02em;
+                }
 
-            .table-row {
-                transition: background-color 0.15s ease;
-            }
+                .table-row {
+                    transition: background-color 0.15s ease;
+                }
 
-            .table-row:hover {
-                background-color: #F5F5F7;
-            }
-        </style>
+                .table-row:hover {
+                    background-color: #F5F5F7;
+                }
+            </style>
     </head>
 
     <body class="antialiased">
@@ -174,7 +174,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M12 4v16m8-8H4"></path>
                                 </svg>
-                                강의 추가
+                                새로고침
                             </button>
                         </div>
 
@@ -265,66 +265,71 @@
                                     </tr>
                                 </thead>
                                 <tbody class="text-sm text-[#1D1D1F]">
-                                <c:forEach var="user" items="${userList}">
-                                    <tr class="table-row border-b border-gray-100 last:border-0 hover:bg-gray-50">
+                                    <c:forEach var="user" items="${userList}">
+                                        <tr class="table-row border-b border-gray-100 last:border-0 hover:bg-gray-50">
 
                                             <%-- 학번/ID --%>
-                                        <td class="px-4 py-4 font-medium">${user.userId}</td>
+                                                <td class="px-4 py-4 font-medium">${user.userId}</td>
 
-                                            <%-- 이메일 --%>
-                                        <td class="px-4 py-4 text-[#86868B]">${user.email}</td>
+                                                <%-- 이메일 --%>
+                                                    <td class="px-4 py-4 text-[#86868B]">${user.email}</td>
 
-                                            <%-- 학과 (User 객체에 deptName이 있다고 가정, 없다면 deptId 출력) --%>
-                                        <td class="px-4 py-4 text-[#86868B]">
-                                                ${user.deptName}
-                                                <%-- 만약 학과명을 출력하려면 조인된 쿼리나 별도 처리가 필요합니다 --%>
-                                        </td>
+                                                    <%-- 학과 (User 객체에 deptName이 있다고 가정, 없다면 deptId 출력) --%>
+                                                        <td class="px-4 py-4 text-[#86868B]">
+                                                            ${user.deptName}
+                                                            <%-- 만약 학과명을 출력하려면 조인된 쿼리나 별도 처리가 필요합니다 --%>
+                                                        </td>
 
-                                            <%-- 상태 (활성/정지 조건부 렌더링) --%>
-                                        <td class="px-4 py-4">
-                                            <c:choose>
-                                                <%-- 정지된 유저일 경우 (isBan == true) --%>
-                                                <c:when test="${user.isBan}">
-                                                    <span class="px-2.5 py-1 text-xs font-medium bg-red-100 text-red-500 rounded-md">
-                                                        정지
-                                                    </span>
-                                                                            </c:when>
-                                                                            <%-- 활성 유저일 경우 --%>
+                                                        <%-- 상태 (활성/정지 조건부 렌더링) --%>
+                                                            <td class="px-4 py-4">
+                                                                <c:choose>
+                                                                    <%-- 정지된 유저일 경우 (isBan==true) --%>
+                                                                        <c:when test="${user.isBan}">
+                                                                            <span
+                                                                                class="px-2.5 py-1 text-xs font-medium bg-red-100 text-red-500 rounded-md">
+                                                                                정지
+                                                                            </span>
+                                                                        </c:when>
+                                                                        <%-- 활성 유저일 경우 --%>
                                                                             <c:otherwise>
-                                                    <span class="px-2.5 py-1 text-xs font-medium bg-green-100 text-[#34C759] rounded-md">
-                                                        활성
-                                                    </span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
+                                                                                <span
+                                                                                    class="px-2.5 py-1 text-xs font-medium bg-green-100 text-[#34C759] rounded-md">
+                                                                                    활성
+                                                                                </span>
+                                                                            </c:otherwise>
+                                                                </c:choose>
+                                                            </td>
 
-                                            <%-- 가입일 (LocalDateTime 포맷팅이 필요할 수 있음) --%>
-                                        <td class="px-4 py-4 text-[#86868B]">
-                                                ${user.createdAt}
-                                        </td>
+                                                            <%-- 가입일 (LocalDateTime 포맷팅이 필요할 수 있음) --%>
+                                                                <td class="px-4 py-4 text-[#86868B]">
+                                                                    ${user.createdAt}
+                                                                </td>
 
-                                            <%-- 차단/해제 버튼 (상태에 따라 버튼 텍스트 변경) --%>
-                                        <td class="px-4 py-4 flex justify-end">
-                                            <form action="${pageContext}/admin/status" >
-                                                <input type="hidden" name="targetId" value="${user.userId}">
-                                                    <c:choose>
-                                                        <c:when test="${user.isBan}">
-                                                            <button name="action" value="unban" id="banButton"
-                                                                    class="px-3 py-1.5 rounded-lg text-xs bg-gray-200 text-gray-700 cursor-pointer">
-                                                                차단 해제
-                                                            </button>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <button name="action" value="ban" id="banButton"
-                                                                    class="apple-button-danger px-3 py-1.5 rounded-lg text-xs cursor-pointer">
-                                                                차단
-                                                            </button>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
+                                                                <%-- 차단/해제 버튼 (상태에 따라 버튼 텍스트 변경) --%>
+                                                                    <td class="px-4 py-4 flex justify-end">
+                                                                        <form action="${pageContext}/admin/status">
+                                                                            <input type="hidden" name="targetId"
+                                                                                value="${user.userId}">
+                                                                            <c:choose>
+                                                                                <c:when test="${user.isBan}">
+                                                                                    <button name="action" value="unban"
+                                                                                        id="banButton"
+                                                                                        class="px-3 py-1.5 rounded-lg text-xs bg-gray-200 text-gray-700 cursor-pointer">
+                                                                                        차단 해제
+                                                                                    </button>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                    <button name="action" value="ban"
+                                                                                        id="banButton"
+                                                                                        class="apple-button-danger px-3 py-1.5 rounded-lg text-xs cursor-pointer">
+                                                                                        차단
+                                                                                    </button>
+                                                                                </c:otherwise>
+                                                                            </c:choose>
+                                                                        </form>
+                                                                    </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -449,7 +454,7 @@
 
                 <script src="${pageContext.request.contextPath}/assets/scripts/admin.js"></script>
                 <script>
-                    const contextPath = ${pageContext.request.contextPath}
+                    const contextPath = ${ pageContext.request.contextPath }
                 </script>
     </body>
 

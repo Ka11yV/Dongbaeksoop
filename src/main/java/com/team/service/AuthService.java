@@ -7,12 +7,10 @@ import com.team.dao.AuthDAO;
 import com.team.dao.UserDAO;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
+import com.team.exception.ValidationException;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
-import jakarta.xml.bind.ValidationException;
-
 import java.rmi.ServerException;
-
 public class AuthService {
 
     private static final long AUTH_TIME_LIMIT_MS = 180 * 1000; // 3분 (180초)
