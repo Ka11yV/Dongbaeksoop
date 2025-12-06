@@ -5,12 +5,9 @@ import com.google.gson.JsonObject;
 import com.team.common.JsonUtil;
 import com.team.dto.auth.VerificationResultDTO;
 import com.team.dto.user.EmailRequestDTO;
-import com.sun.net.httpserver.Request;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
 import com.team.service.AuthService;
-import com.team.service.UserService;
-import jakarta.mail.Session;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -30,9 +27,10 @@ public class AuthServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
 
-        if (pathInfo.equals("/login")) {  // 페이지 forward 용도
-
+        // 로그인
+        if (pathInfo.equals("/login")) {
             HttpSession session = request.getSession();
+
             if (session.getAttribute("user") != null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
                 dispatcher.forward(request, response);
@@ -41,9 +39,12 @@ public class AuthServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
             dispatcher.forward(request, response);
         }
+
+        // 로그아웃
         if(pathInfo.equals("/logout")) {
             HttpSession session = request.getSession();
             session.removeAttribute("loggedInUser");
+            session.removeAttribute("successLogin");
             response.sendRedirect(request.getContextPath() + "/");
         }
     }
@@ -68,6 +69,7 @@ public class AuthServlet extends HttpServlet {
                 // 로그인 성공
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", user);
+                session.setAttribute("successLogin", true);
                 response.sendRedirect("/");  // 로그인 성공 시 홈 화면으로 이동
             } catch(RuntimeException e) {
                 // 로그인 실패
@@ -75,12 +77,10 @@ public class AuthServlet extends HttpServlet {
                 System.out.println("로그인 실패");
                 request.setAttribute("loginErrorMsg", e.getMessage());
                 System.out.println(request.getAttribute("loginErrorMsg"));
-                RequestDispatcher dispatcher = request.getRequestDispatcher(
-                        "/view/pages/login.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
                 dispatcher.forward(request, response);
             }
         }
-
 
         if (pathInfo.equals("/verification-code")) {
             String body = JsonUtil.getJsonBody(request);

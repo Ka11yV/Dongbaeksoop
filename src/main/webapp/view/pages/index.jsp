@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <!DOCTYPE html>
   <html lang="ko">
 
@@ -7,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동백숲 - 대학 생활의 모든 것</title>
     <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
+    <script src="${pageContext.request.contextPath}/assets/scripts/login.js"></script>
     <style>
       body {
         font-family: 'Pretendard', sans-serif;
@@ -66,6 +71,17 @@
 
   <body class="antialiased">
     <%@ include file="/view/common/header.jsp" %>
+    <c:set var="user" value="${sessionScope.loggedInUser}" />
+    <c:set var="successMsg" value="${sessionScope.successLogin}" />
+
+    <c:if test="${not empty successMsg}">
+      <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            toast('success', "로그인 성공", "${user.userId}님, 환영합니다!");
+          })
+      </script>
+      <c:remove var="successLogin" scope="session"/>
+    </c:if>
 
       <!-- Main Content Placeholder -->
       <main class="pt-16">
@@ -465,5 +481,4 @@
 
       <%@ include file="/view/common/footer.jsp" %>
   </body>
-
   </html>

@@ -3,6 +3,7 @@ package com.team.entity;
 import java.util.Date;
 
 public class User {
+    // 1:1 매칭
     private int id;
     private String userId;
     private String password;
@@ -15,6 +16,9 @@ public class User {
     private boolean isAssignmentAlertEnabled;
     private String role;
     private Date createdAt;
+
+    // 그 외
+    private String deptName;
 
 
     public User() {}
@@ -121,5 +125,13 @@ public class User {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

@@ -41,4 +41,24 @@ public class AuthDAO {
         }
         return null;
     }
+
+    public String findDeptNameByDeptId(int deptId) {
+        String sql = "SELECT name FROM department WHERE id = ?;";
+
+        try (
+                Connection conn = DBUtil.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, deptId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(!rs.next()) {  // 조회된 데이터가 없으면
+                    return null;
+                }
+                return rs.getString("name");
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - findDeptNameByDeptId", e);
+        }
+    }
 }

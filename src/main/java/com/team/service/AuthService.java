@@ -35,7 +35,14 @@ public class AuthService {
          if(user != null) {  // 반환값 있으면
              String formPassword = userLoginDTO.getPassword();
              String dbPassword = user.getPassword();
+             int deptId = user.getDeptId();
+             String deptName = authDAO.findDeptNameByDeptId(deptId);
 
+             if (deptName == null) {
+                 throw new RuntimeException("존재하지 않는 학과 정보입니다. ID: " + deptId);
+             } else {
+                 user.setDeptName(deptName);
+             }
 
              if(PasswordUtil.checkPassword(formPassword, dbPassword)) {
                  return user;
@@ -47,7 +54,6 @@ public class AuthService {
              throw new RuntimeException("아이디/비밀번호가 일치하지 않습니다.");
          }
      }
-
 
     public VerificationResultDTO sendVerificationCode(String email, HttpSession session) {
         if (email == null || !email.contains("@")) {

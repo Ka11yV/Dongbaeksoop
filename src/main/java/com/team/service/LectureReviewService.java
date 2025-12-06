@@ -16,9 +16,9 @@ public class LectureReviewService {
         return lectureCardDTO;
     }
 
-//    public int deptNameToId(String deptName) {
-//        return lectureReviewDAO.changeDeptNameToDeptId(deptName);
-//    }
+    // public int deptNameToId(String deptName) {
+    // return lectureReviewDAO.changeDeptNameToDeptId(deptName);
+    // }
 
     public boolean isDuplicateReview(LectureReviewDTO lectureReviewDTO) {
 
@@ -33,9 +33,10 @@ public class LectureReviewService {
         String attendance_method = lectureReviewDTO.getAttendance_method();
         String content = lectureReviewDTO.getContent();
 
-        LectureReview lectureReview = new LectureReview(user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content);  // entity
+        LectureReview lectureReview = new LectureReview(user_id, lecture_id, professor_id, course_semester, rating,
+                difficulty, workload, team_project, attendance_method, content); // entity
 
-        return lectureReviewDAO.existsByUserIdAndLectureIdAndSemester(lectureReview);  // 중복X = True / 중복O = False
+        return lectureReviewDAO.existsByUserIdAndLectureIdAndSemester(lectureReview); // 중복O = True / 중복X = False
     }
 
     public boolean insertReview(LectureReviewDTO lectureReviewDTO) {
@@ -50,7 +51,8 @@ public class LectureReviewService {
         String attendance_method = lectureReviewDTO.getAttendance_method();
         String content = lectureReviewDTO.getContent();
 
-        LectureReview lectureReview = new LectureReview(user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content);  // entity
+        LectureReview lectureReview = new LectureReview(user_id, lecture_id, professor_id, course_semester, rating,
+                difficulty, workload, team_project, attendance_method, content); // entity
         return lectureReviewDAO.insertLectureReview(lectureReview);
 
     }

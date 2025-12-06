@@ -81,9 +81,9 @@ public class LectureReviewDAO {
             pstmt.setInt(2, lectureReview.getLecture_id());
             pstmt.setString(3, lectureReview.getCourse_semester());
 
-            int affectedRows = pstmt.executeUpdate();
-
-            return affectedRows <= 0; // 중복X = True / 중복O = False
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next(); // 행이 존재하면 true(중복), 없으면 false(중복 아님)
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
