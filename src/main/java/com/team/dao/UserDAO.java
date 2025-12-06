@@ -2,6 +2,7 @@ package com.team.dao;
 
 import com.mysql.cj.protocol.Resultset;
 import com.team.common.DBUtil;
+import com.team.dto.user.UserUpdateRequestDTO;
 import com.team.entity.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -78,48 +79,23 @@ public class UserDAO {
         }
     }
 
-    public String selectUserDept(User user) {
-        String sql = "SELECT name FROM department WHERE id = ?;";
-        String dept = null;
-
-        try (
-                Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-                ) {
-
-            pstmt.setInt(1, user.getDeptId());
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    dept = rs.getString("name");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("An error occurred during department table lookup using dept_id  ", e);
-        }
-
-        return dept;
-    }
-
-    public boolean updateProfileInformation(int dept_id, int grade, String user_id) {
+    public boolean updateDeptAndGradeByUserId(UserUpdateRequestDTO userUpdateRequestDTO) {
         String sql = "UPDATE user SET dept_id = ?, grade = ? WHERE user_id = ?;";
 
         try (
                 Connection conn = DBUtil.getConnection();
                 PreparedStatement pstmt = conn.prepareStatement(sql)
         ) {
-
-            pstmt.setInt(1, dept_id);
-            pstmt.setInt(2, grade);
-            pstmt.setString(3, user_id);
+            pstmt.setInt(1, userUpdateRequestDTO.getDeptId());
+            pstmt.setInt(2, userUpdateRequestDTO.getGrade());
+            pstmt.setString(3, userUpdateRequestDTO.getUserId());
 
             int affectedRows = pstmt.executeUpdate();  // 해당 쿼리 실행으로 인해 데이터베이스에서 실제로 영향을 받은 행(Row)의 개수
 
             return affectedRows > 0;  // 1개라도 있으면 true, 없으면 false
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            throw new RuntimeException("SQL Exception 발생하였습니다. - updateDeptAndGradeByUserId", e);
         }
     }
 
