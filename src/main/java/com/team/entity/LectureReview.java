@@ -2,8 +2,8 @@ package com.team.entity;
 
 import java.time.LocalDateTime;
 
-// 강의리뷰(id, user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content, created_at)
 public class LectureReview {
+    // 1:1 매칭
     private int id;
     private int user_id;
     private int lecture_id;
