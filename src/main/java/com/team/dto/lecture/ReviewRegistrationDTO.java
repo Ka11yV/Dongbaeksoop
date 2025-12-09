@@ -1,10 +1,6 @@
-package com.team.entity;
+package com.team.dto.lecture;
 
-import java.time.LocalDateTime;
-
-public class LectureReview {
-    // 1:1 매칭
-    private int id;
+public class ReviewRegistrationDTO {
     private int userId;
     private int lectureId;
     private int professorId;
@@ -15,9 +11,8 @@ public class LectureReview {
     private String teamProject;
     private String attendanceMethod;
     private String content;
-    private LocalDateTime createdAt;
 
-    public LectureReview(int userId, int lectureId, int professorId, String courseSemester, int rating, String difficulty, String workload, String teamProject, String attendanceMethod, String content) {
+    public ReviewRegistrationDTO(int userId, int lectureId, int professorId, String courseSemester, int rating, String difficulty, String workload, String teamProject, String attendanceMethod, String content) {
         this.userId = userId;
         this.lectureId = lectureId;
         this.professorId = professorId;
@@ -28,14 +23,6 @@ public class LectureReview {
         this.teamProject = teamProject;
         this.attendanceMethod = attendanceMethod;
         this.content = content;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getUserId() {
@@ -116,13 +103,5 @@ public class LectureReview {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
     }
 }
