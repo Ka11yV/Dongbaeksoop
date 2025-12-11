@@ -1,25 +1,23 @@
 package com.team.dto.lecture;
 
-public class LectureCardDTO {
+public class LectureInfoDTO {
+
     private String lectureName;
     private String courseType;
     private String professorName;
     private String deptName;
-    private int lectureId;
     private int professorId;
+    private int deptId;
+    private int lectureId;
 
-    public LectureCardDTO(String lectureName, String courseType, String professorName, String deptName, int lectureId, int professorId) {
+    public LectureInfoDTO(String lectureName, String courseType, String professorName, String deptName, int professorId, int deptId, int lectureId) {
         this.lectureName = lectureName;
         this.courseType = courseType;
         this.professorName = professorName;
         this.deptName = deptName;
-        this.lectureId = lectureId;
         this.professorId = professorId;
-    }
-
-    public LectureCardDTO(int lectureId, int professorId) {
+        this.deptId = deptId;
         this.lectureId = lectureId;
-        this.professorId = professorId;
     }
 
     public String getLectureName() {
@@ -54,12 +52,12 @@ public class LectureCardDTO {
         this.deptName = deptName;
     }
 
-    public int getLectureId() {
-        return lectureId;
+    public int getDeptId() {
+        return deptId;
     }
 
-    public void setLectureId(int lectureId) {
-        this.lectureId = lectureId;
+    public void setDeptId(int deptId) {
+        this.deptId = deptId;
     }
 
     public int getProfessorId() {
@@ -68,5 +66,13 @@ public class LectureCardDTO {
 
     public void setProfessorId(int professorId) {
         this.professorId = professorId;
+    }
+
+    public int getLectureId() {
+        return lectureId;
+    }
+
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
     }
 }

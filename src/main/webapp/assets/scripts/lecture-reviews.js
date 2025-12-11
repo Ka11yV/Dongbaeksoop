@@ -1,131 +1,163 @@
-const courseItemBtns = document.querySelectorAll('.courseItemBtn');
-
-courseItemBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        const lectureId = e.currentTarget.dataset.lectureId;
-        const professorId = e.currentTarget.dataset.professorId;
-
-        const servletUrl = `/lecture-review-detail?id=${lectureId}&professorId=${professorId}`;
-        window.location.href = servletUrl;
-    });
-});
-
-function openModal() {
-    const backdrop = document.getElementById('reviewModalBackdrop');
-    const modal = document.getElementById('reviewModal');
-
-    backdrop.classList.remove('hidden');
-    modal.classList.remove('hidden');
-
-    setTimeout(() => {
-        backdrop.classList.remove('opacity-0');
-        modal.classList.remove('opacity-0', 'scale-95');
-    }, 10);
-
-    document.body.style.overflow = 'hidden';
+function toast(status, title, text) {
+    new Notify({
+        status: status,
+        title: title,
+        text: text,
+        effect: 'fade',
+        speed: 300,
+        customClass: '',
+        customIcon: '',
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        notificationsGap: null,
+        notificationsPadding: null,
+        type: 'outline',
+        position: 'right top',
+        customWrapper: '',
+    })
 }
 
-function closeModal() {
-    const backdrop = document.getElementById('reviewModalBackdrop');
-    const modal = document.getElementById('reviewModal');
+// JSP의 강의 목록 컨테이너
+const lectureContainer = document.querySelector('.flex.w-full.flex-col.gap-4');
+// 총 강의 개수 표시 span
+const countLecturesSpan = document.getElementById('countLectures');
 
-    backdrop.classList.add('opacity-0');
-    modal.classList.add('opacity-0', 'scale-95');
-
-    setTimeout(() => {
-        backdrop.classList.add('hidden');
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
-    }, 300);
-}
-
-const ratingInput = document.getElementById('rating');
-
-function setRating(rating) {
-    const stars = document.querySelectorAll('.star-btn svg');
-    stars.forEach((star, index) => {
-        if (index < rating) {
-            star.classList.add('text-yellow-400');
-            star.classList.remove('text-gray-200');
-        } else {
-            star.classList.remove('text-yellow-400');
-            star.classList.add('text-gray-200');
-        }
-    });
-
-    if (rating) {
-        ratingInput.value = rating;
+function renderLectures(lectureList) {
+    if (countLecturesSpan) {
+        // 필터링된 리스트의 개수로 업데이트
+        countLecturesSpan.textContent = lectureList.length;
     }
+
+    let newHtml = '';
+
+    if (lectureList && lectureList.length > 0) {
+        lectureList.forEach(lecture => {
+            newHtml += `
+                <div data-lecture-id="${lecture.lectureId}" data-professor-id="${lecture.professorId}"
+                            class="lecture-card courseItemBtn group flex w-full cursor-pointer items-start rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex flex-1 flex-col justify-start gap-2 pr-4 md:pr-10">
+                                <div class="flex items-center gap-3">
+                                    <h3
+                                        class="lectureName truncate text-xl font-bold text-dark group-hover:text-primary transition-colors">
+                                        ${lecture.lectureName}</h3>
+                                    <span
+                                        class="shrink-0 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-primary">${lecture.courseType}</span>
+                                </div>
+                                <div class="flex flex-wrap items-center gap-x-3 text-sm text-gray-500 mt-1">
+                                    <span class="font-medium text-gray-700">${lecture.professorName}</span>
+                                    <span class="text-gray-300">|</span>
+                                    <span>${lecture.deptName}</span>
+                                    <span class="text-gray-300">|</span>
+                                    <span class="flex items-center gap-1">
+                                        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M7.5 8.25h9m-9 3h9m-9 3h9m-3 1.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                        18개의 리뷰
+                                    </span>
+                                </div>
+                                <p class="mt-3 truncate text-base text-gray-600">"어렵지만 실무에 도움되는 강의, 프로젝트 경험하기
+                                    좋아요"</p>
+                            </div>
+
+                            <div class="flex shrink-0 items-center gap-4">
+                                <div class="flex flex-col items-end gap-1">
+                                    <div class="flex items-center gap-1 text-yellow-400">
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                        </svg>
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                        </svg>
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                        </svg>
+                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                        </svg>
+                                        <svg class="h-5 w-5 text-gray-200" fill="currentColor"
+                                            viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex items-baseline text-right">
+                                        <span class="text-lg font-bold text-dark">4.8</span>
+                                        <span class="text-sm text-gray-400">/5.0</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="courseItemBtn h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+            `;
+        })
+    } else {
+        newHtml = `
+            <div class="text-center text-gray-500 py-10 rounded-2xl bg-white shadow-sm border border-gray-100">
+                선택한 학과에 등록된 강의가 없습니다.
+            </div>
+        `;
+    }
+
+    if (lectureContainer) {
+        lectureContainer.innerHTML = newHtml;
+    }
+
+    attachDetailEventListeners();
 }
 
-// Add click handlers for criteria buttons to toggle active state
-document.querySelectorAll('.grid button[type="button"]').forEach(btn => {
-    btn.addEventListener('click', function () {
-        const parent = this.parentElement;
-        parent.querySelectorAll('button').forEach(b => {
-            b.className = 'flex-1 py-3 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all';
-        });
-        this.className = 'flex-1 py-3 text-sm font-bold rounded-xl bg-blue-50 border border-primary text-primary transition-all shadow-sm';
+function attachDetailEventListeners() {
+    const lectureCards = document.querySelectorAll('.lecture-card[data-lecture-id][data-professor-id]')
+
+    lectureCards.forEach((card) => {
+        card.onclick = function () {
+            const lectureId = this.dataset.lectureId;
+            const professorId = this.dataset.professorId;
+
+            // ID가 없으면 클릭 무시 (선택적)
+            if (!lectureId || !professorId) {
+                console.warn('Lecture ID or Professor ID not found on card:', this);
+                return;
+            }
+
+            const servletUrl = `${contextPath}/lecture-review-detail?id=${lectureId}&professorId=${professorId}`;
+            window.location.href = servletUrl;
+        };
     });
+}
+
+const deptSelect = document.getElementById('deptSelect');
+deptSelect.addEventListener('change', () => {
+    // 선택된 학과 ID를 정수로 변환
+    const currentDeptId = parseInt(deptSelect.value);
+
+    let filteredList;
+
+    if (currentDeptId === 0) {
+        // '전체학과' 선택 시, 전체 리스트 사용
+        filteredList = globalLectureList;
+    } else {
+        // 선택한 학과 ID(currentDeptId)로 필터링
+        filteredList = globalLectureList.filter(lecture =>
+            lecture.deptId === currentDeptId
+        );
+    }
+
+    // 필터링된 리스트를 화면에 즉시 렌더링
+    renderLectures(filteredList);
 });
 
-const semester = document.getElementById('semester');
-if (semester) {
-    const semesterSelect = semester.parentElement.querySelector('select');
-    // 초기값 설정
-    semester.value = semesterSelect.value;
-
-    // 변경 이벤트 리스너 추가
-    semesterSelect.addEventListener('change', function () {
-        semester.value = this.value;
-    });
-}
-
-const difficulty = document.getElementById('difficulty');
-const difficultyBtnGroup = document.getElementById('difficultyBtnGroup');
-
-if (difficultyBtnGroup) {
-    const difficultyBtn = difficultyBtnGroup.querySelectorAll('.flex-1')
-
-    difficultyBtn.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            difficulty.value = e.currentTarget.dataset.value;
-        })
-    })
-}
-
-const workload = document.getElementById('workload')
-const workloadBtnGroup = document.getElementById('workloadBtnGroup')
-if (workloadBtnGroup) {
-    const workloadBtn = workloadBtnGroup.querySelectorAll('.flex-1')
-
-    workloadBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            workload.value = e.currentTarget.dataset.value;
-        })
-    })
-}
-
-const team_project = document.getElementById('team_project')
-const team_projectBtnGroup = document.getElementById('team_projectBtnGroup')
-if (team_projectBtnGroup) {
-    const team_projectBtn = team_projectBtnGroup.querySelectorAll('.flex-1')
-
-    team_projectBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            team_project.value = e.currentTarget.dataset.value;
-        })
-    })
-}
-
-const attendance_method = document.getElementById('attendance_method')
-const attendance_methodBtnGroup = document.getElementById('attendance_methodBtnGroup')
-if (attendance_methodBtnGroup) {
-    const attendance_methodBtn = attendance_methodBtnGroup.querySelectorAll('.flex-1')
-
-    attendance_methodBtn.forEach(btn => {
-        btn.addEventListener('click', e => {
-            attendance_method.value = e.currentTarget.dataset.value;
-        })
-    })
-}
+attachDetailEventListeners();

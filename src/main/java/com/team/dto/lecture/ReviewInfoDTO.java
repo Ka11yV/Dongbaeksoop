@@ -1,11 +1,9 @@
-package com.team.entity;
+package com.team.dto.lecture;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class LectureReview {
-    // 1:1 매칭
-    private int id;
-    private int userId;
+public class ReviewInfoDTO {
     private int lectureId;
     private int professorId;
     private String courseSemester;
@@ -15,10 +13,9 @@ public class LectureReview {
     private String teamProject;
     private String attendanceMethod;
     private String content;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
 
-    public LectureReview(int userId, int lectureId, int professorId, String courseSemester, int rating, String difficulty, String workload, String teamProject, String attendanceMethod, String content) {
-        this.userId = userId;
+    public ReviewInfoDTO(int lectureId, int professorId, String courseSemester, int rating, String difficulty, String workload, String teamProject, String attendanceMethod, String content, Timestamp createdAt) {
         this.lectureId = lectureId;
         this.professorId = professorId;
         this.courseSemester = courseSemester;
@@ -28,22 +25,7 @@ public class LectureReview {
         this.teamProject = teamProject;
         this.attendanceMethod = attendanceMethod;
         this.content = content;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+        this.createdAt = createdAt;
     }
 
     public int getLectureId() {
@@ -118,11 +100,11 @@ public class LectureReview {
         this.content = content;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 }
