@@ -8,7 +8,7 @@ public class EmailAuthCodeGenerator {
     private static final SecureRandom secureRandom = new SecureRandom();
 
     /**
-     * 6자리 숫자 인증번호를 생성합니다.
+     * 6자리 숫자 인증번호를 생성
      * @return 6자리 숫자 문자열 (예: "048219")
      */
     public static String generateCode() {

@@ -7,7 +7,7 @@ import java.io.IOException;
 public class JsonUtil {
 
     /**
-     * HttpServletRequest의 본문(Body) 스트림에서 전체 JSON 문자열을 읽어옵니다.
+     * HttpServletRequest의 본문(Body) 스트림에서 전체 JSON 문자열을 읽어옴
      * @param request 클라이언트 요청 객체
      * @return 요청 본문의 JSON 문자열
      * @throws IOException 스트림 읽기 중 오류 발생 시
