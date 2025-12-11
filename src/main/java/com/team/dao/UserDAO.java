@@ -16,12 +16,11 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-        ) {
+                PreparedStatement pstmt = conn.prepareStatement(sql);) {
             pstmt.setString(1, userId);
 
             try (ResultSet rs = pstmt.executeQuery()) {
-                if(rs.next()) {
+                if (rs.next()) {
                     User user = new User();
                     user.setId(rs.getInt("id"));
                     user.setUserId(rs.getString("user_id"));
@@ -126,8 +125,7 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-                ) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, user.getDeptId());
 
@@ -149,16 +147,15 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-        ) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, dept_id);
             pstmt.setInt(2, grade);
             pstmt.setString(3, user_id);
 
-            int affectedRows = pstmt.executeUpdate();  // 해당 쿼리 실행으로 인해 데이터베이스에서 실제로 영향을 받은 행(Row)의 개수
+            int affectedRows = pstmt.executeUpdate(); // 해당 쿼리 실행으로 인해 데이터베이스에서 실제로 영향을 받은 행(Row)의 개수
 
-            return affectedRows > 0;  // 1개라도 있으면 true, 없으면 false
+            return affectedRows > 0; // 1개라도 있으면 true, 없으면 false
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -170,18 +167,36 @@ public class UserDAO {
 
         try (
                 Connection conn = DBUtil.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(sql)
-        ) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, password);
             pstmt.setString(2, user_id);
 
-            int affectedRows = pstmt.executeUpdate();  // 해당 쿼리 실행으로 인해 데이터베이스에서 실제로 영향을 받은 행(Row)의 개수
+            int affectedRows = pstmt.executeUpdate(); // 해당 쿼리 실행으로 인해 데이터베이스에서 실제로 영향을 받은 행(Row)의 개수
 
-            return affectedRows > 0;  // 1개라도 있으면 true, 없으면 false
+            return affectedRows > 0; // 1개라도 있으면 true, 없으면 false
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public void updateSchoolPassword(String userId, String schoolPassword) {
+        String sql = "UPDATE user SET school_password = ? WHERE user_id = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, schoolPassword);
+            pstmt.setString(2, userId);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 0) {
+                throw new RuntimeException("User not found or password not updated");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error updating school password", e);
         }
     }
 
@@ -268,7 +283,7 @@ public class UserDAO {
         String sql = "UPDATE users SET is_ban = ? WHERE user_id = ?";
 
         try (Connection conn = DBUtil.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // 파라미터 바인딩
             pstmt.setBoolean(1, isBan);
@@ -281,5 +296,21 @@ public class UserDAO {
             return false;
         }
     }
-}
 
+    public boolean updateAlertSettings(String userId, boolean noticeAlert, boolean assignmentAlert) {
+        String sql = "UPDATE user SET is_notice_alert_enabled = ?, is_assignment_alert_enabled = ? WHERE user_id = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setBoolean(1, noticeAlert);
+            pstmt.setBoolean(2, assignmentAlert);
+            pstmt.setString(3, userId);
+
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
