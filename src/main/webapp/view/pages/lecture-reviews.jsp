@@ -45,6 +45,7 @@
                 <div class="relative inline-block">
                     <select id="deptSelect" autocomplete="off" class="appearance-none flex h-10 w-full rounded-full border border-gray-200 bg-white pl-4 pr-10 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all">
                         <option value="0">전체학과</option>
+                        <option value="24">교양과</option>
                         <option value="1">기계공학과</option>
                         <option value="2">기계설계공학과</option>
                         <option value="3">자동화공학과</option>
