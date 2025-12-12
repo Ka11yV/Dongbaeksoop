@@ -174,6 +174,7 @@
 
 
                                 <div class="space-y-6">
+                                    <c:if test="${not empty requestScope.lectureReviews}">
                                     <c:forEach var="review" items="${requestScope.lectureReviews}">
                                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
                                         <div class="flex justify-between items-start mb-4">
@@ -238,6 +239,12 @@
                                         </div>
                                     </div>
                                     </c:forEach>
+                                    </c:if>
+                                    <c:if test="${not empty requestScope.emptyReview}">
+                                        <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+                                            ${requestScope.emptyReview}
+                                        </div>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>

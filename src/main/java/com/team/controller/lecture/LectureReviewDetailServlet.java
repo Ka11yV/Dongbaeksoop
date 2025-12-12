@@ -35,7 +35,13 @@ public class LectureReviewDetailServlet extends HttpServlet {
             LectureInfoDTO lectureInfoDTO = lectureService.getLectureInfo(lectureId, professorId);
             request.setAttribute("lectureInfoDTO", lectureInfoDTO);
             ArrayList<ReviewInfoDTO> lectureReviews = lectureService.getLectureReviews(lectureId, professorId);
-            request.setAttribute("lectureReviews", lectureReviews);
+
+            if(lectureReviews.isEmpty()) {
+                request.setAttribute("emptyReview", "아직 등록된 강의 평가가 없어요.");
+            } else {
+                request.setAttribute("lectureReviews", lectureReviews);
+            }
+
 
         } catch (RuntimeException e) {
             e.printStackTrace();

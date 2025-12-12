@@ -70,7 +70,7 @@ public class LectureService {
         ArrayList<ReviewInfoDTO> lectureReviews = lectureDAO.selectLectureReviewsByLectureAndProfessor(lectureId, professorId);
 
         if(lectureReviews.isEmpty()) {
-            throw new RuntimeException("조회할 수 있는 리뷰 목록이 없습니다. - getLectureReviews");
+            return new ArrayList<>();
         }
 
         return lectureReviews;
