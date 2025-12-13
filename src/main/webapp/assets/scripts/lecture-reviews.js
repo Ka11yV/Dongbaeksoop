@@ -76,7 +76,7 @@ function renderLectures(lectureList) {
             const rawRating = summary.avgRating ? parseFloat(summary.avgRating) : 0.0;
             const avgRatingFormatted = rawRating.toFixed(1);
 
-            const roundedRating = Math.round(rawRating);
+            const roundedRating = Math.floor(rawRating);
             let starSvgs = '';
 
             for (let i = 1; i <= 5; i++) {

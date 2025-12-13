@@ -138,7 +138,7 @@
                             <div class="flex shrink-0 items-center gap-4">
                                 <div class="flex flex-col items-end gap-1">
                                     <div class="flex items-center gap-1 text-yellow-400">
-                                        <c:set var="roundedRating" value="${Math.round(lecture.reviewSummaryDTO.avgRating)}" />
+                                        <c:set var="roundedRating" value="${Math.floor(lecture.reviewSummaryDTO.avgRating)}" />
 
                                         <c:forEach begin="1" end="5" var="i">
                                             <svg class="h-5 w-5 fill-current ${i <= roundedRating ? 'text-yellow-400' : 'text-gray-200'}"
