@@ -9,6 +9,7 @@ public class LectureInfoDTO {
     private int professorId;
     private int deptId;
     private int lectureId;
+    private ReviewSummaryDTO reviewSummaryDTO;
 
     public LectureInfoDTO(String lectureName, String courseType, String professorName, String deptName, int professorId, int deptId, int lectureId) {
         this.lectureName = lectureName;
@@ -74,5 +75,13 @@ public class LectureInfoDTO {
 
     public void setLectureId(int lectureId) {
         this.lectureId = lectureId;
+    }
+
+    public ReviewSummaryDTO getReviewSummaryDTO() {
+        return reviewSummaryDTO;
+    }
+
+    public void setReviewSummaryDTO(ReviewSummaryDTO reviewSummaryDTO) {
+        this.reviewSummaryDTO = reviewSummaryDTO;
     }
 }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -34,7 +35,7 @@
 
         <div class="mb-8 w-full rounded-2xl bg-white p-6 shadow-lg border border-gray-100">
             <div class="relative mb-6 w-full">
-                <input type="text" placeholder="강의명 또는 교수명 검색..." class="h-12 w-full rounded-full border border-gray-200 bg-gray-50 py-2 pr-4 pl-12 text-base text-dark placeholder-gray-400 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm" />
+                <input type="text" placeholder="강의명 또는 교수명 검색..." id="searchKeywordInput" class="h-12 w-full rounded-full border border-gray-200 bg-gray-50 py-2 pr-4 pl-12 text-base text-dark placeholder-gray-400 focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all shadow-sm" />
                     <svg class="absolute top-3.5 left-4 h-5 w-5 text-gray-400" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -45,6 +46,7 @@
                 <div class="relative inline-block">
                     <select id="deptSelect" autocomplete="off" class="appearance-none flex h-10 w-full rounded-full border border-gray-200 bg-white pl-4 pr-10 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all">
                         <option value="0">전체학과</option>
+                        <option value="24">교양과</option>
                         <option value="1">기계공학과</option>
                         <option value="2">기계설계공학과</option>
                         <option value="3">자동화공학과</option>
@@ -116,12 +118,17 @@
                                     <span>${lecture.deptName}</span>
                                     <span class="text-gray-300">|</span>
                                     <span class="flex items-center gap-1">
-                                        <svg class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24"
-                                            stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M7.5 8.25h9m-9 3h9m-9 3h9m-3 1.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 2 20 20">
+                                            <path fill="none" stroke="#98A1B0" stroke-linecap="round" stroke-width="1.5" d="M20 7H4m16 5H4m16 5H4" />
                                         </svg>
-                                        18개의 리뷰
+                                        <c:choose>
+                                            <c:when test="${lecture.reviewSummaryDTO != null}">
+                                                ${lecture.reviewSummaryDTO.countReview}개의 리뷰
+                                            </c:when>
+                                            <c:otherwise>
+                                                0개의 리뷰
+                                            </c:otherwise>
+                                        </c:choose>
                                     </span>
                                 </div>
                                 <p class="mt-3 truncate text-base text-gray-600">"어렵지만 실무에 도움되는 강의, 프로젝트 경험하기
@@ -131,30 +138,21 @@
                             <div class="flex shrink-0 items-center gap-4">
                                 <div class="flex flex-col items-end gap-1">
                                     <div class="flex items-center gap-1 text-yellow-400">
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
-                                        </svg>
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
-                                        </svg>
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
-                                        </svg>
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
-                                        </svg>
-                                        <svg class="h-5 w-5 text-gray-200" fill="currentColor"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
-                                        </svg>
+                                        <c:set var="roundedRating" value="${Math.floor(lecture.reviewSummaryDTO.avgRating)}" />
+
+                                        <c:forEach begin="1" end="5" var="i">
+                                            <svg class="h-5 w-5 fill-current ${i <= roundedRating ? 'text-yellow-400' : 'text-gray-200'}"
+                                                 viewBox="0 0 20 20">
+                                                <path
+                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.071 3.292a1 1 0 00.95.694h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.031a1 1 0 00-.364 1.118l1.071 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.031a1 1 0 00-1.175 0l-2.8 2.031c-.784.57-1.838-.197-1.539-1.118l1.071-3.292a1 1 0 00-.364-1.118l-2.8-2.031c-.783-.57-.381-1.81.588-1.81h3.462a1 1 0 00.95-.694l1.071-3.292z" />
+                                            </svg>
+                                        </c:forEach>
                                     </div>
                                     <div class="flex items-baseline text-right">
-                                        <span class="text-lg font-bold text-dark">4.8</span>
+
+                                        <span class="text-lg font-bold text-dark">
+                                            <fmt:formatNumber value="${lecture.reviewSummaryDTO.avgRating}" pattern="0.0" />
+                                        </span>
                                         <span class="text-sm text-gray-400">/5.0</span>
                                     </div>
                                 </div>
@@ -212,6 +210,6 @@
         toast('error', "초기 데이터 로드", "데이터 로드 중 치명적인 오류가 발생했습니다.");
     }
 </script>
-<script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js"></script>
+<script src="${pageContext.request.contextPath}/assets/scripts/lecture-reviews.js?v=<%=new java.util.Date().getTime()%>"></script>
 </body>
 </html>

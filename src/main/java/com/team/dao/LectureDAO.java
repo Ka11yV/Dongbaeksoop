@@ -3,12 +3,13 @@ package com.team.dao;
 import com.team.common.DBUtil;
 import com.team.dto.lecture.LectureInfoDTO;
 import com.team.dto.lecture.ReviewInfoDTO;
+import com.team.dto.lecture.ReviewSummaryDTO;
 import com.team.entity.LectureReview;
-
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LectureDAO {
     public ArrayList<LectureInfoDTO> selectAllLecturesWithDetails() {
@@ -130,11 +131,10 @@ public class LectureDAO {
     }
 
     public ArrayList<ReviewInfoDTO> selectLectureReviewsByLectureAndProfessor(int lectureId, int professorId) {
-        String sql = "SELECT r.lecture_id as lecture_id, r.professor_id as professor_id, course_semester,rating, difficulty, workload, team_project,  attendance_method,  content, created_at "
-        + "FROM lecture_review as r "
-        + "INNER JOIN lecture as l on r.lecture_id = l.id "
-        + "INNER JOIN professor as p on r.professor_id = p.id "
-        + "WHERE lecture_id = ? AND professor_id = ?";
+        String sql = "select lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content, created_at " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ? " +
+                "order by created_at desc;";
         ArrayList<ReviewInfoDTO> lectureReviews = new ArrayList<>();
 
         try (Connection conn = DBUtil.getConnection();
@@ -151,7 +151,7 @@ public class LectureDAO {
                 String teamProject = rs.getString("team_project");
                 String attendanceMethod = rs.getString("attendance_method");
                 String content = rs.getString("content");
-                Timestamp createdAt = (java.sql.Timestamp)rs.getObject("created_at");
+                Timestamp createdAt = rs.getTimestamp("created_at");
                 
                 ReviewInfoDTO reviewInfoDTO = new ReviewInfoDTO(
                         lectureId,
@@ -175,6 +175,215 @@ public class LectureDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("SQL Exception 발생하였습니다. - selecLectureReviewsByLectureAndProfessor", e);
+        }
+    }
+
+    public ReviewSummaryDTO selectSummaryStatistics(int lectureId, int professorId) {
+        String sql = "SELECT " +
+                "AVG(rating) AS average_rating, " +
+                "COUNT(*) AS total_reviews, " +
+                "COUNT(rating = 5 OR NULL) AS count_5star, " +
+                "COUNT(rating = 4 OR NULL) AS count_4star, " +
+                "COUNT(rating = 3 OR NULL) AS count_3star, " +
+                "COUNT(rating = 2 OR NULL) AS count_2star, " +
+                "COUNT(rating = 1 OR NULL) AS count_1star " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ?;";
+        ReviewSummaryDTO reviewSummaryDTO;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, lectureId);
+            pstmt.setInt(2, professorId);
+
+
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    DecimalFormat df = new DecimalFormat("#.#");
+                    double avg = Double.parseDouble(df.format(rs.getDouble("average_rating")));
+
+                    reviewSummaryDTO = new ReviewSummaryDTO(
+                            avg,
+                            rs.getInt("total_reviews"),
+                            rs.getInt("count_5star"),
+                            rs.getInt("count_4star"),
+                            rs.getInt("count_3star"),
+                            rs.getInt("count_2star"),
+                            rs.getInt("count_1star"),
+                            null,
+                            null,
+                            null,
+                            null
+                    );
+                } else {
+                    return new ReviewSummaryDTO(0, 0, 0, 0, 0, 0, 0, null, null, null, null);
+                }
+            }
+
+            return reviewSummaryDTO;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectSummaryStatistics", e);
+        }
+    }
+
+    public String selectDifficultyMode(int lectureId, int professorId) {
+        String sql = "SELECT difficulty " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ? " +
+                "GROUP BY difficulty " +
+                "ORDER BY COUNT(*) DESC " +
+                "limit 1;";
+        String difficulty;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, lectureId);
+            pstmt.setInt(2, professorId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    difficulty = rs.getString("difficulty");
+                } else {
+                    return null;
+                }
+            }
+
+            return difficulty;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectDifficultyMode", e);
+        }
+    }
+
+    public String selectWorkloadMode(int lectureId, int professorId) {
+        String sql = "SELECT workload " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ? " +
+                "GROUP BY workload " +
+                "ORDER BY COUNT(*) DESC " +
+                "limit 1;";
+        String workload;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, lectureId);
+            pstmt.setInt(2, professorId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    workload = rs.getString("workload");
+                } else {
+                    return null;
+                }
+            }
+
+            return workload;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectWorkloadMode", e);
+        }
+    }
+
+    public String selectTeamProjectMode(int lectureId, int professorId) {
+        String sql = "SELECT team_project " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ? " +
+                "GROUP BY team_project " +
+                "ORDER BY COUNT(*) DESC " +
+                "limit 1;";
+        String teamProject;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, lectureId);
+            pstmt.setInt(2, professorId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    teamProject = rs.getString("team_project");
+                } else {
+                    return null;
+                }
+            }
+
+            return teamProject;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectTeamProjectMode", e);
+        }
+    }
+
+    public String selectAttendanceMethodMode(int lectureId, int professorId) {
+        String sql = "SELECT attendance_method " +
+                "FROM lecture_review " +
+                "WHERE lecture_id = ? AND professor_id = ? " +
+                "GROUP BY attendance_method " +
+                "ORDER BY COUNT(*) DESC " +
+                "limit 1;";
+        String attendanceMethod;
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);) {
+            pstmt.setInt(1, lectureId);
+            pstmt.setInt(2, professorId);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if(rs.next()) {
+                    attendanceMethod = rs.getString("attendance_method");
+                } else {
+                    return null;
+                }
+            }
+
+            return attendanceMethod;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectAttendanceMethodMode", e);
+        }
+    }
+
+    public Map<String, ReviewSummaryDTO> selectAllLecturesSummaryStatistics() {
+        String sql = "SELECT " +
+                "lecture_id, " +
+                "professor_id, " +
+                "AVG(rating) AS average_rating, " +
+                "COUNT(*) AS total_reviews  " +
+                "FROM lecture_review " +
+                "GROUP BY lecture_id, professor_id;";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            Map<String, ReviewSummaryDTO> summaryMap = new HashMap<>();
+
+               while(rs.next()) {
+                   int lectureId = rs.getInt("lecture_id");
+                   int professorId = rs.getInt("professor_id");
+                   DecimalFormat df = new DecimalFormat("#.#");
+                   double avg = Double.parseDouble(df.format(rs.getDouble("average_rating")));
+
+                   ReviewSummaryDTO reviewSummaryDTO = new ReviewSummaryDTO(
+                           avg,
+                           rs.getInt("total_reviews"),
+                           0,
+                           0,
+                           0,
+                           0,
+                           0,
+                           null,
+                           null,
+                           null,
+                           null
+                   );
+
+                   summaryMap.put(lectureId + "_" + professorId, reviewSummaryDTO);
+               }
+               return summaryMap;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("SQL Exception 발생하였습니다. - selectAllLecturesSummaryStatistics", e);
         }
     }
 }
