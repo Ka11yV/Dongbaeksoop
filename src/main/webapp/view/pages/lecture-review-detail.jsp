@@ -17,6 +17,7 @@
 
         <body class="antialiased">
             <c:set var="lectureInfoDTO" value="${requestScope.lectureInfoDTO}" />
+            <c:set var="reviewSummaryDTO" value="${requestScope.reviewSummaryDTO}" />
             <%@ include file="/view/common/header.jsp" %>
 
                 <main class="pt-24 pb-12 min-h-screen">
@@ -41,72 +42,80 @@
                                     <div class="border-t border-gray-100 my-6"></div>
 
                                     <!-- Total Rating -->
+                                    <c:if test="${empty requestScope.emptyReview}">
                                     <div class="text-center mb-8">
                                         <div class="flex items-end justify-center gap-1 mb-2">
-                                            <span class="text-5xl font-bold text-primary">4.5</span>
+                                            <span class="text-5xl font-bold text-primary">${reviewSummaryDTO.avgRating}</span>
                                             <span class="text-xl text-gray-400 mb-1">/5.0</span>
                                         </div>
                                         <div class="flex justify-center gap-1 text-yellow-400 mb-2">
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
-                                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
-                                            <svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
+                                            <c:set var="roundedRating" value="${Math.round(reviewSummaryDTO.avgRating)}" />
+                                            <c:forEach begin="1" end="5" var="i">
+                                                <svg class="w-5 h-5 fill-current ${i <= roundedRating ? 'text-yellow-400' : 'text-gray-300'}" viewBox="0 0 20 20">
+                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                </svg>
+                                            </c:forEach>
                                         </div>
-                                        <p class="text-sm text-gray-500">12개의 리뷰</p>
+                                        <p class="text-sm text-gray-500">${reviewSummaryDTO.countReview}개의 리뷰</p>
                                     </div>
 
-                                    <!-- Rating Bars -->
                                     <div class="space-y-2 mb-8">
+                                        <c:set var="totalReviews" value="${reviewSummaryDTO.countReview}" />
+
+                                        <c:choose>
+                                            <c:when test="${totalReviews > 0}">
+                                                <c:set var="percent5star" value="${(reviewSummaryDTO.count5star / totalReviews) * 100}" />
+                                                <c:set var="percent4star" value="${(reviewSummaryDTO.count4star / totalReviews) * 100}" />
+                                                <c:set var="percent3star" value="${(reviewSummaryDTO.count3star / totalReviews) * 100}" />
+                                                <c:set var="percent2star" value="${(reviewSummaryDTO.count2star / totalReviews) * 100}" />
+                                                <c:set var="percent1star" value="${(reviewSummaryDTO.count1star / totalReviews) * 100}" />
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:set var="percent5star" value="0" />
+                                                <c:set var="percent4star" value="0" />
+                                                <c:set var="percent3star" value="0" />
+                                                <c:set var="percent2star" value="0" />
+                                                <c:set var="percent1star" value="0" />
+                                            </c:otherwise>
+                                        </c:choose>
                                         <div class="flex items-center gap-3 text-sm">
                                             <span class="w-6 font-medium text-gray-600">5점</span>
                                             <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full bg-primary rounded-full" style="width: 50%"></div>
+                                                <div class="h-full bg-primary rounded-full" style="width: <fmt:formatNumber value="${percent5star}" maxFractionDigits="0"/>%"></div>
                                             </div>
-                                            <span class="w-6 text-right text-gray-400">6</span>
+                                            <span class="w-6 text-right text-gray-400">${reviewSummaryDTO.count5star}</span>
                                         </div>
+
                                         <div class="flex items-center gap-3 text-sm">
                                             <span class="w-6 font-medium text-gray-600">4점</span>
                                             <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full bg-primary rounded-full" style="width: 33%"></div>
+                                                <div class="h-full bg-primary rounded-full" style="width: <fmt:formatNumber value="${percent4star}" maxFractionDigits="0"/>%"></div>
                                             </div>
-                                            <span class="w-6 text-right text-gray-400">4</span>
+                                            <span class="w-6 text-right text-gray-400">${reviewSummaryDTO.count4star}</span>
                                         </div>
+
                                         <div class="flex items-center gap-3 text-sm">
                                             <span class="w-6 font-medium text-gray-600">3점</span>
                                             <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full bg-primary rounded-full" style="width: 8%"></div>
+                                                <div class="h-full bg-primary rounded-full" style="width: <fmt:formatNumber value="${percent3star}" maxFractionDigits="0"/>%"></div>
                                             </div>
-                                            <span class="w-6 text-right text-gray-400">1</span>
+                                            <span class="w-6 text-right text-gray-400">${reviewSummaryDTO.count3star}</span>
                                         </div>
+
                                         <div class="flex items-center gap-3 text-sm">
                                             <span class="w-6 font-medium text-gray-600">2점</span>
                                             <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full bg-primary rounded-full" style="width: 8%"></div>
+                                                <div class="h-full bg-primary rounded-full" style="width: <fmt:formatNumber value="${percent2star}" maxFractionDigits="0"/>%"></div>
                                             </div>
-                                            <span class="w-6 text-right text-gray-400">1</span>
+                                            <span class="w-6 text-right text-gray-400">${reviewSummaryDTO.count2star}</span>
                                         </div>
+
                                         <div class="flex items-center gap-3 text-sm">
                                             <span class="w-6 font-medium text-gray-600">1점</span>
                                             <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                                                <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                <div class="h-full bg-primary rounded-full" style="width: <fmt:formatNumber value="${percent1star}" maxFractionDigits="0"/>%"></div>
                                             </div>
-                                            <span class="w-6 text-right text-gray-400">0</span>
+                                            <span class="w-6 text-right text-gray-400">${reviewSummaryDTO.count1star}</span>
                                         </div>
                                     </div>
 
@@ -114,22 +123,84 @@
                                     <div class="space-y-3 mb-8">
                                         <h3 class="text-sm font-bold text-gray-900">평균 평가</h3>
                                         <div class="flex justify-between items-center text-sm">
-                                            <span class="text-gray-600">강의 내용</span>
-                                            <span class="font-bold text-primary">4.5</span>
-                                        </div>
-                                        <div class="flex justify-between items-center text-sm">
                                             <span class="text-gray-600">난이도</span>
-                                            <span class="font-bold text-primary">3.5</span>
+                                            <span class="font-bold text-primary">${reviewSummaryDTO.avgDifficulty}</span>
                                         </div>
                                         <div class="flex justify-between items-center text-sm">
                                             <span class="text-gray-600">과제량</span>
-                                            <span class="font-bold text-primary">4.0</span>
+                                            <span class="font-bold text-primary">${reviewSummaryDTO.avgWorkload}</span>
                                         </div>
                                         <div class="flex justify-between items-center text-sm">
-                                            <span class="text-gray-600">성적 관대함</span>
-                                            <span class="font-bold text-primary">4.5</span>
+                                            <span class="text-gray-600">팀플</span>
+                                            <span class="font-bold text-primary">${reviewSummaryDTO.avgTeamProject}</span>
+                                        </div>
+                                        <div class="flex justify-between items-center text-sm">
+                                            <span class="text-gray-600">출결</span>
+                                            <span class="font-bold text-primary">${reviewSummaryDTO.avgAttendanceMethod}</span>
                                         </div>
                                     </div>
+                                    </c:if>
+
+                                    <c:if test="${not empty requestScope.emptyReview}">
+                                        <div class="text-center mb-8">
+                                            <div class="flex items-end justify-center gap-1 mb-2">
+                                                <span class="text-5xl font-bold text-primary">0.0</span>
+                                                <span class="text-xl text-gray-400 mb-1">/5.0</span>
+                                            </div>
+                                            <div class="flex justify-center gap-1 text-yellow-400 mb-2">
+                                                <c:forEach begin="1" end="5" var="i">
+                                                    <svg class="w-5 h-5 fill-current text-gray-300" viewBox="0 0 20 20">
+                                                        <path
+                                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                    </svg>
+                                                </c:forEach>
+                                            </div>
+                                            <p class="text-sm text-gray-500">0개의 리뷰</p>
+                                        </div>
+
+                                        <div class="space-y-2 mb-8">
+                                            <c:set var="totalReviews" value="${reviewSummaryDTO.countReview}" />
+                                            <div class="flex items-center gap-3 text-sm">
+                                                <span class="w-6 font-medium text-gray-600">5점</span>
+                                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                </div>
+                                                <span class="w-6 text-right text-gray-400">0</span>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-sm">
+                                                <span class="w-6 font-medium text-gray-600">4점</span>
+                                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                </div>
+                                                <span class="w-6 text-right text-gray-400">0</span>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-sm">
+                                                <span class="w-6 font-medium text-gray-600">3점</span>
+                                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                </div>
+                                                <span class="w-6 text-right text-gray-400">0</span>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-sm">
+                                                <span class="w-6 font-medium text-gray-600">2점</span>
+                                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                </div>
+                                                <span class="w-6 text-right text-gray-400">0</span>
+                                            </div>
+                                            <div class="flex items-center gap-3 text-sm">
+                                                <span class="w-6 font-medium text-gray-600">1점</span>
+                                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                                    <div class="h-full bg-primary rounded-full" style="width: 0%"></div>
+                                                </div>
+                                                <span class="w-6 text-right text-gray-400">0</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="space-y-3 mb-8">
+                                            <h3 class="text-sm font-bold text-gray-900">평가를 남겨보세요!</h3>
+                                        </div>
+                                    </c:if>
 
                                     <button onclick="openModal()"
                                         class="w-full py-3 bg-primary hover:bg-secondary text-white font-bold rounded-xl shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2">
@@ -155,12 +226,11 @@
                                         전체 리뷰
                                     </h2>
                                     <div class="relative">
-                                        <select
+                                        <select id="sortReviewsSelect"
                                             class="appearance-none bg-gray-100 border border-gray-200 text-gray-700 py-2 pl-4 pr-8 rounded-lg text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/50">
-                                            <option>최신순</option>
-                                            <option>평점 높은순</option>
-                                            <option>평점 낮은순</option>
-                                            <option>공감순</option>
+                                            <option value="latest">최신순</option>
+                                            <option value="highestRating">평점 높은순</option>
+                                            <option value="lowestRating">평점 낮은순</option>
                                         </select>
                                         <div
                                             class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
@@ -173,7 +243,7 @@
                                 </div>
 
 
-                                <div class="space-y-6">
+                                <div id="reviewListContainer" class="space-y-6">
                                     <c:if test="${not empty requestScope.lectureReviews}">
                                     <c:forEach var="review" items="${requestScope.lectureReviews}">
                                     <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -218,15 +288,6 @@
                                         </div>
 
                                         <div class="flex justify-between items-center pt-4 border-t border-gray-50">
-                                            <button
-                                                class="flex items-center gap-1.5 text-gray-500 hover:text-rose-500 transition-colors group">
-                                                <svg class="w-5 h-5 group-hover:fill-rose-50" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                                </svg>
-                                                <span class="text-sm font-medium">공감 24</span>
-                                            </button>
                                             <button
                                                 class="flex items-center gap-1 text-gray-400 hover:text-gray-600 transition-colors">
                                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24"
@@ -429,6 +490,29 @@
                     </div>
                 </div>
                 <%@ include file="/view/common/footer.jsp" %>
+            <script>
+                // ⭐️⭐️ 서버에서 받은 Java List를 JSP에서 직접 JSON 배열로 변환하는 로직 ⭐️⭐️
+                let globalReviewList = [];
+
+                <c:if test="${not empty requestScope.lectureReviews}">
+                <c:forEach var="review" items="${requestScope.lectureReviews}">
+                globalReviewList.push({
+                    rating: ${review.rating},
+                    createdAt: '${review.createdAt}', // 날짜는 문자열로 전달
+                    courseSemester: '${review.courseSemester}',
+                    content: '${review.content}',
+                    difficulty: '${review.difficulty}',
+                    workload: '${review.workload}',
+                    teamProject: '${review.teamProject}',
+                    attendanceMethod: '${review.attendanceMethod}'
+                    // 공감수(likeCount)가 있다면 여기에 추가
+                });
+                </c:forEach>
+                </c:if>
+                // ⭐️⭐️ JSON 배열 생성 로직 끝 ⭐️⭐️
+
+                // 이제 globalReviewList는 올바른 JavaScript 배열입니다.
+            </script>
 
                     <script src="${pageContext.request.contextPath}/assets/scripts/lecture-review-detail.js?v=<%=new java.util.Date().getTime()%>"></script>
         </body>
