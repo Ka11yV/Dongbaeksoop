@@ -1,8 +1,9 @@
 package com.team.entity;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class User {
+    // 1:1 매칭
     private int id;
     private String userId;
     private String password;
@@ -14,10 +15,14 @@ public class User {
     private boolean isNoticeAlertEnabled;
     private boolean isAssignmentAlertEnabled;
     private String role;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
+    // 그 외
+    private String deptName;
 
-    public User() {}
+    public User(String deptName) {
+        this.deptName = deptName;
+    }
 
     public User(String userId, String email, String password, int deptId, int grade) {
         this.userId = userId;
@@ -25,6 +30,10 @@ public class User {
         this.password = password;
         this.deptId = deptId;
         this.grade = grade;
+    }
+
+    public User() {
+
     }
 
     public int getId() {
@@ -83,16 +92,16 @@ public class User {
         this.deptId = deptId;
     }
 
-    public boolean isBan() {
+    public boolean getIsBan() {
         return isBan;
     }
 
-    public void setBan(boolean isBan) {
+    public void setIsBan(boolean isBan) {
         this.isBan = isBan;
     }
 
     public boolean isNoticeAlertEnabled() {
-        return isNoticeAlertEnabled;
+        return this.isNoticeAlertEnabled;
     }
 
     public void setNoticeAlertEnabled(boolean noticeAlertEnabled) {
@@ -115,11 +124,19 @@ public class User {
         this.role = role;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 }

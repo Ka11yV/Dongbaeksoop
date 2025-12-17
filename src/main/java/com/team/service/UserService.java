@@ -2,10 +2,12 @@ package com.team.service;
 
 import com.team.common.PasswordUtil;
 import com.team.dao.UserDAO;
-import com.team.dto.user.UpdateInfoDTO;
+import com.team.dto.user.UserUpdateRequestDTO;
 import com.team.dto.user.UserRegisterDTO;
 import com.team.entity.User;
-import jakarta.xml.bind.ValidationException;
+import com.team.exception.ValidationException;
+
+import java.sql.SQLException;
 
 public class UserService {
     UserDAO userDAO = new UserDAO();
@@ -58,14 +60,20 @@ public class UserService {
         return userDAO.isUserIdExists(userId);
     }
 
-    public boolean isEmailExists(String email) {
-        return userDAO.isEmailExists(email);
+    public boolean updateDeptAndGrade(UserUpdateRequestDTO userUpdateRequestDTO) {
+        boolean isUpdated = userDAO.updateDeptAndGradeByUserId(userUpdateRequestDTO);
+
+        if(!isUpdated) {  // 업데이트 실패
+            throw new RuntimeException("일치하는 회원정보를 찾을 수 없습니다.");
+        }
+
+        return true;
     }
 
-    public String selectUserDept(User user) {return userDAO.selectUserDept(user);}
+    public boolean updatePassword(UserUpdateRequestDTO userUpdateRequestDTO) {
 
-    public boolean updateDeptAndGrade(UpdateInfoDTO updateInfoDTO) {
-        boolean isUpdate = userDAO.updateProfileInformation(updateInfoDTO.getDept_id(), updateInfoDTO.getGrade(),updateInfoDTO.getUser_id());
+        String hashedPassword = PasswordUtil.hashPassword(userUpdateRequestDTO.getPassword());
+        boolean isUpdate = userDAO.updatePassword(hashedPassword, userUpdateRequestDTO.getUserId());
 
         if(isUpdate) {  // update 성공
             return true;
@@ -74,15 +82,16 @@ public class UserService {
         }
     }
 
-    public boolean updatePassword(UpdateInfoDTO updateInfoDTO) {
+    public boolean updateBanStatus(String userId, Boolean isBan) throws ValidationException {
 
-        String hashedPassword = PasswordUtil.hashPassword(updateInfoDTO.getPassword());
-        boolean isUpdate = userDAO.updatePassword(hashedPassword, updateInfoDTO.getUser_id());
-
-        if(isUpdate) {  // update 성공
-            return true;
-        } else {
-            return false;
+        if (userId == null || isBan == null) {
+            throw new ValidationException("필수 필드가 누락되었습니다.");
         }
+
+        if (!isUserIdExists(userId)) {
+            throw new ValidationException("유저가 존재하지 않습니다.");
+        }
+
+        return userDAO.updateBanStatus(userId, isBan);
     }
 }

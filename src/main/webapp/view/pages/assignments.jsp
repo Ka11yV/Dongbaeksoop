@@ -80,42 +80,39 @@
 
           <!-- Linked State (Visible by default) -->
           <div id="linked-state">
-
-            <!-- Other Assignments List -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Assignment Item 1 -->
-              <div
-                class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <span
-                      class="inline-block px-2.5 py-1 rounded-lg bg-blue-50 text-primary text-xs font-bold mb-2">데이터베이스</span>
-                    <h3 class="text-lg font-bold text-dark group-hover:text-primary transition-colors">ERD 설계 과제</h3>
+              <c:choose>
+                <c:when test="${not empty assignments}">
+                  <c:forEach var="assignment" items="${assignments}">
+                    <div
+                      class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group ${assignment.submissionStatus == '제출완료' ? 'opacity-60' : ''}">
+                      <div class="flex justify-between items-start mb-4">
+                        <div>
+                          <span
+                            class="inline-block px-2.5 py-1 rounded-lg bg-blue-50 text-primary text-xs font-bold mb-2">${assignment.courseName}</span>
+                          <h3
+                            class="text-lg font-bold text-dark group-hover:text-primary transition-colors ${assignment.submissionStatus == '제출완료' ? 'line-through text-gray-700' : ''}">
+                            ${assignment.title}</h3>
+                        </div>
+                        <span
+                          class="px-3 py-1 rounded-lg ${assignment.submissionStatus == '제출완료' ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'} text-sm font-bold">${assignment.timeLeft}</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between text-sm ${assignment.submissionStatus == '제출완료' ? 'text-gray-400' : 'text-gray-500'} pt-4 border-t border-gray-50">
+                        <span>마감일: ${assignment.dueDate}</span>
+                        <span
+                          class="${assignment.submissionStatus == '제출완료' ? 'text-green-600' : 'text-orange-500'} font-medium">${assignment.submissionStatus}</span>
+                      </div>
+                    </div>
+                  </c:forEach>
+                </c:when>
+                <c:otherwise>
+                  <div
+                    class="col-span-1 md:col-span-2 p-10 text-center text-gray-500 bg-white rounded-2xl border border-gray-100">
+                    등록된 과제가 없습니다.
                   </div>
-                  <span class="px-3 py-1 rounded-lg bg-gray-100 text-gray-600 text-sm font-bold">D-3</span>
-                </div>
-                <div class="flex items-center justify-between text-sm text-gray-500 pt-4 border-t border-gray-50">
-                  <span>마감일: 2025.11.25 23:59</span>
-                  <span class="text-orange-500 font-medium">미제출</span>
-                </div>
-              </div>
-
-              <!-- Assignment Item 2 -->
-              <div
-                class="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group opacity-60">
-                <div class="flex justify-between items-start mb-4">
-                  <div>
-                    <span
-                      class="inline-block px-2.5 py-1 rounded-lg bg-gray-100 text-gray-500 text-xs font-bold mb-2">자료구조</span>
-                    <h3 class="text-lg font-bold text-gray-700 line-through">스택/큐 구현하기</h3>
-                  </div>
-                  <span class="px-3 py-1 rounded-lg bg-green-100 text-green-600 text-sm font-bold">제출완료</span>
-                </div>
-                <div class="flex items-center justify-between text-sm text-gray-400 pt-4 border-t border-gray-50">
-                  <span>마감일: 2025.11.20 23:59</span>
-                  <span class="text-green-600 font-medium">제출됨</span>
-                </div>
-              </div>
+                </c:otherwise>
+              </c:choose>
             </div>
           </div>
         </div>

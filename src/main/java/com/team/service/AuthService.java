@@ -7,47 +7,52 @@ import com.team.dao.AuthDAO;
 import com.team.dao.UserDAO;
 import com.team.dto.user.UserLoginDTO;
 import com.team.entity.User;
+import com.team.exception.ValidationException;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
-import jakarta.xml.bind.ValidationException;
-
 import java.rmi.ServerException;
 
 public class AuthService {
 
-    private static final long AUTH_TIME_LIMIT_MS = 180 * 1000; // 3분 (180초)
-
     AuthDAO authDAO = new AuthDAO();
     UserDAO userDAO = new UserDAO();
 
-     public User login(UserLoginDTO userLoginDTO) {  // userLoginDTO는 사용자가 로그인폼에 작성한 아이디, 비밀번호 묶음
-         // 유효성 검사
-         // 비어있는지
-         if ((userLoginDTO.getUserId()).isEmpty()) {
-             throw new RuntimeException("아이디가 비어있습니다.");
-         } else if ((userLoginDTO.getPassword()).isEmpty()) {
-             throw new RuntimeException("비밀번호가 비어있습니다.");
-         }
+    public User login(UserLoginDTO userLoginDTO) { // userLoginDTO는 사용자가 로그인폼에 작성한 아이디, 비밀번호 묶음
+        // 유효성 검사
+        // 비어있는지
+        if ((userLoginDTO.getUserId()).isEmpty()) {
+            throw new RuntimeException("아이디가 비어있습니다.");
+        } else if ((userLoginDTO.getPassword()).isEmpty()) {
+            throw new RuntimeException("비밀번호가 비어있습니다.");
+        }
 
-         // 아이디로 조회 했을때 컬럼이 있는지 확인
-         User user = authDAO.getByUserId(userLoginDTO.getUserId());  // SELECT user_id, password FROM user WHERE user_id = "userLoginDTO.getUSerId()";  쿼리 수행. 조회되면 User 객체 반환, 아니면 null 반환
+        // 아이디로 조회 했을때 컬럼이 있는지 확인
+        User user = userDAO.getByUserId(userLoginDTO.getUserId()); // SELECT user_id, password FROM user WHERE user_id =
+                                                                   // "userLoginDTO.getUSerId()"; 쿼리 수행. 조회되면 User 객체
+                                                                   // 반환, 아니면 null 반환
 
-         if(user != null) {  // 반환값 있으면
-             String formPassword = userLoginDTO.getPassword();
-             String dbPassword = user.getPassword();
+        if (user != null) { // 반환값 있으면
+            String formPassword = userLoginDTO.getPassword();
+            String dbPassword = user.getPassword();
+            int deptId = user.getDeptId();
+            String deptName = authDAO.findDeptNameByDeptId(deptId);
 
+            if (deptName == null) {
+                throw new RuntimeException("존재하지 않는 학과 정보입니다. ID: " + deptId);
+            } else {
+                user.setDeptName(deptName);
+            }
 
-             if(PasswordUtil.checkPassword(formPassword, dbPassword)) {
-                 return user;
-             } else {
-                 throw new RuntimeException("아이디/비밀번호가 일치하지 않습니다.");
-             }
+            if (PasswordUtil.checkPassword(formPassword, dbPassword)) {
+                return user;
+            } else {
+                throw new RuntimeException("아이디/비밀번호가 일치하지 않습니다.");
+            }
 
-         } else {  // 반환값 없으면
-             throw new RuntimeException("아이디/비밀번호가 일치하지 않습니다.");
-         }
-     }
-
+        } else { // 반환값 없으면
+            throw new RuntimeException("아이디/비밀번호가 일치하지 않습니다.");
+        }
+    }
 
     public boolean sendVerificationCode(String email, HttpSession session) throws ValidationException, ServerException {
         if (email == null || !email.contains("@")) {
