@@ -49,7 +49,7 @@ public class LectureService {
         return lectureInfoDTO;
     }
 
-    public void registerLectureReview(ReviewRegistrationDTO reviewRegistrationDTO) {
+    public boolean registerLectureReview(ReviewRegistrationDTO reviewRegistrationDTO) {
         if(!(reviewRegistrationDTO.getRating() >= 1 && reviewRegistrationDTO.getRating() <= 5)) {
             throw new RuntimeException("평점을 선택해주세요. - registerLectureReview");
         }
@@ -78,6 +78,8 @@ public class LectureService {
         if(!success) {
             throw new RuntimeException("평가를 등록할 수 없습니다. - registerLectureReview");
         }
+
+        return true;
     }
 
     public ArrayList<ReviewInfoDTO> getLectureReviews(int lectureId, int professorId) {

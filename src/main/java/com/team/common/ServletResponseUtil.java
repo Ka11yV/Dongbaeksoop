@@ -7,8 +7,8 @@ import java.io.IOException;
 public class ServletResponseUtil {
 
     /**
-     * ApiResponse 객체를 JSON으로 직렬화하여 클라이언트에 응답을 전송합니다.
-     * * @param response 서블릿 응답 객체
+     * ApiResponse 객체를 JSON으로 직렬화하여 클라이언트에 응답을 전송
+     * @param response 서블릿 응답 객체
      * @param statusCode 응답할 HTTP 상태 코드
      * @param apiResponse ApiResponse 객체 (성공/실패 포함)
      * @throws IOException 스트림 작성 중 오류 발생 시

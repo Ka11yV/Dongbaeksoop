@@ -114,33 +114,6 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
-
-                            <!-- Pagination -->
-                            <div class="p-6 border-t border-gray-100 flex items-center justify-center gap-2">
-                                <button
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-400 hover:bg-gray-50 hover:text-gray-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                                    disabled>
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                </button>
-
-                                <button
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold shadow-md">1</button>
-                                <button
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 transition-all">2</button>
-                                <button
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 transition-all">3</button>
-
-                                <button
-                                    class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-dark transition-all">
-                                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                        stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </div>
                         </div>
 
                         <!-- Department Notices -->

@@ -21,7 +21,8 @@ import java.util.ArrayList;
 public class LectureReviewDetailServlet extends HttpServlet {
     LectureService lectureService = new LectureService();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String strLectureId = request.getParameter("id");
         String strProfessorId = request.getParameter("professorId");
 
@@ -38,13 +39,12 @@ public class LectureReviewDetailServlet extends HttpServlet {
             ArrayList<ReviewInfoDTO> lectureReviews = lectureService.getLectureReviews(lectureId, professorId);
             ReviewSummaryDTO reviewSummaryDTO = lectureService.getReviewSummary(lectureId, professorId);
 
-            if(lectureReviews.isEmpty()) {
+            if (lectureReviews.isEmpty()) {
                 request.setAttribute("emptyReview", "아직 등록된 강의 평가가 없어요.");
             } else {
                 request.setAttribute("lectureReviews", lectureReviews);
                 request.setAttribute("reviewSummaryDTO", reviewSummaryDTO);
             }
-
 
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -69,10 +69,12 @@ public class LectureReviewDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedInUser");
 
-        ReviewRegistrationDTO reviewRegistrationDTO = new ReviewRegistrationDTO(user.getId(), lectureId, professorId, courseSemester, rating, difficulty, workload, teamProject, attendanceMethod, content);
+        ReviewRegistrationDTO reviewRegistrationDTO = new ReviewRegistrationDTO(user.getId(), lectureId, professorId,
+                courseSemester, rating, difficulty, workload, teamProject, attendanceMethod, content);
 
+        boolean isRegist = false;
         try {
-            lectureService.registerLectureReview(reviewRegistrationDTO);
+            isRegist = lectureService.registerLectureReview(reviewRegistrationDTO);
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -80,6 +82,10 @@ public class LectureReviewDetailServlet extends HttpServlet {
         String redirectURL = request.getContextPath()
                 + "/lecture-review-detail?id=" + lectureId
                 + "&professorId=" + professorId;
+
+        if (isRegist) {
+            redirectURL += "&status=success";
+        }
 
         response.sendRedirect(redirectURL);
     }

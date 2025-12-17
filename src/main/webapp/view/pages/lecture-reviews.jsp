@@ -145,9 +145,6 @@
                                                     </c:choose>
                                                 </span>
                                             </div>
-                                            <p class="mt-3 truncate text-base text-gray-600">"어렵지만 실무에 도움되는 강의, 프로젝트
-                                                경험하기
-                                                좋아요"</p>
                                         </div>
 
                                         <div class="flex shrink-0 items-center gap-4">
@@ -172,14 +169,6 @@
                                                     <span class="text-sm text-gray-400">/5.0</span>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="courseItemBtn h-8 w-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                                                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -193,13 +182,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                                         </svg>
                                     </button>
-
-                                    <button
-                                        class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold shadow-md">1</button>
-                                    <button
-                                        class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 transition-all">2</button>
-                                    <button
-                                        class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 font-medium hover:bg-gray-50 transition-all">3</button>
 
                                     <button
                                         class="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-dark transition-all">

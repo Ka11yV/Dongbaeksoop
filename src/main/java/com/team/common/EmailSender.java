@@ -37,7 +37,7 @@ public class EmailSender {
         message.setSubject("[동백숲] 이메일 인증번호");
 
         // HTML 형식의 본문 (사용자 디자인 적용)
-        // 자바 문자열 내부에서 HTML 속성의 따옴표(")는 \" 로 이스케이프 처리해야 합니다.
+        // 자바 문자열 내부에서 HTML 속성의 따옴표(")는 \" 로 이스케이프 처리
         String htmlContent =
                 "<!DOCTYPE html>" +
                         "<html lang=\"ko\">" +
@@ -70,7 +70,7 @@ public class EmailSender {
                         "                    <div style=\"background-color: #F1F5F9; border-radius: 12px; padding: 20px; margin-bottom: 30px;\">" +
                         "                        <span style=\"color: #2563EB; font-size: 32px; font-weight: bold; letter-spacing: 8px;\">" +
 
-                        // 여기가 핵심: ${Session} 대신 authCode 변수 삽입
+                        // ${Session} 대신 authCode 변수 삽입
                         authCode +
 
                         "                        </span>" +
