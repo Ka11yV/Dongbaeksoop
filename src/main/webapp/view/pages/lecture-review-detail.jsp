@@ -11,13 +11,27 @@
                 <link href="${pageContext.request.contextPath}/assets/styles/output.css" rel="stylesheet">
                 <link rel="stylesheet" as="style" crossorigin
                     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-                <style>
-                </style>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.css" />
+                <script src="https://cdn.jsdelivr.net/npm/simple-notify/dist/simple-notify.min.js"></script>
+
             </head>
 
             <body class="antialiased">
                 <c:set var="lectureInfoDTO" value="${requestScope.lectureInfoDTO}" />
                 <c:set var="reviewSummaryDTO" value="${requestScope.reviewSummaryDTO}" />
+                <c:set var="reviewSummaryDTO" value="${requestScope.reviewSummaryDTO}" />
+                <c:if test="${param.status == 'success'}">
+                    <script>
+                        document.addEventListener("DOMContentLoaded", () => {
+                            toast('success', "리뷰 등록 성공", "리뷰가 정상적으로 등록되었습니다.");
+
+                            // URL 파라미터 청소 (새로고침 시 토스트 재발생 방지)
+                            const url = new URL(window.location);
+                            url.searchParams.delete('status');
+                            window.history.replaceState({}, '', url);
+                        })
+                    </script>
+                </c:if>
                 <%@ include file="/view/common/header.jsp" %>
 
                     <main class="pt-24 pb-12 min-h-screen">
@@ -471,7 +485,8 @@
                                             <button type="button" data-value="난이도 어려움"
                                                 class="flex-1 py-2 text-sm font-medium rounded-xl bg-white border border-gray-200 text-gray-500 hover:bg-gray-50 hover:border-gray-300 transition-all">어려움</button>
                                         </div>
-                                        <input type="text" id="difficulty-input" name="difficulty" class="hidden" />
+                                        <input type="text" id="difficulty-input" value="default" name="difficulty"
+                                            class="hidden" />
                                     </div>
 
                                     <div>

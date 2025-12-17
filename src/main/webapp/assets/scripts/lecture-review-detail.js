@@ -307,3 +307,27 @@ document.addEventListener('DOMContentLoaded', () => {
         sortReviews(globalReviewList); // 기본 정렬(최신순) 적용 후 렌더링
     }
 });
+
+function toast(status, title, text) {
+    new Notify({
+        status: status,
+        title: title,
+        text: text,
+        effect: 'fade',
+        speed: 300,
+        customClass: null,
+        customIcon: null,
+        showIcon: true,
+        showCloseButton: true,
+        autoclose: true,
+        autotimeout: 3000,
+        notificationsPadding: 70,
+        gap: 20,
+        distance: 50,
+        type: 'outline',
+        position: 'right top'
+    });
+}
+
+
+
