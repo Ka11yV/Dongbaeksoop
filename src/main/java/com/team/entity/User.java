@@ -1,12 +1,11 @@
 package com.team.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class User {
+    // 1:1 매칭
     private int id;
     private String userId;
-    private String deptName;
     private String password;
     private String schoolPassword;
     private String email;
@@ -18,6 +17,8 @@ public class User {
     private String role;
     private LocalDateTime createdAt;
 
+    // 그 외
+    private String deptName;
 
     public User(String deptName) {
         this.deptName = deptName;
@@ -99,7 +100,7 @@ public class User {
         this.isBan = isBan;
     }
 
-    public boolean isNoticeAlertEnabled(boolean isNoticeAlertEnabled) {
+    public boolean isNoticeAlertEnabled() {
         return this.isNoticeAlertEnabled;
     }
 

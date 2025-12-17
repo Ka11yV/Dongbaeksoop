@@ -2,33 +2,31 @@ package com.team.entity;
 
 import java.time.LocalDateTime;
 
-// 강의리뷰(id, user_id, lecture_id, professor_id, course_semester, rating, difficulty, workload, team_project, attendance_method, content, created_at)
 public class LectureReview {
+    // 1:1 매칭
     private int id;
-    private int user_id;
-    private int lecture_id;
-    private int professor_id;
-    private String course_semester;
+    private int userId;
+    private int lectureId;
+    private int professorId;
+    private String courseSemester;
     private int rating;
     private String difficulty;
     private String workload;
-    private String team_project;
-    private String attendance_method;
+    private String teamProject;
+    private String attendanceMethod;
     private String content;
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
-    public LectureReview() {}
-
-    public LectureReview(int user_id, int lecture_id, int professor_id, String course_semester, int rating, String difficulty, String workload, String team_project, String attendance_method, String content) {
-        this.user_id = user_id;
-        this.lecture_id = lecture_id;
-        this.professor_id = professor_id;
-        this.course_semester = course_semester;
+    public LectureReview(int userId, int lectureId, int professorId, String courseSemester, int rating, String difficulty, String workload, String teamProject, String attendanceMethod, String content) {
+        this.userId = userId;
+        this.lectureId = lectureId;
+        this.professorId = professorId;
+        this.courseSemester = courseSemester;
         this.rating = rating;
         this.difficulty = difficulty;
         this.workload = workload;
-        this.team_project = team_project;
-        this.attendance_method = attendance_method;
+        this.teamProject = teamProject;
+        this.attendanceMethod = attendanceMethod;
         this.content = content;
     }
 
@@ -40,36 +38,36 @@ public class LectureReview {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getLecture_id() {
-        return lecture_id;
+    public int getLectureId() {
+        return lectureId;
     }
 
-    public void setLecture_id(int lecture_id) {
-        this.lecture_id = lecture_id;
+    public void setLectureId(int lectureId) {
+        this.lectureId = lectureId;
     }
 
-    public int getProfessor_id() {
-        return professor_id;
+    public int getProfessorId() {
+        return professorId;
     }
 
-    public void setProfessor_id(int professor_id) {
-        this.professor_id = professor_id;
+    public void setProfessorId(int professorId) {
+        this.professorId = professorId;
     }
 
-    public String getCourse_semester() {
-        return course_semester;
+    public String getCourseSemester() {
+        return courseSemester;
     }
 
-    public void setCourse_semester(String course_semester) {
-        this.course_semester = course_semester;
+    public void setCourseSemester(String courseSemester) {
+        this.courseSemester = courseSemester;
     }
 
     public int getRating() {
@@ -96,20 +94,20 @@ public class LectureReview {
         this.workload = workload;
     }
 
-    public String getTeam_project() {
-        return team_project;
+    public String getTeamProject() {
+        return teamProject;
     }
 
-    public void setTeam_project(String team_project) {
-        this.team_project = team_project;
+    public void setTeamProject(String teamProject) {
+        this.teamProject = teamProject;
     }
 
-    public String getAttendance_method() {
-        return attendance_method;
+    public String getAttendanceMethod() {
+        return attendanceMethod;
     }
 
-    public void setAttendance_method(String attendance_method) {
-        this.attendance_method = attendance_method;
+    public void setAttendanceMethod(String attendanceMethod) {
+        this.attendanceMethod = attendanceMethod;
     }
 
     public String getContent() {
@@ -120,11 +118,11 @@ public class LectureReview {
         this.content = content;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }

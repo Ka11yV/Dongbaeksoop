@@ -33,6 +33,7 @@ public class AuthServlet extends HttpServlet {
         if (pathInfo.equals("/login")) {
 
             HttpSession session = request.getSession();
+
             if (session.getAttribute("user") != null) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
                 dispatcher.forward(request, response);
@@ -41,9 +42,12 @@ public class AuthServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/view/pages/login.jsp");
             dispatcher.forward(request, response);
         }
+
+        // 로그아웃
         if(pathInfo.equals("/logout")) {
             HttpSession session = request.getSession();
             session.removeAttribute("loggedInUser");
+            session.removeAttribute("successLogin");
             response.sendRedirect(request.getContextPath() + "/");
         }
     }
@@ -62,9 +66,13 @@ public class AuthServlet extends HttpServlet {
                 // 로그인 시도
                 User user = authService.login(userLoginDTO);  // true면 로그인 성공
 
+                System.out.println("로그인 아이디 : " + user.getUserId());
+                System.out.println("로그인 비밀번호 : " + user.getPassword());
+
                 // 로그인 성공
                 HttpSession session = request.getSession();
                 session.setAttribute("loggedInUser", user);
+                session.setAttribute("successLogin", true);
                 response.sendRedirect("/");  // 로그인 성공 시 홈 화면으로 이동
             } catch(RuntimeException e) {
                 // 로그인 실패
