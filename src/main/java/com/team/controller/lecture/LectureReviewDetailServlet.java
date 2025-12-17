@@ -3,6 +3,7 @@ package com.team.controller.lecture;
 import com.team.dto.lecture.LectureInfoDTO;
 import com.team.dto.lecture.ReviewInfoDTO;
 import com.team.dto.lecture.ReviewRegistrationDTO;
+import com.team.dto.lecture.ReviewSummaryDTO;
 import com.team.entity.User;
 import com.team.service.LectureService;
 import jakarta.servlet.RequestDispatcher;
@@ -35,7 +36,15 @@ public class LectureReviewDetailServlet extends HttpServlet {
             LectureInfoDTO lectureInfoDTO = lectureService.getLectureInfo(lectureId, professorId);
             request.setAttribute("lectureInfoDTO", lectureInfoDTO);
             ArrayList<ReviewInfoDTO> lectureReviews = lectureService.getLectureReviews(lectureId, professorId);
-            request.setAttribute("lectureReviews", lectureReviews);
+            ReviewSummaryDTO reviewSummaryDTO = lectureService.getReviewSummary(lectureId, professorId);
+
+            if(lectureReviews.isEmpty()) {
+                request.setAttribute("emptyReview", "아직 등록된 강의 평가가 없어요.");
+            } else {
+                request.setAttribute("lectureReviews", lectureReviews);
+                request.setAttribute("reviewSummaryDTO", reviewSummaryDTO);
+            }
+
 
         } catch (RuntimeException e) {
             e.printStackTrace();

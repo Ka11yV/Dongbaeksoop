@@ -4,18 +4,32 @@ import com.team.dao.LectureDAO;
 import com.team.dto.lecture.LectureInfoDTO;
 import com.team.dto.lecture.ReviewInfoDTO;
 import com.team.dto.lecture.ReviewRegistrationDTO;
+import com.team.dto.lecture.ReviewSummaryDTO;
 import com.team.entity.LectureReview;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class LectureService {
     LectureDAO lectureDAO = new LectureDAO();
 
     public ArrayList<LectureInfoDTO> getAllLecturesInfoList() {
         ArrayList<LectureInfoDTO> lectureList = lectureDAO.selectAllLecturesWithDetails();
+        Map<String, ReviewSummaryDTO> allSummaries = lectureDAO.selectAllLecturesSummaryStatistics();
 
         if (lectureList.isEmpty()) {
             throw new RuntimeException("조회할 수 있는 강의 목록이 없습니다. - getAllLecturesInfoList");
+        }
+
+        for(LectureInfoDTO lecture : lectureList) {
+            String key = lecture.getLectureId() + "_" + lecture.getProfessorId();
+            ReviewSummaryDTO summary = allSummaries.get(key);
+
+            if (summary != null) {
+                lecture.setReviewSummaryDTO(summary);
+            } else {
+                lecture.setReviewSummaryDTO(new ReviewSummaryDTO(0.0, 0, 0, 0, 0, 0, 0, null, null, null, null));
+            }
         }
 
         return lectureList;
@@ -70,9 +84,29 @@ public class LectureService {
         ArrayList<ReviewInfoDTO> lectureReviews = lectureDAO.selectLectureReviewsByLectureAndProfessor(lectureId, professorId);
 
         if(lectureReviews.isEmpty()) {
-            throw new RuntimeException("조회할 수 있는 리뷰 목록이 없습니다. - getLectureReviews");
+            return new ArrayList<>();
         }
 
         return lectureReviews;
+    }
+
+    public ReviewSummaryDTO getReviewSummary(int lectureId, int professorId) {
+        ReviewSummaryDTO reviewSummaryDTO = lectureDAO.selectSummaryStatistics(lectureId, professorId);
+
+        if(reviewSummaryDTO.getCountReview() == 0) {
+            return new ReviewSummaryDTO(0.0, 0, 0, 0, 0, 0, 0, null, null, null, null);
+        }
+
+        String difficulty = lectureDAO.selectDifficultyMode(lectureId, professorId);
+        String workload = lectureDAO.selectWorkloadMode(lectureId, professorId);
+        String teamProject = lectureDAO.selectTeamProjectMode(lectureId, professorId);
+        String attendanceMethod = lectureDAO.selectAttendanceMethodMode(lectureId, professorId);
+
+        reviewSummaryDTO.setAvgDifficulty(difficulty);
+        reviewSummaryDTO.setAvgWorkload(workload);
+        reviewSummaryDTO.setAvgTeamProject(teamProject);
+        reviewSummaryDTO.setAvgAttendanceMethod(attendanceMethod);
+
+        return reviewSummaryDTO;
     }
 }
