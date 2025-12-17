@@ -98,7 +98,7 @@ public class AssignmentsServlet extends HttpServlet {
     }
 
     private VerificationResult verifySchoolAccount(String username, String password) {
-        String webhookUrl = "http://localhost:5678/webhook-test/a87c9e2b-81c3-49a7-808e-8cc85099d751";
+        String webhookUrl = "http://209.97.165.251:5678/webhook/a87c9e2b-81c3-49a7-808e-8cc85099d751";
         try {
             java.net.URL url = new java.net.URL(webhookUrl);
             java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
