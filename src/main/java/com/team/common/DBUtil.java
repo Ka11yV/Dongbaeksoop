@@ -1,6 +1,5 @@
 package com.team.common;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,10 +7,9 @@ import java.sql.SQLException;
 
 public class DBUtil {
 
-    private static final Dotenv dotenv = Dotenv.load();
-    private static final String DB_URL = dotenv.get("DB_URL");
-    private static final String DB_USER = dotenv.get("DB_USER");
-    private static final String DB_PASSWORD = dotenv.get("DB_PASSWORD");
+    private static final String DB_URL = System.getenv("DB_URL");
+    private static final String DB_USER = System.getenv("DB_USER");
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
 
     static {
         try {

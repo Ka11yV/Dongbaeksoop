@@ -4,7 +4,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
-import io.github.cdimascio.dotenv.Dotenv;
 
 public class AES256Util {
 
@@ -13,10 +12,7 @@ public class AES256Util {
     // environment variable)
     // For this project, we'll use a hardcoded key for simplicity but acknowledge
     // the security risk.
-    private static final Dotenv dotenv = Dotenv.load();
-    private static final String KEY = dotenv.get("HASH_PASSWORD_KEY");
-
-
+    private static final String KEY = System.getenv("HASH_PASSWORD_KEY");
 
     public static String encrypt(String plainText) {
         try {

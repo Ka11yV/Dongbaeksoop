@@ -1,6 +1,7 @@
 package com.team.controller.assignment;
 
 import com.team.dao.UserDAO;
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +13,8 @@ import java.io.IOException;
 @WebServlet("/assignments")
 public class AssignmentsServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAO();
+
+    private static final String SCHOOL_CONNECT_API = System.getenv("SCHOOL_CONNECT_API");
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -98,7 +101,7 @@ public class AssignmentsServlet extends HttpServlet {
     }
 
     private VerificationResult verifySchoolAccount(String username, String password) {
-        String webhookUrl = "http://209.97.165.251:5678/webhook/a87c9e2b-81c3-49a7-808e-8cc85099d751";
+        String webhookUrl = SCHOOL_CONNECT_API;
         try {
             java.net.URL url = new java.net.URL(webhookUrl);
             java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
